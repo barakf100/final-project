@@ -1,0 +1,175 @@
+logged error with status code: 400
+        at 15:8:35 
+        error was: Expected double-quoted property name in JSON at position 254 
+logged error with status code: 401
+        at 15:8:40 
+        error was: user not found 
+logged error with status code: 401
+        at 15:8:47 
+        error was: user not found 
+logged error with status code: 401
+        at 15:9:8 
+        error was: user not found 
+logged error with status code: 401
+        at 15:9:40 
+        error was: Invalid password 
+logged error with status code: 401
+        at 15:10:27 
+        error was: You are not a user 
+logged error with status code: 401
+        at 15:15:13 
+        error was: You are not a user 
+logged error with status code: 401
+        at 15:16:3 
+        error was: You are not a user 
+logged error with status code: 401
+        at 15:19:17 
+        error was: You are not a user 
+logged error with status code: 400
+        at 15:19:42 
+        error was: Only the isBusiness field can be updated. 
+logged error with status code: 400
+        at 15:20:1 
+        error was: Only the isBusiness field can be updated. 
+logged error with status code: 400
+        at 15:20:41 
+        error was: Only the isBusiness field can be updated. 
+logged error with status code: 400
+        at 15:20:55 
+        error was: Only the invites field can be updated. 
+logged error with status code: 400
+        at 15:21:59 
+        error was: Only the invites field can be updated. 
+logged error with status code: 400
+        at 15:32:36 
+        error was: Expected property name or '}' in JSON at position 15 
+logged error with status code: 400
+        at 15:32:45 
+        error was: Expected property name or '}' in JSON at position 15 
+logged error with status code: 400
+        at 15:34:5 
+        error was: Expected double-quoted property name in JSON at position 297 
+logged error with status code: 400
+        at 15:34:19 
+        error was: Expected double-quoted property name in JSON at position 297 
+logged error with status code: 400
+        at 15:35:18 
+        error was: Expected double-quoted property name in JSON at position 152 
+logged error with status code: 400
+        at 15:35:47 
+        error was: Expected double-quoted property name in JSON at position 156 
+logged error with status code: 400
+        at 15:35:52 
+        error was: Expected double-quoted property name in JSON at position 156 
+logged error with status code: 400
+        at 15:57:43 
+        error was: Expected double-quoted property name in JSON at position 156 
+logged error with status code: 400
+        at 15:58:18 
+        error was: Expected double-quoted property name in JSON at position 127 
+logged error with status code: 400
+        at 15:58:22 
+        error was: Expected double-quoted property name in JSON at position 127 
+logged error with status code: 400
+        at 15:58:24 
+        error was: Expected double-quoted property name in JSON at position 127 
+logged error with status code: 400
+        at 16:0:46 
+        error was: Expected double-quoted property name in JSON at position 180 
+logged error with status code: 400
+        at 16:1:40 
+        error was: Unexpected token ']', ..."        },]
+    }" is not valid JSON 
+logged error with status code: undefined
+        at 16:6:21 
+        error was: user validation failed: invites.1._id: Cast to ObjectId failed for value "[
+  {
+    name: { first: 'Barak234', middle: '', last: 'invited' },
+    phone: '1234567890',
+    group: 'group1',
+    isAccepted: false,
+    isDeclined: false,
+    isPending: true
+  }
+]" (type Array) at path "_id" because of "BSONError", invites.1.group: Path `group` is required., invites.1.phone: Path `phone` is required. 
+logged error with status code: undefined
+        at 16:9:51 
+        error was: user validation failed: invites.1._id: Cast to ObjectId failed for value "[
+  {
+    name: { first: 'Barak234', middle: '', last: 'invited' },
+    phone: '1234567890',
+    group: 'group1',
+    isAccepted: false,
+    isDeclined: false,
+    isPending: true
+  }
+]" (type Array) at path "_id" because of "BSONError", invites.1.group: Path `group` is required., invites.1.phone: Path `phone` is required. 
+logged error with status code: undefined
+        at 16:10:5 
+        error was: user validation failed: invites.1._id: Cast to ObjectId failed for value "[
+  {
+    name: { first: 'Barak234', middle: '', last: 'invited' },
+    phone: '1234567890',
+    group: 'group1',
+    isAccepted: false,
+    isDeclined: false,
+    isPending: true
+  }
+]" (type Array) at path "_id" because of "BSONError", invites.1.group: Path `group` is required., invites.1.phone: Path `phone` is required. 
+logged error with status code: undefined
+        at 16:10:20 
+        error was: user validation failed: invites.1._id: Cast to ObjectId failed for value "[
+  {
+    name: { first: 'Barak234', middle: '', last: 'invited' },
+    phone: '1234567890',
+    group: 'group1',
+    isAccepted: false,
+    isDeclined: false,
+    isPending: true
+  }
+]" (type Array) at path "_id" because of "BSONError", invites.1.group: Path `group` is required., invites.1.phone: Path `phone` is required. 
+logged error with status code: undefined
+        at 16:11:57 
+        error was: user validation failed: invites.1._id: Cast to ObjectId failed for value "[
+  {
+    name: { first: 'Barak234', middle: '', last: 'invited' },
+    phone: '1234567890',
+    group: 'group1',
+    isAccepted: false,
+    isDeclined: false,
+    isPending: true
+  }
+]" (type Array) at path "_id" because of "BSONError", invites.1.group: Path `group` is required., invites.1.phone: Path `phone` is required. 
+logged error with status code: 401
+        at 16:18:25 
+        error was: You are not a user 
+logged error with status code: 401
+        at 16:18:41 
+        error was: You are not a user 
+logged error with status code: 401
+        at 16:19:3 
+        error was: You are not a user 
+logged error with status code: 400
+        at 19:32:21 
+        error was: Expected double-quoted property name in JSON at position 123 
+logged error with status code: undefined
+        at 19:43:36 
+        error was: E11000 duplicate key error collection: no-name.users index: email_1 dup key: { email: "marry@marry.com" } 
+logged error with status code: undefined
+        at 19:46:48 
+        error was: E11000 duplicate key error collection: no-name.users index: email_1 dup key: { email: "marry@marry.com" } 
+logged error with status code: undefined
+        at 19:48:9 
+        error was: E11000 duplicate key error collection: no-name.users index: email_1 dup key: { email: "marry@marry.com" } 
+logged error with status code: 401
+        at 20:33:10 
+        error was: You are not a user 
+logged error with status code: 401
+        at 20:34:20 
+        error was: You are not a user 
+logged error with status code: 400
+        at 20:39:18 
+        error was: user has no TDL 
+logged error with status code: 400
+        at 20:41:39 
+        error was: user has no invites 

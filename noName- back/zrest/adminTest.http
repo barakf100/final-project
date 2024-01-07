@@ -1,0 +1,122 @@
+@token =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcnJ5QG1hcnJ5LmNvbSIsImlhdCI6MTcwNDExODgwMX0.XddZOWczmCvulNUGRf3cwvFIJwPmKBV1Rbhbv8zruyc
+
+### register
+POST http://localhost:8080/api/v1/users/
+Content-Type: application/json
+
+{
+    "nameA":{ 
+        "first": "admin",
+        "last": "admin"
+    },
+    "address": {
+        "city": "Anytown",
+        "country": "Israel",
+        "state": "",
+        "street": "admin St",
+        "houseNumber": 20,
+        "Zip": "12345"
+    },
+    "image": {
+        "alt": "user-profile",
+        "src": "https://picsum.photos/200/300"
+    },
+    "phone": "050-8123091",
+    "email": "marry@marry.com",
+    "password": "Aa12345!",
+    "isMarrying": true,
+    "isCaller":false
+}
+
+### Login
+POST http://localhost:8080/api/v1/users/login
+Content-Type: application/json
+
+{
+    "email": "reg@reg.com",
+    "password": "Aa!123456"
+}
+
+### GET all users
+GET http://localhost:8080/api/v1/users/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlZ0ByZWcuY29tIiwiaWF0IjoxNzA0MTM1NTg1fQ.Lsc10zoCo2mDz6-x5M7V7UPZt0Xcrv6zIP2Nu9E1Mo4
+
+### GET user by id
+GET http://localhost:8080/api/v1/users/658dab589e38a40c090292d7
+Authorization: bearer {{token}}
+
+### Update user
+PUT http://localhost:8080/api/v1/users/658dab589e38a40c090292d7
+Authorization: bearer {{token}}
+Content-Type: application/json
+
+{
+    "nameA":{ 
+        "first": "couple A",
+        "last": "couple A"
+    },
+    "address": {
+        "city": "Anytown",
+        "country": "Israel",
+        "state": "",
+        "street": "admin St",
+        "houseNumber": 20,
+        "Zip": "12345"
+    },
+    "image": {
+        "alt": "user-profile",
+        "src": "https://picsum.photos/200/300"
+    },
+    "phone": "050-8123091",
+    "email": "marry1@marry.com",
+    "password": "Aa12345!",
+    "isMarrying": true,
+    "isCaller":false
+}
+
+### add invite
+PATCH http://localhost:8080/api/v1/users/invite/6592c9a7142366537e74c9da
+Authorization: bearer {{token}}
+Content-Type: application/json
+
+    {
+        "invites": [
+        {
+            "name": {
+                "first": "Barak3",
+                "middle": "",
+                "last": "invited"
+            },
+            "phone": "1234567890",
+            "group": "group1",
+            "isAccepted": false,
+            "isDeclined": false,
+            "isPending": true
+        }]
+    }
+
+### add to TDL
+PATCH http://localhost:8080/api/v1/users/TDL/6592c9a7142366537e74c9da
+Authorization: bearer {{token}}
+Content-Type: application/json
+
+    {
+        "TDL": [
+        {
+            "name": "TDL 1",
+            "description": "TDL 1 description"
+        }]
+    }
+
+
+### Delete user
+DELETE http://localhost:8080/api/v1/users/658dab589e38a40c090292d7
+Authorization: bearer {{token}}
+
+### Delte invite
+DELETE http://localhost:8080/api/v1/users/invite/6592c9a7142366537e74c9da/6592c9a7142366537e74c9de
+Authorization: bearer {{token}}
+
+### Delte TDL
+DELETE http://localhost:8080/api/v1/users/TDL/6592c9a7142366537e74c9da/659305f72783ede2eb244483
+Authorization: bearer {{token}}

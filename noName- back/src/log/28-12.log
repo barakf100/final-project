@@ -1,0 +1,72 @@
+logged error with status code: 400
+        at 18:50:13 
+        error was: Expected double-quoted property name in JSON at position 422 
+logged error with status code: 400
+        at 18:51:36 
+        error was: Expected double-quoted property name in JSON at position 216 
+logged error with status code: 400
+        at 18:51:51 
+        error was: Expected double-quoted property name in JSON at position 216 
+logged error with status code: 400
+        at 18:52:43 
+        error was: Expected double-quoted property name in JSON at position 216 
+logged error with status code: 400
+        at 18:52:52 
+        error was: Expected double-quoted property name in JSON at position 216 
+logged error with status code: 400
+        at 18:53:30 
+        error was: Expected double-quoted property name in JSON at position 216 
+logged error with status code: 400
+        at 18:54:32 
+        error was: Expected double-quoted property name in JSON at position 218 
+logged error with status code: 400
+        at 18:55:6 
+        error was: Expected double-quoted property name in JSON at position 216 
+logged error with status code: 400
+        at 18:55:53 
+        error was: Expected double-quoted property name in JSON at position 216 
+logged error with status code: 400
+        at 18:56:32 
+        error was: Expected double-quoted property name in JSON at position 216 
+logged error with status code: 400
+        at 18:57:1 
+        error was: Expected double-quoted property name in JSON at position 216 
+logged error with status code: 400
+        at 18:59:26 
+        error was: Expected double-quoted property name in JSON at position 361 
+logged error with status code: 400
+        at 19:0:44 
+        error was: Expected double-quoted property name in JSON at position 437 
+logged error with status code: 400
+        at 19:1:5 
+        error was: Expected double-quoted property name in JSON at position 437 
+logged error with status code: 400
+        at 19:1:22 
+        error was: Expected double-quoted property name in JSON at position 437 
+logged error with status code: 400
+        at 19:1:53 
+        error was: Expected double-quoted property name in JSON at position 437 
+logged error with status code: 400
+        at 19:2:7 
+        error was: Expected double-quoted property name in JSON at position 437 
+logged error with status code: 400
+        at 19:2:46 
+        error was: Expected double-quoted property name in JSON at position 437 
+logged error with status code: 400
+        at 19:3:22 
+        error was: Expected double-quoted property name in JSON at position 485 
+logged error with status code: 400
+        at 19:3:38 
+        error was: Expected double-quoted property name in JSON at position 485 
+logged error with status code: undefined
+        at 19:7:2 
+        error was: E11000 duplicate key error collection: no-name.users index: email_1 dup key: { email: "admin@admin.com" } 
+logged error with status code: undefined
+        at 19:7:22 
+        error was: E11000 duplicate key error collection: no-name.users index: email_1 dup key: { email: "marry@marry.com" } 
+logged error with status code: 401
+        at 19:15:39 
+        error was: Invalid password 
+logged error with status code: 401
+        at 19:15:42 
+        error was: Invalid password 

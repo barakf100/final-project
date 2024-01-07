@@ -1,0 +1,15 @@
+logged error with status code: 400
+        at 15:35:46 
+        error was: token is missing 
+logged error with status code: 401
+        at 15:36:17 
+        error was: You are not a user 
+logged error with status code: 401
+        at 15:36:36 
+        error was: You are not a user 
+logged error with status code: 401
+        at 15:37:10 
+        error was: Invalid password 
+logged error with status code: 401
+        at 15:37:18 
+        error was: Invalid password 

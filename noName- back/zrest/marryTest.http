@@ -1,0 +1,42 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcnJ5QG1hcnJ5LmNvbSIsImlhdCI6MTcwNDIwODU5NX0.eQB8JUWMr1YGaF8bkKJBaPly0XnKELlqMXXu8LoRgv8
+
+### login for marry
+POST http://localhost:8080/api/v1/users/login
+Content-Type: application/json
+
+{
+    "email": "marry@marry.com",
+    "password": "Aa!123456"
+}
+
+### add new TDL
+POST http://localhost:8080/api/v1/TDL/6592c9a7142366537e74c9da
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name": "TDL 4",
+    "description": "TDL 4 description"
+}
+
+### get all TDLs
+GET http://localhost:8080/api/v1/TDL/6592c9a7142366537e74c9da
+Authorization: Bearer {{token}}
+
+### get TDL by id
+GET http://localhost:8080/api/v1/TDL/6592c9a7142366537e74c9da/6594313c035f19900423f8e5
+Authorization: Bearer {{token}}
+
+### update TDL
+PATCH http://localhost:8080/api/v1/TDL/6592c9a7142366537e74c9da/65943139035f19900423f8dc
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name": "TDL update 2",
+    "description": "TDL 2 description"
+}
+
+### delete TDL
+DELETE http://localhost:8080/api/v1/TDL/6592c9a7142366537e74c9da/6594313c035f19900423f8e5
+Authorization: Bearer {{token}}
