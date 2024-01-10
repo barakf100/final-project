@@ -19,7 +19,9 @@ import ROUTES from "../../routes/ROUTES";
 import { validateLogin } from "../../validation/loginValidation";
 import { Alert } from "@mui/material";
 import useAutoLogin from "../../hooks/useAutoLogin";
-import { storeToken } from "../../service/storageService";
+import { storeToken } from "../../service/storage/storageService";
+import { login } from "../../service/request/allReq";
+import { toastSuccess } from "../../service/toast/toast";
 // import ServerToast from "../../toast/toastServer";
 
 const Login = () => {
@@ -38,25 +40,12 @@ const Login = () => {
             });
             setErrorsState(joiResponse);
             if (joiResponse) return;
-            let { data } = await axios.post("/users/login", {
-                email: emailValue,
-                password: passwordValue,
-            });
-            storeToken(data, rememberMe);
-            toast("You logged in successfully 👌", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-            autoLogin(true); //skip token test
+            let data = await login(emailValue, passwordValue);
+            // autoLogin(true); //skip token test
             navigate(ROUTES.HOME);
         } catch (err) {
             // ServerToast();
+            console.log(err);
         }
     };
     const handleEmailInputChange = (e) => {

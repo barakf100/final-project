@@ -5,8 +5,8 @@ import { InputError } from "../error/Input-Error";
 import { User } from "../database/model/user";
 
 const isAdminOrCaller: RequestHandler = async (req, res, next) => {
-    const token = extractToken(req);
     try {
+        const token = extractToken(req);
         const { email } = auth.verifyJWT(token);
         const { isAdmin, isCaller } = await User.findOne({ email });
         if (isAdmin || isCaller) {

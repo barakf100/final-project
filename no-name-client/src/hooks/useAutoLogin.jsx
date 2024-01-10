@@ -2,7 +2,7 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useDispatch } from "react-redux";
 import { authActions } from "../store/authSlice";
-import { getToken } from "../service/storageService";
+import { getToken } from "../service/storage/storageService";
 
 const useAutoLogin = () => {
     const dispatch = useDispatch();

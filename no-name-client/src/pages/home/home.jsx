@@ -1,12 +1,19 @@
 import { Typography, Box } from "@mui/material";
 import "../../fonts.css";
 import imageRing from "../../assets/ringFlowerGlass.jpeg";
+import ButtonComp from "../../components/button-comp";
+import { useEffect, useState } from "react";
 const HomePage = () => {
+    const [user, setUser] = useState(null);
+    useEffect(() => {
+        setUser(getUserById(id));
+    }, [user]);
     return (
         <div>
             <Typography variant="h3" textAlign="center" marginBottom="25px">
                 Welcome to the Home Page
             </Typography>
+            <ButtonComp variant="text" color="primary" children={"click"} />
             <Box style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px" }}>
                 <Box
                     style={{
