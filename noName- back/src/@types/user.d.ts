@@ -41,6 +41,7 @@ type ILogin = {
 };
 type IJWTPayload = {
     email: string;
+    _id: string;
 };
 type ITDL = {
     name: string;

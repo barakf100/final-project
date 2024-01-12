@@ -1,3 +1,5 @@
+import { jwtDecode } from "jwt-decode";
+
 const TOKEN = "token";
 
 const isLocalStorage = () => {
@@ -21,4 +23,8 @@ const getToken = () => {
     }
 };
 
-export { storeToken, getToken };
+const JWTDecode = (token) => {
+    return jwtDecode(token);
+};
+
+export { storeToken, getToken, JWTDecode };

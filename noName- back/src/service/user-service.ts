@@ -17,10 +17,10 @@ const validateUser = async (email: string, password: string) => {
     const user = await User.findOne({ email });
 
     if (!user) throw new InputError("Invalid Email", 401);
-
+    const { _id } = user;
     const isPasswordValid = await auth.validatePassword(password, user.password);
     if (!isPasswordValid) throw new InputError("Invalid password", 401);
-    const jwt = auth.generateJWT({ email });
+    const jwt = auth.generateJWT({ email, _id });
     return { jwt };
 };
 

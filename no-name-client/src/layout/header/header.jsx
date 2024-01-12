@@ -6,8 +6,9 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { useState } from "react";
 import Links from "./ui/Links.jsx";
-import FilterComponent from "./ui/FilterComponent.jsx";
+import FilterComponent from "../../components/filter/FilterComponent.jsx";
 import LeftDrawerComponent from "./ui/LeftDrawerComponent.jsx";
+import ROUTES from "../../routes/ROUTES.js";
 const Header = ({ isDarkTheme, onThemeChange }) => {
     const screenSize = useMediaQuery("(min-width:700px)");
     const linksScreenSize = useMediaQuery("(min-width:500px)");
@@ -40,7 +41,7 @@ const Header = ({ isDarkTheme, onThemeChange }) => {
                         Marry.me
                     </Typography>
                     {linksScreenSize && <Links />}
-                    {screenSize && <FilterComponent />}
+                    {screenSize && <FilterComponent route={ROUTES.HOME} />}
                     <Box
                         sx={{
                             my: 2,

@@ -3,11 +3,19 @@ import "../../fonts.css";
 import imageRing from "../../assets/ringFlowerGlass.jpeg";
 import ButtonComp from "../../components/button-comp";
 import { useEffect, useState } from "react";
+import { JWTDecode, getToken } from "../../service/storage/storageService";
+import { getUserById } from "../../service/request/marryReq";
 const HomePage = () => {
     const [user, setUser] = useState(null);
+    const { _id } = JWTDecode(getToken());
     useEffect(() => {
-        setUser(getUserById(id));
-    }, [user]);
+        const fetchUser = async () => {
+            const { user: usr } = await getUserById(_id);
+            setUser(usr);
+        };
+        fetchUser();
+    }, [_id]);
+    console.log(user);
     return (
         <div>
             <Typography variant="h3" textAlign="center" marginBottom="25px">
@@ -40,7 +48,9 @@ const HomePage = () => {
                     <Box style={{ backgroundColor: "purple", flex: "1" }}>invites number</Box>
                 </Box>
                 <Box style={{ backgroundColor: "green", height: "100px", gridRow: "2" }}>progress %</Box>
-                <Box style={{ backgroundColor: "orange", height: "210px", gridColumn: "3 / 3", gridRow: "1 / 3" }}>name photo date</Box>
+                <Box style={{ backgroundColor: "orange", height: "210px", gridColumn: "3 / 3", gridRow: "1 / 3" }}>
+                    {user?.nameA.first} {user?.nameA.last}
+                </Box>
                 <Box style={{ backgroundColor: "teal", height: "450px" }}>groups</Box>
                 <Box style={{ backgroundColor: "brown", height: "450px" }}>status of all</Box>
                 <Box style={{ backgroundColor: "pink", height: "450px" }}>TDL</Box>

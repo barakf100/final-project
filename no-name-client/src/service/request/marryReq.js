@@ -1,10 +1,11 @@
 import axios from "axios";
+import { getToken } from "../storage/storageService";
 
 // TODO: check all the requests
 
 const getUserById = async (id) => {
     try {
-        const res = await axios.get(`/users/${id}`);
+        const res = await axios.get(`/users/${id}`, { headers: { Authorization: `bearer ${getToken()}` } });
         return res.data;
     } catch (err) {
         console.log(err);

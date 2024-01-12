@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 // import { adminLinks, alwaysLinks, loggedInLinks, loggedOutLinks } from "../../myLinks";
 // import NavLinkComponent from "../NavLinkComponent";
 import nextKey from "generate-my-key";
-import FilterComponent from "./FilterComponent";
+import FilterComponent from "../../../components/filter/FilterComponent";
 
 const LeftDrawerComponent = ({ isOpen, onCloseDrawer }) => {
     const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
