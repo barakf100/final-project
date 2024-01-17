@@ -7,7 +7,6 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store/bigPie";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 // import { getToken } from "./service/storage/storageService";
 
 axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL;

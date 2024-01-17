@@ -27,4 +27,11 @@ const JWTDecode = (token) => {
     return jwtDecode(token);
 };
 
-export { storeToken, getToken, JWTDecode };
+const getMyId = () => {
+    const token = getToken();
+    if (token) {
+        return JWTDecode(token)._id;
+    }
+};
+
+export { storeToken, getToken, JWTDecode, getMyId };

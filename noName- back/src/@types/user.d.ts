@@ -33,6 +33,7 @@ type IUser = {
     invites?: IIinvited[];
     TDL?: ITDL[];
     _id?: string;
+    marryDate?: Date;
 };
 
 type ILogin = {

@@ -20,5 +20,6 @@ const userSchema = new Schema<IUser>({
     isCaller: { type: "boolean", required: true },
     invites: { type: [invitedSchema], required: false, default: [] },
     TDL: { type: [TDLSchema], required: false, default: [] },
+    marryDate: { type: "Date", required: false },
 });
 export { userSchema };

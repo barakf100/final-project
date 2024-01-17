@@ -1,0 +1,6 @@
+logged error with status code: 400
+        at 16:9:40 
+        error was: Expected double-quoted property name in JSON at position 563 
+logged error with status code: 400
+        at 16:11:44 
+        error was: Expected double-quoted property name in JSON at position 517 

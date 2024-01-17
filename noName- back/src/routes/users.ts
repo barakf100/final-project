@@ -8,6 +8,7 @@ import { isUser } from "../middleware/is_user";
 import { auth } from "../service/auth-service";
 import { InputError } from "../error/Input-Error";
 import { isAdminOrCaller } from "../middleware/is-admin-or-caller";
+import { isMarry } from "../middleware/is-marry";
 
 const router = Router();
 // register new user
@@ -68,7 +69,20 @@ router.put("/:id", isUser, validateRegistration, async (req, res, next) => {
         next(err);
     }
 });
-
+router.patch("/date/:id", isMarry, async (req, res, next) => {
+    try {
+        const { marryDate, ...otherFields } = req.body;
+        if (Object.keys(otherFields).length > 0) {
+            throw new InputError("Only the invites field can be updated.", 400);
+        }
+        if (marryDate) {
+            const user = await User.findByIdAndUpdate(req.params.id, { marryDate }, { new: true });
+            res.json(user);
+        }
+    } catch (err) {
+        next(err);
+    }
+});
 // user update his invites
 // params: id is the user id
 router.patch("/invite/:id", isUser, async (req, res, next) => {

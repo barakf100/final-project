@@ -2,14 +2,27 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { getUsers } from "../../store/async/usersSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { Container, Button, TableContainer, Paper, TableHead, TableRow, TableCell, Avatar, Table, TableBody } from "@mui/material";
+import {
+    Container,
+    Button,
+    TableContainer,
+    Paper,
+    TableHead,
+    TableRow,
+    TableCell,
+    Avatar,
+    Table,
+    TableBody,
+    Typography,
+    Box,
+} from "@mui/material";
 import RemoveIcon from "@mui/icons-material/Remove";
 import EditIcon from "@mui/icons-material/Edit";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import FilterComponent from "../../components/filter/FilterComponent";
 import ROUTES from "../../routes/ROUTES";
-import { myBeige, myCream, myGray, myLightGray } from "../../colors";
+import "../../fonts.css";
 
 const Users = () => {
     const [sortDirection, setSortDirection] = useState(null);
@@ -34,27 +47,55 @@ const Users = () => {
         }
     });
     return (
-        <>
-            <Container sx={{ bgcolor: myCream, height: "10vh", display: "flex", justifyContent: "right", alignItems: "center" }}>
-                <FilterComponent route={ROUTES.USERS} />
-                <Button variant="contained" color="primary" sx={{ height: "5vh" }}>
-                    add
-                </Button>
+        <Typography component="div">
+            <Container
+                sx={{
+                    height: "10vh",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                }}>
+                <Typography variant="h4" fontFamily="Quattrocento" fontWeight={"300"} sx={{ textAlign: "left" }}>
+                    USERS
+                </Typography>
+                <Box sx={{ display: "flex" }}>
+                    <FilterComponent route={ROUTES.USERS} />
+                    <Button variant="contained" color="mossGreen3" sx={{ height: "5vh", color: "background.default" }}>
+                        add
+                    </Button>
+                </Box>
             </Container>
-            <Container>
-                <TableContainer component={Paper}>
+            <Container sx={{ p: "0!important" }}>
+                <TableContainer
+                    component={Paper}
+                    sx={{
+                        backgroundColor: (theme) => theme.palette.background.default,
+                        "& .MuiTableRow-root": {
+                            border: "1.2px",
+                            borderColor: "beige.main",
+                            borderStyle: "solid",
+                        },
+                        "& .MuiTableRow-root:last-child": {
+                            border: "1.2px",
+                            borderColor: "beige.main",
+                            borderStyle: "solid",
+                        },
+                        overflow: "hidden",
+                        boxShadow: "none",
+                    }}>
                     <Table>
                         <TableHead>
                             <TableRow>
                                 <TableCell align="center"></TableCell>
-                                <TableCell align="center">First name</TableCell>
-                                <TableCell align="center">Last name</TableCell>
+                                <TableCell align="center">First Name</TableCell>
+                                <TableCell align="center">Last Name</TableCell>
                                 <TableCell align="center">Email</TableCell>
                                 <TableCell align="center">Phone</TableCell>
                                 <TableCell align="center">Country</TableCell>
                                 <TableCell align="center">
                                     Guest Number
                                     <Button
+                                        color="mossGreen2"
                                         style={{ minWidth: "5px" }}
                                         onClick={() => {
                                             handleSort("Guest Number");
@@ -79,10 +120,10 @@ const Users = () => {
                                     <TableCell align="center">{user.address.country}</TableCell>
                                     <TableCell align="center">{user.invites.length}</TableCell>
                                     <TableCell align="center" width={"80px"}>
-                                        <Button style={{ minWidth: "40px" }}>
+                                        <Button color="mossGreen2" style={{ minWidth: "40px" }}>
                                             <RemoveIcon />
                                         </Button>
-                                        <Button style={{ minWidth: "40px", color: myLightGray }}>
+                                        <Button color="mossGreen2" style={{ minWidth: "40px" }}>
                                             <EditIcon />
                                         </Button>
                                     </TableCell>
@@ -92,7 +133,7 @@ const Users = () => {
                     </Table>
                 </TableContainer>
             </Container>
-        </>
+        </Typography>
     );
 };
 

@@ -9,6 +9,36 @@ Content-Type: application/json
     "password": "Aa!123456"
 }
 
+### update marry
+PUT http://localhost:8080/api/v1/users/6592c9a7142366537e74c9da
+Authorization: bearer {{token}}
+Content-Type: application/json
+
+{
+    "nameA":{ 
+        "first": "couple A",
+        "last": "couple A"
+    },
+    "address": {
+        "city": "Anytown",
+        "country": "Israel",
+        "state": "",
+        "street": "admin St",
+        "houseNumber": 20,
+        "Zip": "12345"
+    },
+    "image": {
+        "alt": "user-profile",
+        "src": "https://picsum.photos/200/300"
+    },
+    "phone": "050-8123091",
+    "email": "marry@marry.com",
+    "password": "Aa12345!",
+    "isMarrying": true,
+    "isCaller":false,
+    "marryDate":"2020-04-10"
+}
+
 ### add new TDL
 POST http://localhost:8080/api/v1/TDL/6592c9a7142366537e74c9da
 Authorization: Bearer {{token}}
@@ -40,3 +70,12 @@ Content-Type: application/json
 ### delete TDL
 DELETE http://localhost:8080/api/v1/TDL/6592c9a7142366537e74c9da/6594313c035f19900423f8e5
 Authorization: Bearer {{token}}
+
+### setDate
+PATCH http://localhost:8080/api/v1/users/date/6592c9a7142366537e74c9da
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "marryDate": "2025-04-10"
+}

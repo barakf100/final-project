@@ -1,10 +1,16 @@
 import axios from "axios";
+import { getToken } from "../storage/storageService";
 
 // TODO: check all the requests
 
 const getAllTDLs = async (id) => {
     try {
-        const res = await axios.get(`/TDL/${id}`);
+        const token = getToken();
+        const res = await axios.get(`/TDL/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
         return res.data;
     } catch (err) {
         console.log(err);
@@ -22,8 +28,13 @@ const getTDLById = async (id, TDLId) => {
 
 const addTDL = async (id, TDL) => {
     try {
-        const res = await axios.post(`/TDL/${id}`, TDL);
-        return res.data;
+        const res = await axios.post(`/TDL/${id}`, TDL, {
+            headers: {
+                Authorization: `Bearer ${getToken()}`,
+            },
+        });
+        // return res.data;
+        return Promise.resolve(res.data);
     } catch (err) {
         console.log(err);
     }

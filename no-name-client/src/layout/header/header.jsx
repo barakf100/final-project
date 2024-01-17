@@ -9,10 +9,12 @@ import Links from "./ui/Links.jsx";
 import FilterComponent from "../../components/filter/FilterComponent.jsx";
 import LeftDrawerComponent from "./ui/LeftDrawerComponent.jsx";
 import ROUTES from "../../routes/ROUTES.js";
+import { useNavigate } from "react-router-dom";
 const Header = ({ isDarkTheme, onThemeChange }) => {
     const screenSize = useMediaQuery("(min-width:700px)");
     const linksScreenSize = useMediaQuery("(min-width:500px)");
     const [isOpen, setIsOpen] = useState(false);
+    const navigate = useNavigate();
 
     const handleThemeChange = (event) => {
         onThemeChange(event.target.checked);
@@ -23,6 +25,9 @@ const Header = ({ isDarkTheme, onThemeChange }) => {
     };
     const handleCloseDrawerClick = () => {
         setIsOpen(false);
+    };
+    const handleHome = () => {
+        navigate(ROUTES.HOME);
     };
     return (
         <Box sx={{ flexGrow: 1, mb: 2, position: "fixed", zIndex: 999, width: "100%" }}>
@@ -37,7 +42,12 @@ const Header = ({ isDarkTheme, onThemeChange }) => {
                         onClick={handleOpenDrawerClick}>
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h4" noWrap component="div" sx={{ display: { xs: "none", sm: "none", md: "block" } }}>
+                    <Typography
+                        variant="h4"
+                        noWrap
+                        component="div"
+                        sx={{ display: { xs: "none", sm: "none", md: "block" }, cursor: "pointer" }}
+                        onClick={handleHome}>
                         Marry.me
                     </Typography>
                     {linksScreenSize && <Links />}

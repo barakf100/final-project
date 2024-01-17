@@ -1,4 +1,5 @@
 import Joi from "joi";
+import format from "@joi/date";
 import { IAddress, IImage, IName, IUser } from "../@types/user";
 import { passRegex, phoneRegex } from "./patterns";
 
@@ -41,5 +42,6 @@ const schema = Joi.object<IUser>({
         .required(),
     isMarrying: Joi.boolean().required(),
     isCaller: Joi.boolean().required(),
+    marryDate: Joi.date().greater("now"),
 });
 export { schema as joiUserSchema };

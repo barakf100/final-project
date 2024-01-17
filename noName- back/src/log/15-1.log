@@ -1,0 +1,9 @@
+logged error with status code: 400
+        at 17:11:3 
+        error was: Expected ',' or '}' after property value in JSON at position 163 
+logged error with status code: 400
+        at 17:11:19 
+        error was: Expected ',' or '}' after property value in JSON at position 598 
+logged error with status code: undefined
+        at 21:0:54 
+        error was: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "user" 
