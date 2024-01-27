@@ -9,6 +9,7 @@ import { auth } from "../service/auth-service";
 import { InputError } from "../error/Input-Error";
 import { isAdminOrCaller } from "../middleware/is-admin-or-caller";
 import { isMarry } from "../middleware/is-marry";
+import { Logger } from "../logs-message/logger";
 
 const router = Router();
 // register new user
@@ -62,24 +63,43 @@ router.get("/:id", isAdminOrUser, async (req, res, next) => {
 // params: id is the user id
 router.put("/:id", isUser, validateRegistration, async (req, res, next) => {
     try {
-        req.body.password = await auth.hashPassword(req.body.password);
+        // req.body.password = await auth.hashPassword(req.body.password);
         const saved = await User.findByIdAndUpdate({ _id: req.params.id }, req.body, { new: true });
         res.json(saved);
+    } catch (err) {
+        console.log(err);
+        next(err);
+    }
+});
+
+router.patch("/nameB/:id", isMarry, async (req, res, next) => {
+    try {
+        const { nameB, ...otherFields } = req.body;
+        if (Object.keys(otherFields).length > 0) {
+            throw new InputError("Only the nameB field can be updated.", 400);
+        }
+        if (nameB) {
+            const user = await User.findByIdAndUpdate(req.params.id, { nameB }, { new: true });
+            res.json(user);
+        }
     } catch (err) {
         next(err);
     }
 });
+
+// user update marry date
 router.patch("/date/:id", isMarry, async (req, res, next) => {
     try {
         const { marryDate, ...otherFields } = req.body;
         if (Object.keys(otherFields).length > 0) {
-            throw new InputError("Only the invites field can be updated.", 400);
+            throw new InputError("Only the date field can be updated.", 400);
         }
         if (marryDate) {
             const user = await User.findByIdAndUpdate(req.params.id, { marryDate }, { new: true });
             res.json(user);
         }
     } catch (err) {
+        Logger.error(err);
         next(err);
     }
 });

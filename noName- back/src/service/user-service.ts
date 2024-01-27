@@ -13,6 +13,12 @@ const createUser = async (userData: IUser) => {
     return user.save();
 };
 
+const userType = (user: IUser) => {
+    if (user.isAdmin) return "admin";
+    if (user.isCaller) return "caller";
+    if (user.isMarrying) return "marry";
+};
+
 const validateUser = async (email: string, password: string) => {
     const user = await User.findOne({ email });
 
@@ -20,7 +26,8 @@ const validateUser = async (email: string, password: string) => {
     const { _id } = user;
     const isPasswordValid = await auth.validatePassword(password, user.password);
     if (!isPasswordValid) throw new InputError("Invalid password", 401);
-    const jwt = auth.generateJWT({ email, _id });
+    const type = userType(user);
+    const jwt = auth.generateJWT({ email, _id, type: type });
     return { jwt };
 };
 

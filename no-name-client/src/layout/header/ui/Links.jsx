@@ -1,40 +1,45 @@
 import { Box } from "@mui/material";
 import nextKey from "generate-my-key";
 // import { adminLinks, alwaysLinks, loggedInLinks, loggedOutLinks } from "../../myLinks";
-// import NavLinkComponent from "../NavLinkComponent";
+// import NavLinks from "../NavLinks";
 import { useSelector } from "react-redux";
+import NavLinks from "../../navLink";
+import links from "../../Links";
+import authSlice from "../../../store/authSlice";
 
 const Links = () => {
     const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
     const admin = useSelector((bigPie) => bigPie.authSlice.isAdmin);
+    const userType = useSelector((bigPie) => bigPie.authSlice.type);
+    console.log(userType);
     return (
-        <></>
-        // <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "flex" } }}>
-        //     {alwaysLinks.map((myItem) => (
-        //         <NavLinkComponent to={myItem.to} key={nextKey()} icon={myItem.icon} from={"header"}>
-        //             {myItem.children}
-        //         </NavLinkComponent>
-        //     ))}
-        //     {loggedIn &&
-        //         !admin &&
-        //         loggedInLinks.map((myItem) => (
-        //             <NavLinkComponent to={myItem.to} key={nextKey()} icon={myItem.icon} from={"header"}>
-        //                 {myItem.children}
-        //             </NavLinkComponent>
-        //         ))}
-        //     {!loggedIn &&
-        //         loggedOutLinks.map((myItem) => (
-        //             <NavLinkComponent to={myItem.to} key={nextKey()} icon={myItem.icon} from={"header"}>
-        //                 {myItem.children}
-        //             </NavLinkComponent>
-        //         ))}
-        //     {admin &&
-        //         adminLinks.map((myItem) => (
-        //             <NavLinkComponent to={myItem.to} key={nextKey()} icon={myItem.icon} from={"header"}>
-        //                 {myItem.children}
-        //             </NavLinkComponent>
-        //         ))}
-        // </Box>
+        <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "flex" } }}>
+            {links.alwaysLinks.map((myItem) => (
+                <NavLinks to={myItem.to} key={nextKey()} icon={myItem.icon} from={"header"}>
+                    {myItem.children}
+                </NavLinks>
+            ))}
+            {loggedIn &&
+                userType === "marry" &&
+                links.marryLinks.map((myItem) => (
+                    <NavLinks to={myItem.to} key={nextKey()} icon={myItem.icon} from={"header"}>
+                        {myItem.children}
+                    </NavLinks>
+                ))}
+            {loggedIn &&
+                userType === "caller" &&
+                links.callerLinks.map((myItem) => (
+                    <NavLinks to={myItem.to} key={nextKey()} icon={myItem.icon} from={"header"}>
+                        {myItem.children}
+                    </NavLinks>
+                ))}
+            {admin &&
+                links.adminLinks.map((myItem) => (
+                    <NavLinks to={myItem.to} key={nextKey()} icon={myItem.icon} from={"header"}>
+                        {myItem.children}
+                    </NavLinks>
+                ))}
+        </Box>
     );
 };
 

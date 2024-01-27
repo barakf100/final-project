@@ -9,21 +9,32 @@ import { addTDL, getAllTDLs } from "../../service/request/TDLReq";
 import TDLPaginate from "./paginate/tdlPaginate";
 import { splitInvitesByStatus } from "../../service/invites/invites";
 import InviteStatusPaginate from "./paginate/inviteStatusPaginate";
-
-const borderColor = (theme) => theme.palette.teaGreen.main;
+import { DatePickerValue } from "./date/datePicker";
+import dayjs from "dayjs";
+import { NamePickerDialog } from "./namePicker/namePickerDialog";
+import nextKey from "generate-my-key";
 const HomePage = () => {
     const [user, setUser] = useState(null);
     const [TDL, setTDL] = useState([]);
     const [inviteStatus, setInviteStatus] = useState(null);
     const [reload, setReload] = useState(false);
     const { _id } = JWTDecode(getToken());
+    const [value, setValue] = useState(dayjs("today"));
+    const [open, setOpen] = useState(false);
+    const [openTextField, setOpenTextField] = useState(false);
+    const [name, setName] = useState({
+        first: "",
+        middle: "",
+        last: "",
+    });
     useEffect(() => {
         const fetchUser = async () => {
             const { user: usr } = await getUserById(_id);
             setUser(usr);
+            setValue(dayjs(usr.marryDate));
         };
         fetchUser();
-    }, [_id]);
+    }, [_id, reload]);
     useEffect(() => {
         if (user) {
             setInviteStatus(splitInvitesByStatus(user));
@@ -54,32 +65,30 @@ const HomePage = () => {
     };
     return (
         <Container maxWidth={"xl"}>
-            <Typography variant="h3" textAlign="center" marginBottom="25px" fontFamily="Quattrocento sans">
+            <Typography component="div" variant="h3" textAlign="center" marginBottom="25px" fontFamily="Quattrocento sans">
                 Welcome to the Home Page
             </Typography>
-            <Box style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px" }}>
+            <Box style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "13px" }}>
                 <Box
-                    style={{
+                    sx={{
                         height: "210px",
                         gridRow: "1 / 3",
                         fontFamily: "Montserrat",
-                        // backgroundImage: `url(${imageRing})`,
-                        // backgroundPosition: "center",
-                        // backgroundSize: "cover",
-                        // backgroundRepeat: "no-repeat",
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
                         textAlign: "center",
                         fontSize: "1.3rem",
-                        // color: "white",
+                        border: `.9px solid`,
+                        borderRadius: "10px",
+                        borderColor: handleColorPallet("teaGreen"),
                     }}>
                     Cheers to the beginning of your wonderful journey! Welcome to our wedding planning app—where dreams come true, one
                     detail at a time.
                 </Box>
                 {/* invites status */}
                 <Box style={{ display: "flex", gap: "10px", height: "100px" }}>
-                    <Box sx={{ flex: "1", border: `.9px solid`, borderColor: borderColor }}>
+                    <Box sx={{ flex: "1" /*border: `.9px solid`, borderColor: handleColorPallet("teaGreen")*/ }}>
                         <Typography fontFamily="Quattrocento sans" fontSize="1rem" textAlign="center">
                             Declined
                         </Typography>
@@ -91,7 +100,7 @@ const HomePage = () => {
                             {inviteStatus?.declinedInvites.length}
                         </Typography>
                     </Box>
-                    <Box sx={{ flex: "1", border: `.9px solid`, borderColor: borderColor }}>
+                    <Box sx={{ flex: "1" /*border: `.9px solid`, borderColor: handleColorPallet("teaGreen")*/ }}>
                         <Typography fontFamily="Quattrocento sans" fontSize="1rem" textAlign="center">
                             Pending
                         </Typography>
@@ -103,7 +112,7 @@ const HomePage = () => {
                             {inviteStatus?.pendingInvites.length}
                         </Typography>
                     </Box>
-                    <Box sx={{ flex: "1", border: `.9px solid`, borderColor: borderColor }}>
+                    <Box sx={{ flex: "1" /*border: `.9px solid`, borderColor: handleColorPallet("teaGreen")*/ }}>
                         <Typography fontFamily="Quattrocento sans" fontSize="1rem" textAlign="center">
                             Accepted
                         </Typography>
@@ -115,7 +124,7 @@ const HomePage = () => {
                             {inviteStatus?.acceptedInvites.length}
                         </Typography>
                     </Box>
-                    <Box sx={{ flex: "1", border: `.9px solid`, borderColor: borderColor }}>
+                    <Box sx={{ flex: "1" /*border: `.9px solid`, borderColor: handleColorPallet("teaGreen")*/ }}>
                         <Typography fontFamily="Quattrocento sans" fontSize="1rem" textAlign="center">
                             Total invites
                         </Typography>
@@ -125,62 +134,117 @@ const HomePage = () => {
                     </Box>
                 </Box>
                 {/* invites progress */}
-                <Box style={{ height: "100px", gridRow: "2", textAlign: "center" }}>
+                <Box sx={{ height: "100px", gridRow: "2", textAlign: "center" }}>
                     Progress <MyProgressBar invitesStatus={inviteStatus} />
                 </Box>
                 {/* names and date */}
                 <Box
-                    style={{
+                    sx={{
                         height: "210px",
                         gridColumn: "3 / 3",
                         gridRow: "1 / 3",
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "space-evenly",
+                        border: `.9px solid`,
+                        borderRadius: "10px",
+                        borderColor: handleColorPallet("teaGreen"),
                     }}>
-                    <Typography variant="h5" textAlign="center" fontFamily="Quattrocento sans">
-                        {user?.nameA.first}-{user?.nameA.last} {user?.nameB?.first ? `& ${user?.nameB.first} - ` : ""}
+                    <Typography component="div" variant="h5" textAlign="center" fontFamily="Quattrocento sans">
+                        {user?.nameA.first} {user?.nameA.last} {user?.nameB?.first ? `& ${user?.nameB.first} ` : ""}
                         {user?.nameB?.last ? user?.nameB.last : ""}
                     </Typography>
-                    <Typography variant="h4" textAlign="center" fontFamily="Quattrocento sans"></Typography>
-                    <Typography variant="h4" textAlign="center" fontFamily="Quattrocento sans"></Typography>
+                    <Typography component="div" variant="h4" textAlign="center" fontFamily="Quattrocento sans">
+                        {value.$D ? `${value.$D}.${value.$M + 1}.${value.$y}` : ""}
+                    </Typography>
                     <Box sx={{ display: "flex", justifyContent: "space-around" }}>
-                        <Button variant="contained" color="mossGreen2" sx={{ height: "5vh", color: "background.default" }}>
-                            Add date
-                        </Button>
                         <Button
+                            onClick={() => setOpen(true)}
+                            variant="contained"
+                            color="mossGreen2"
+                            sx={{ height: "5vh", color: "background.default" }}>
+                            {value.$D ? "Modify date" : "Add date"}
+                        </Button>
+                        <DatePickerValue open={open} setOpen={setOpen} value={value} setValue={setValue} id={_id} />
+                        <Button
+                            onClick={() => setOpenTextField(true)}
                             variant="contained"
                             color="mossGreen2"
                             sx={{ height: "5vh", color: "background.default", display: user?.nameB?.first ? "none" : "block" }}>
                             Add partner
                         </Button>
+                        <NamePickerDialog
+                            openTextField={openTextField}
+                            setOpenTextField={setOpenTextField}
+                            id={_id}
+                            name={name}
+                            setName={setName}
+                            setReload={setReload}
+                        />
                     </Box>
                 </Box>
                 {/* groups */}
-                <Box style={{ height: "450px" }}>
-                    <Typography variant="h5" textAlign="center" fontFamily="Quattrocento sans" color={handleColorPallet("mossGreen3")}>
+                <Box
+                    sx={{
+                        height: "450px",
+                        border: `.9px solid`,
+                        borderRadius: "10px",
+                        borderColor: handleColorPallet("teaGreen"),
+                        paddingTop: "10px",
+                    }}>
+                    <Typography
+                        component="div"
+                        variant="h5"
+                        textAlign="center"
+                        fontFamily="Quattrocento sans"
+                        color={handleColorPallet("mossGreen3")}>
                         accepted guest groups
-                        {user?.invites.map((invite) => (invite.isAccepted === true ? <Typography>{invite.group}</Typography> : null))}
+                        {user?.invites.map((invite) =>
+                            invite.isAccepted === true ? <Typography key={nextKey()}>{invite.group}</Typography> : null
+                        )}
                     </Typography>
                 </Box>
                 {/* invites by status */}
-                <Box style={{ height: "450px" }}>
+                <Box
+                    sx={{
+                        height: "450px",
+                        border: `.9px solid`,
+                        borderRadius: "10px",
+                        borderColor: handleColorPallet("teaGreen"),
+                        px: "15px",
+                        paddingTop: "10px",
+                    }}>
                     <Box sx={{ display: "flex", flexDirection: "column", gap: "3px", height: "150px" }}>
-                        <Typography variant="h5" textAlign="center" fontFamily="Quattrocento sans" color={handleColorPallet("mossGreen3")}>
+                        <Typography
+                            component="div"
+                            variant="h5"
+                            textAlign="center"
+                            fontFamily="Quattrocento sans"
+                            color={handleColorPallet("mossGreen3")}>
                             Accepted
                         </Typography>
                         {/* {user?.invites.map((invite) => (invite.isAccepted === true ? <Typography>{invite.name.first}</Typography> : null))} */}
                         <InviteStatusPaginate invites={inviteStatus?.acceptedInvites} />
                     </Box>
                     <Box sx={{ display: "flex", flexDirection: "column", gap: "3px", height: "150px" }}>
-                        <Typography variant="h5" textAlign="center" fontFamily="Quattrocento sans" color={handleColorPallet("mossGreen3")}>
+                        <Typography
+                            component="div"
+                            variant="h5"
+                            textAlign="center"
+                            fontFamily="Quattrocento sans"
+                            color={handleColorPallet("mossGreen3")}>
                             Pending
                         </Typography>
                         {/* {user?.invites.map((invite) => (invite.isPending === true ? <Typography>{invite.name.first}</Typography> : null))} */}
                         <InviteStatusPaginate invites={inviteStatus?.pendingInvites} />
                     </Box>
                     <Box sx={{ display: "flex", flexDirection: "column", gap: "3px", height: "150px" }}>
-                        <Typography variant="h5" textAlign="center" fontFamily="Quattrocento sans" color={handleColorPallet("mossGreen3")}>
+                        <Typography
+                            component="div"
+                            variant="h5"
+                            textAlign="center"
+                            fontFamily="Quattrocento sans"
+                            color={handleColorPallet("mossGreen3")}>
                             Declined
                         </Typography>
                         {/* {user?.invites.map((invite) => (invite.isDeclined === true ? <Typography>{invite.name.first}</Typography> : null))} */}
@@ -188,15 +252,33 @@ const HomePage = () => {
                     </Box>
                 </Box>
                 {/* TDL */}
-                <Box style={{ height: "450px" }}>
+                <Box
+                    sx={{
+                        height: "450px",
+                        border: `.9px solid`,
+                        borderRadius: "10px",
+                        borderColor: handleColorPallet("teaGreen"),
+                        px: "15px",
+                        paddingTop: "10px",
+                    }}>
                     <Box sx={{ display: "flex", flexDirection: "column", gap: "3px", height: "225px" }}>
-                        <Typography variant="h5" textAlign="center" fontFamily="Quattrocento sans" color={handleColorPallet("mossGreen3")}>
+                        <Typography
+                            component="div"
+                            variant="h5"
+                            textAlign="center"
+                            fontFamily="Quattrocento sans"
+                            color={handleColorPallet("mossGreen3")}>
                             TO DO
                         </Typography>
                         <TDLPaginate TDL={TDL} handleAddTDL={handleAddTDL} />
                     </Box>
                     <Box sx={{ display: "flex", flexDirection: "column", gap: "3px", height: "225px" }}>
-                        <Typography variant="h5" textAlign="center" fontFamily="Quattrocento sans" color={handleColorPallet("mossGreen3")}>
+                        <Typography
+                            component="div"
+                            variant="h5"
+                            textAlign="center"
+                            fontFamily="Quattrocento sans"
+                            color={handleColorPallet("mossGreen3")}>
                             DONE
                         </Typography>
                     </Box>

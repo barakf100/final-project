@@ -1,7 +1,7 @@
 import axios from "axios";
 import PropTypes from "prop-types";
 import { storeToken } from "../storage/storageService";
-import { toastSuccess } from "../toast/toast";
+import { allToast } from "../toast/toast";
 const register = async (user) => {
     try {
         const res = await axios.post("/users/", user);
@@ -19,7 +19,7 @@ const login = async (email, password) => {
     try {
         const res = await axios.post("/users/login", { email, password });
         storeToken(res.data.jwt, true);
-        toastSuccess("Login Success");
+        allToast.toastSuccess("Login Success");
         return res.data;
     } catch (err) {
         console.log(err);

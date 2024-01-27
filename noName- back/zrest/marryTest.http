@@ -16,8 +16,8 @@ Content-Type: application/json
 
 {
     "nameA":{ 
-        "first": "couple A",
-        "last": "couple A"
+        "first": "barak",
+        "last": "last"
     },
     "address": {
         "city": "Anytown",
@@ -35,8 +35,8 @@ Content-Type: application/json
     "email": "marry@marry.com",
     "password": "Aa12345!",
     "isMarrying": true,
-    "isCaller":false,
-    "marryDate":"2020-04-10"
+    "isCaller":false
+    
 }
 
 ### add new TDL

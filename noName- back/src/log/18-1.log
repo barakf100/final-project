@@ -1,0 +1,48 @@
+logged error with status code: 400
+        at 13:49:4 
+        error was: id is invalid 
+logged error with status code: 400
+        at 13:49:32 
+        error was: id is invalid 
+logged error with status code: 400
+        at 13:51:6 
+        error was: Unexpected token '"', "#" is not valid JSON 
+logged error with status code: 400
+        at 13:51:29 
+        error was: Unexpected token '"', "#" is not valid JSON 
+logged error with status code: 400
+        at 13:52:42 
+        error was: Unexpected token '"', "#" is not valid JSON 
+logged error with status code: 400
+        at 13:52:47 
+        error was: Unexpected token '"', "#" is not valid JSON 
+logged error with status code: 400
+        at 13:53:51 
+        error was: Unexpected token '"', "#" is not valid JSON 
+logged error with status code: 400
+        at 13:54:33 
+        error was: id is invalid 
+logged error with status code: 400
+        at 13:55:57 
+        error was: id is invalid 
+logged error with status code: 400
+        at 13:56:36 
+        error was: Unexpected token '"', "#" is not valid JSON 
+logged error with status code: 400
+        at 13:57:15 
+        error was: Unexpected token '"', "#" is not valid JSON 
+logged error with status code: 400
+        at 13:59:30 
+        error was: Unexpected token '"', "#" is not valid JSON 
+logged error with status code: 400
+        at 14:0:10 
+        error was: Unexpected token '"', "#" is not valid JSON 
+logged error with status code: 400
+        at 14:2:6 
+        error was: Unexpected token '"', "#" is not valid JSON 
+logged error with status code: 400
+        at 14:2:26 
+        error was: Only the invites field can be updated. 
+logged error with status code: 400
+        at 14:4:5 
+        error was: Only the invites field can be updated. 

@@ -19,9 +19,11 @@ import ROUTES from "../../routes/ROUTES";
 import { validateLogin } from "../../validation/loginValidation";
 import { Alert } from "@mui/material";
 import useAutoLogin from "../../hooks/useAutoLogin";
-import { storeToken } from "../../service/storage/storageService";
+import { JWTDecode, storeToken } from "../../service/storage/storageService";
 import { login } from "../../service/request/allReq";
 import { toastSuccess } from "../../service/toast/toast";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../store/authSlice";
 // import ServerToast from "../../toast/toastServer";
 
 const Login = () => {
@@ -30,6 +32,7 @@ const Login = () => {
     const [rememberMe, setRememberMe] = useState(true);
     const [errorsState, setErrorsState] = useState(null);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const autoLogin = useAutoLogin();
     const handleSubmit = async (event) => {
         try {
@@ -41,7 +44,8 @@ const Login = () => {
             setErrorsState(joiResponse);
             if (joiResponse) return;
             let data = await login(emailValue, passwordValue);
-            // autoLogin(true); //skip token test
+            dispatch(authActions.login(JWTDecode(data.jwt)));
+            autoLogin(false); //skip token test
             navigate(ROUTES.HOME);
         } catch (err) {
             // ServerToast();

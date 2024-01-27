@@ -1,0 +1,120 @@
+logged error with status code: 400
+        at 15:27:30 
+        error was: id is invalid 
+logged error with status code: 400
+        at 15:44:47 
+        error was: id is invalid 
+logged error with status code: undefined
+        at 15:47:54 
+        error was: data and salt arguments required 
+logged error with status code: undefined
+        at 15:49:27 
+        error was: data and salt arguments required 
+logged error with status code: 401
+        at 18:25:16 
+        error was: user not found 
+logged error with status code: 401
+        at 18:25:48 
+        error was: user not found 
+logged error with status code: 401
+        at 18:25:48 
+        error was: user not found 
+logged error with status code: 401
+        at 18:28:10 
+        error was: user not found 
+logged error with status code: 401
+        at 18:28:15 
+        error was: user not found 
+logged error with status code: 401
+        at 18:28:15 
+        error was: user not found 
+logged error with status code: 401
+        at 18:28:26 
+        error was: user not found 
+logged error with status code: 401
+        at 18:28:26 
+        error was: user not found 
+logged error with status code: 401
+        at 18:29:21 
+        error was: user not found 
+logged error with status code: 401
+        at 18:29:26 
+        error was: user not found 
+logged error with status code: 401
+        at 18:29:26 
+        error was: user not found 
+logged error with status code: 401
+        at 18:29:37 
+        error was: user not found 
+logged error with status code: 401
+        at 18:29:37 
+        error was: user not found 
+logged error with status code: 401
+        at 18:29:37 
+        error was: user not found 
+logged error with status code: 401
+        at 18:29:37 
+        error was: user not found 
+logged error with status code: 401
+        at 18:29:41 
+        error was: user not found 
+logged error with status code: 401
+        at 18:29:41 
+        error was: user not found 
+logged error with status code: 401
+        at 18:29:41 
+        error was: user not found 
+logged error with status code: 401
+        at 18:29:41 
+        error was: user not found 
+logged error with status code: 401
+        at 18:29:56 
+        error was: Invalid Email 
+logged error with status code: 401
+        at 18:29:59 
+        error was: Invalid Email 
+logged error with status code: 400
+        at 18:30:14 
+        error was: token is missing 
+logged error with status code: 400
+        at 18:30:14 
+        error was: token is invalid 
+logged error with status code: 400
+        at 18:30:14 
+        error was: token is invalid 
+logged error with status code: 400
+        at 18:30:14 
+        error was: token is invalid 
+logged error with status code: 400
+        at 18:30:14 
+        error was: token is invalid 
+logged error with status code: 400
+        at 18:30:30 
+        error was: token is missing 
+logged error with status code: 400
+        at 18:30:30 
+        error was: token is invalid 
+logged error with status code: 400
+        at 18:30:30 
+        error was: token is invalid 
+logged error with status code: 400
+        at 18:30:30 
+        error was: token is invalid 
+logged error with status code: 400
+        at 18:30:30 
+        error was: token is invalid 
+logged error with status code: 400
+        at 18:31:43 
+        error was: token is missing 
+logged error with status code: 400
+        at 18:31:43 
+        error was: token is invalid 
+logged error with status code: 400
+        at 18:31:43 
+        error was: token is invalid 
+logged error with status code: 400
+        at 18:31:43 
+        error was: token is invalid 
+logged error with status code: 400
+        at 18:31:43 
+        error was: token is invalid 

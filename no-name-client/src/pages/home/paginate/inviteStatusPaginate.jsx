@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
+import nextKey from "generate-my-key";
 const ITEM_PER_PAGE = 3;
 const InviteStatusPaginate = ({ invites }) => {
     const [page, setPage] = useState(0);
@@ -18,7 +19,7 @@ const InviteStatusPaginate = ({ invites }) => {
     return (
         <Box sx={{ display: "flex", flexDirection: "column", gap: "3px", height: "225px", justifyContent: "space-between" }}>
             {PaginateInvites.map((invites) => (
-                <Typography>{invites.name.first}</Typography>
+                <Typography key={nextKey()}>{invites.name.first}</Typography>
             ))}
             <Box sx={{ display: "flex", justifyContent: "center" }}>
                 <Button color="mossGreen1" onClick={handlePreviousPage}>

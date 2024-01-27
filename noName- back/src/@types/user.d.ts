@@ -43,6 +43,7 @@ type ILogin = {
 type IJWTPayload = {
     email: string;
     _id: string;
+    type: string;
 };
 type ITDL = {
     name: string;

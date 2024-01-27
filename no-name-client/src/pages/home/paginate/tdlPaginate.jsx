@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Box, Checkbox, FormControlLabel, Button } from "@mui/material";
+import nextKey from "generate-my-key";
 const ITEM_PER_PAGE = 3;
 const TDLPaginate = ({ TDL, handleAddTDL }) => {
     const [page, setPage] = useState(0);
@@ -17,7 +18,7 @@ const TDLPaginate = ({ TDL, handleAddTDL }) => {
     return (
         <Box sx={{ display: "flex", flexDirection: "column", gap: "3px", height: "225px", justifyContent: "space-between" }}>
             {PaginateTDL.map((tdl) => (
-                <FormControlLabel control={<Checkbox color="mossGreen1" />} label={tdl.name} />
+                <FormControlLabel key={nextKey()} control={<Checkbox color="mossGreen1" />} label={tdl.name} />
             ))}
             <Box sx={{ display: "flex", justifyContent: "center" }}>
                 <Button color="mossGreen1" onClick={handlePreviousPage}>
