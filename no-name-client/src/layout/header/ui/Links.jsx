@@ -5,7 +5,6 @@ import nextKey from "generate-my-key";
 import { useSelector } from "react-redux";
 import NavLinks from "../../navLink";
 import links from "../../Links";
-import authSlice from "../../../store/authSlice";
 
 const Links = () => {
     const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);

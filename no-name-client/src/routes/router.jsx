@@ -9,15 +9,22 @@ import Login from "../pages/login/login";
 import Users from "../pages/users/users";
 import ProfilePage from "../pages/profile/profile";
 import Register from "../pages/register/register";
+import { useSelector } from "react-redux";
+import CallerPage from "../pages/callerMain/callerPage";
+import UserInvites from "../pages/userInvites/userInvitesPage";
+import CallerProfilePage from "../pages/callerProfile/callerProfile";
 const AppRouter = () => {
+    const userType = useSelector((bigPie) => bigPie.authSlice.type);
     return (
         <Routes>
-            <Route path={ROUTES.HOME} element={<HomePage />} />
+            <Route path={ROUTES.HOME} element={userType === "marry" ? <HomePage /> : <CallerPage />} />
             <Route path={ROUTES.ABOUT} element={<About />} />
             <Route path={ROUTES.REGISTER} element={<Register />} />
             <Route path={ROUTES.LOGIN} element={<Login />} />
             <Route path={ROUTES.USERS} element={<Users />} />
             <Route path={ROUTES.PROFILE} element={<ProfilePage />} />
+            <Route path={ROUTES.INVITES} element={<UserInvites />} />
+            <Route path={ROUTES.CALLERPROFILE} element={<CallerProfilePage />} />
             <Route path="*" element={<NotFoundPage />} />
         </Routes>
     );

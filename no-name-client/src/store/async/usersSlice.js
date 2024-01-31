@@ -4,7 +4,6 @@ import { getAllUsers } from "../../service/request/adminReq";
 const getUsers = createAsyncThunk("users/getUsers", async () => {
     try {
         const res = await getAllUsers();
-        console.log(res);
         return res;
     } catch (err) {
         console.log(err);

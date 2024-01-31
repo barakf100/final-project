@@ -18,6 +18,7 @@ router.post("/", validateRegistration, async (req, res, next) => {
         const saved = await createUser(req.body as IUser);
         res.status(201).json({ message: "user saved", user: saved });
     } catch (err) {
+        Logger.error(err);
         next(err);
     }
 });

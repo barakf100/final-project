@@ -13,6 +13,7 @@ import { DatePickerValue } from "./date/datePicker";
 import dayjs from "dayjs";
 import { NamePickerDialog } from "./namePicker/namePickerDialog";
 import nextKey from "generate-my-key";
+import AddTDL from "./addTDL/addTDL";
 const HomePage = () => {
     const [user, setUser] = useState(null);
     const [TDL, setTDL] = useState([]);
@@ -22,6 +23,7 @@ const HomePage = () => {
     const [value, setValue] = useState(dayjs("today"));
     const [open, setOpen] = useState(false);
     const [openTextField, setOpenTextField] = useState(false);
+    const [openTDL, setOpenTDL] = useState(false);
     const [name, setName] = useState({
         first: "",
         middle: "",
@@ -51,11 +53,13 @@ const HomePage = () => {
     const handleReload = () => {
         setReload((prev) => !prev);
     };
-    const handleAddTDL = async () => {
-        const tdl = {
-            name: "test1",
-            description: "test",
-        };
+    // TODO: add TDL
+    const handleAddTDL = async (tdl) => {
+        console.log("add TDL");
+        // const tdl = {
+        //     name: "test1",
+        //     description: "test",
+        // };
         try {
             await addTDL(getMyId(), tdl);
             handleReload();
@@ -270,7 +274,8 @@ const HomePage = () => {
                             color={handleColorPallet("mossGreen3")}>
                             TO DO
                         </Typography>
-                        <TDLPaginate TDL={TDL} handleAddTDL={handleAddTDL} />
+                        <TDLPaginate TDL={TDL} setOpen={setOpenTDL} />
+                        <AddTDL open={openTDL} setOpen={setOpenTDL} handleAddTDL={handleAddTDL} />
                     </Box>
                     <Box sx={{ display: "flex", flexDirection: "column", gap: "3px", height: "225px" }}>
                         <Typography

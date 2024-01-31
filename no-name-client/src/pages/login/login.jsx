@@ -25,7 +25,8 @@ import { toastSuccess } from "../../service/toast/toast";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../store/authSlice";
 // import ServerToast from "../../toast/toastServer";
-
+import loginBg from "../../assets/login2.jpeg";
+import { handleColorPallet } from "../../service/colors/change";
 const Login = () => {
     const [emailValue, setEmailValue] = useState("");
     const [passwordValue, setPasswordValue] = useState("");
@@ -62,7 +63,7 @@ const Login = () => {
         setRememberMe(!rememberMe);
     };
     return (
-        <Grid container component="main" sx={{ height: "100vh" }}>
+        <Grid container component="main" sx={{ height: "85vh" }}>
             <CssBaseline />
             <Grid
                 item
@@ -70,7 +71,7 @@ const Login = () => {
                 sm={4}
                 md={7}
                 sx={{
-                    backgroundImage: "url(https://source.unsplash.com/random?wallpapers)",
+                    backgroundImage: `url(${loginBg})`,
                     backgroundRepeat: "no-repeat",
                     backgroundColor: (t) => (t.palette.mode === "light" ? t.palette.grey[50] : t.palette.grey[900]),
                     backgroundSize: "cover",
@@ -86,7 +87,7 @@ const Login = () => {
                         flexDirection: "column",
                         alignItems: "center",
                     }}>
-                    <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+                    <Avatar sx={{ m: 1, bgcolor: handleColorPallet("teaGreen") }}>
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
@@ -123,17 +124,17 @@ const Login = () => {
                             control={<Checkbox value="remember" color="primary" checked={rememberMe} onChange={handleRememberMeChange} />}
                             label="Remember me"
                         />
-                        <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2, bgcolor: "#464496" }}>
+                        <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2, bgcolor: handleColorPallet("teaGreen") }}>
                             Sign In
                         </Button>
                         <Grid container>
                             <Grid item xs>
-                                <Link href="#" variant="body2" color="#464496">
+                                <Link href="#" variant="body2" sx={{ color: handleColorPallet("mossGreen1") }}>
                                     Forgot password?
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link href="register" variant="body2" color="#464496">
+                                <Link href="register" variant="body2" sx={{ color: handleColorPallet("mossGreen1") }}>
                                     {"Don't have an account? Sign Up"}
                                 </Link>
                             </Grid>

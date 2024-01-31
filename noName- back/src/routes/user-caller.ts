@@ -4,6 +4,7 @@ import { User } from "../database/model/user";
 import { InputError } from "../error/Input-Error";
 import { callerMethods } from "../service/caller-service";
 import { isBodyValid } from "../middleware/is-body-valid";
+import { Logger } from "../logs-message/logger";
 const router = Router();
 
 // caller gets user invites
@@ -21,8 +22,8 @@ router.get("/:id", isCaller, async (req, res, next) => {
 //  caller update invite
 router.patch("/:id/:inviteId", isCaller, isBodyValid, async (req, res, next) => {
     try {
-        callerMethods.updateInvite(req, res, next);
-        res.status(200).json({ message: "invite updated" });
+        const updateInvites = await callerMethods.updateInvite(req, res, next);
+        res.status(200).json({ message: "invite updated", invites: updateInvites });
     } catch (err) {
         next(err);
     }

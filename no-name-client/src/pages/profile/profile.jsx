@@ -24,6 +24,7 @@ const ProfilePage = () => {
     useEffect(() => {
         dispatch(getUser());
     }, [dispatch]);
+
     const user = useSelector((state) => state.userSlice.user);
     useEffect(() => {
         if (user) {

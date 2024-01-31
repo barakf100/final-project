@@ -1,6 +1,7 @@
 import { RequestHandler } from "express";
 import { User } from "../database/model/user";
 import { InputError } from "../error/Input-Error";
+import { Logger } from "../logs-message/logger";
 
 const updateInvite: RequestHandler = async (req, res, next) => {
     try {
@@ -13,6 +14,7 @@ const updateInvite: RequestHandler = async (req, res, next) => {
         invite.isDeclined = isDeclined;
         invite.isPending = isPending;
         await user.save();
+        return user.invites;
     } catch (err) {
         next(err);
     }

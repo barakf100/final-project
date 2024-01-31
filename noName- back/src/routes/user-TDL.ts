@@ -3,11 +3,12 @@ import { InputError } from "../error/Input-Error";
 import { User } from "../database/model/user";
 import { TDL } from "../service/TDL-service";
 import { isMarry } from "../middleware/is-marry";
+import { isCallerOrMarry } from "../middleware/is-marry-or-caller";
 
 const router = Router();
 
 // get all TDL of user
-router.get("/:id", isMarry, async (req, res, next) => {
+router.get("/:id", isCallerOrMarry, async (req, res, next) => {
     try {
         const user = await User.findById(req.params.id);
         if (!user) throw new InputError("user not found", 401);

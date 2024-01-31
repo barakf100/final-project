@@ -5,5 +5,8 @@ const ROUTES = {
     REGISTER: "/register",
     PROFILE: "/profile",
     USERS: "/users",
+    CALLERPAGE: "/callerpage",
+    CALLERPROFILE: "/callerprofile",
+    INVITES: "/invites",
 };
 export default ROUTES;

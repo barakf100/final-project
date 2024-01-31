@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Box, Checkbox, FormControlLabel, Button } from "@mui/material";
 import nextKey from "generate-my-key";
 const ITEM_PER_PAGE = 3;
-const TDLPaginate = ({ TDL, handleAddTDL }) => {
+const TDLPaginate = ({ TDL, setOpen }) => {
     const [page, setPage] = useState(0);
     const PaginateTDL = TDL.slice(page * ITEM_PER_PAGE, (page + 1) * ITEM_PER_PAGE);
     const handleNextPage = () => {
@@ -27,7 +27,11 @@ const TDLPaginate = ({ TDL, handleAddTDL }) => {
                 <Button color="mossGreen1" onClick={handleNextPage}>
                     Next
                 </Button>
-                <Button color="mossGreen1" onClick={handleAddTDL}>
+                <Button
+                    color="mossGreen1"
+                    onClick={() => {
+                        setOpen(true);
+                    }}>
                     Add
                 </Button>
             </Box>

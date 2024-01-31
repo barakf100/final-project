@@ -1,0 +1,42 @@
+logged error with status code: undefined
+        at 14:38:56 
+        error was: user validation failed: email: Path `email` (`dcronshaw0@shareasale.com`) is longer than the maximum allowed length (20). 
+logged error with status code: undefined
+        at 14:39:21 
+        error was: user validation failed: email: Path `email` (`dcronshaw0@shareasale.com`) is longer than the maximum allowed length (20). 
+logged error with status code: 400
+        at 14:42:14 
+        error was: Expected double-quoted property name in JSON at position 528 
+logged error with status code: undefined
+        at 14:42:17 
+        error was: user validation failed: email: Path `email` (`dcronshaw0@shareasale.com`) is longer than the maximum allowed length (20). 
+logged error with status code: undefined
+        at 14:42:52 
+        error was: user validation failed: email: Path `email` (`dcronshaw0@shareasale.com`) is longer than the maximum allowed length (20). 
+logged error with status code: undefined
+        at 14:44:2 
+        error was: user validation failed: email: Path `email` (`dcronshaw0@shareasale.com`) is longer than the maximum allowed length (20). 
+logged error with status code: undefined
+        at 14:44:22 
+        error was: user validation failed: email: Path `email` (`dcronshaw0@shareasale.com`) is longer than the maximum allowed length (20). 
+logged error with status code: undefined
+        at 14:44:37 
+        error was: user validation failed: email: Path `email` (`dcronshaw0@shareasale.com`) is longer than the maximum allowed length (20). 
+logged error with status code: undefined
+        at 14:45:15 
+        error was: user validation failed: email: Path `email` (`dcronshaw0@shareasale.com`) is longer than the maximum allowed length (20). 
+logged error with status code: undefined
+        at 14:52:53 
+        error was: user validation failed: email: Path `email` (`dcronshaw0@shareasale.com`) is longer than the maximum allowed length (20). 
+logged error with status code: undefined
+        at 15:0:44 
+        error was: user validation failed: email: Path `email` (`dcronshaw0@shareasale.com`) is longer than the maximum allowed length (20). 
+logged error with status code: undefined
+        at 15:1:34 
+        error was: user validation failed: email: Path `email` (`dcronshaw0@shareasale.com`) is longer than the maximum allowed length (20). 
+logged error with status code: undefined
+        at 15:2:7 
+        error was: user validation failed: email: Path `email` (`dcronshaw0@shareasale.com`) is longer than the maximum allowed length (20). 
+logged error with status code: undefined
+        at 15:2:18 
+        error was: user validation failed: email: Path `email` (`dcronshaw0@shareasale.com`) is longer than the maximum allowed length (20). 
