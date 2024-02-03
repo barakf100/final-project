@@ -1,7 +1,10 @@
 import ROUTES from "../routes/ROUTES";
 
 const links = {
-    marryLinks: [{ to: ROUTES.PROFILE, children: "Profile" }],
+    marryLinks: [
+        { to: ROUTES.PROFILE, children: "Profile" },
+        { to: ROUTES.SITORDER, children: "Sit Order" },
+    ],
     callerLinks: [{ to: ROUTES.CALLERPROFILE, children: "Profile" }],
     adminLinks: [{ to: ROUTES.USERS, children: "Users" }],
     alwaysLinks: [],

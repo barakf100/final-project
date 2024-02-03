@@ -10,11 +10,15 @@ import TDLPaginate from "../home/paginate/tdlPaginate.jsx";
 import { addTDL, getAllTDLs } from "../../service/request/TDLReq";
 import { getMyId } from "../../service/storage/storageService";
 import UsersPaginate from "./ui/paginateUsers.jsx";
+import AddTDL from "../home/addTDL/addTDL.jsx";
 const CallerPage = () => {
     const [users, setUsers] = useState([]);
     const [caller, setCaller] = useState({});
     const [TDL, setTDL] = useState([]);
     const [reload, setReload] = useState(false);
+    const [open, setOpen] = useState(false);
+    const [openTDL, setOpenTDL] = useState(false);
+
     const reduxUsers = useSelector((state) => state.usersSlice.users);
     const reduxCaller = useSelector((state) => state.userSlice.user);
     const navigate = useNavigate();
@@ -43,11 +47,7 @@ const CallerPage = () => {
     useEffect(() => {
         setCaller(reduxCaller);
     }, [reduxCaller]);
-    const handleAddTDL = async () => {
-        const tdl = {
-            name: "test1",
-            description: "test",
-        };
+    const handleAddTDL = async (tdl) => {
         try {
             await addTDL(getMyId(), tdl);
             handleReload();
@@ -87,7 +87,7 @@ const CallerPage = () => {
                             px: "15px",
                             paddingTop: "10px",
                         }}>
-                        <Box sx={{ display: "flex", flexDirection: "column", gap: "3px", height: "225px" }}>
+                        <Box sx={{ display: "flex", flexDirection: "column", gap: "3px", height: "210px" }}>
                             <Typography
                                 component="div"
                                 variant="h5"
@@ -96,9 +96,10 @@ const CallerPage = () => {
                                 color={handleColorPallet("mossGreen3")}>
                                 TO DO
                             </Typography>
-                            <TDLPaginate TDL={TDL} handleAddTDL={handleAddTDL} />
+                            <TDLPaginate TDL={TDL} userId={caller?._id} done={false} setOpen={setOpenTDL} setReload={setReload} />
+                            <AddTDL open={openTDL} setOpen={setOpenTDL} handleAddTDL={handleAddTDL} />
                         </Box>
-                        <Box sx={{ display: "flex", flexDirection: "column", gap: "3px", height: "225px" }}>
+                        <Box sx={{ display: "flex", flexDirection: "column", gap: "3px", height: "210px" }}>
                             <Typography
                                 component="div"
                                 variant="h5"
@@ -107,6 +108,7 @@ const CallerPage = () => {
                                 color={handleColorPallet("mossGreen3")}>
                                 DONE
                             </Typography>
+                            <TDLPaginate TDL={TDL} userId={caller?._id} done={true} setOpen={setOpen} setReload={setReload} />
                         </Box>
                     </Box>
                 </Box>

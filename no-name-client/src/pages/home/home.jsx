@@ -55,11 +55,6 @@ const HomePage = () => {
     };
     // TODO: add TDL
     const handleAddTDL = async (tdl) => {
-        console.log("add TDL");
-        // const tdl = {
-        //     name: "test1",
-        //     description: "test",
-        // };
         try {
             await addTDL(getMyId(), tdl);
             handleReload();
@@ -274,7 +269,7 @@ const HomePage = () => {
                             color={handleColorPallet("mossGreen3")}>
                             TO DO
                         </Typography>
-                        <TDLPaginate TDL={TDL} setOpen={setOpenTDL} />
+                        <TDLPaginate TDL={TDL} setOpen={setOpenTDL} userId={user?._id} setReload={setReload} done={false} />
                         <AddTDL open={openTDL} setOpen={setOpenTDL} handleAddTDL={handleAddTDL} />
                     </Box>
                     <Box sx={{ display: "flex", flexDirection: "column", gap: "3px", height: "225px" }}>
@@ -286,6 +281,7 @@ const HomePage = () => {
                             color={handleColorPallet("mossGreen3")}>
                             DONE
                         </Typography>
+                        <TDLPaginate TDL={TDL} setOpen={setOpenTDL} userId={user?._id} setReload={setReload} done={true} />
                     </Box>
                 </Box>
             </Box>

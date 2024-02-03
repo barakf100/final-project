@@ -39,7 +39,23 @@ const addTDL = async (id, TDL) => {
         console.log(err);
     }
 };
-
+const TDLDone = async (id, TDLId) => {
+    try {
+        const res = await axios.patch(
+            `/TDL/${id}/${TDLId}`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${getToken()}`,
+                },
+            }
+        );
+        console.log(res, "res");
+        return res.data;
+    } catch (err) {
+        console.log(err);
+    }
+};
 const updateTDL = async (id, TDLId, TDL) => {
     try {
         const res = await axios.patch(`/TDL/${id}/${TDLId}`, TDL);
@@ -58,4 +74,4 @@ const deleteTDL = async (id, TDLId) => {
     }
 };
 
-export { getAllTDLs, getTDLById, addTDL, updateTDL, deleteTDL };
+export { getAllTDLs, getTDLById, addTDL, updateTDL, deleteTDL, TDLDone };

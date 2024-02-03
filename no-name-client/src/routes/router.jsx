@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 import CallerPage from "../pages/callerMain/callerPage";
 import UserInvites from "../pages/userInvites/userInvitesPage";
 import CallerProfilePage from "../pages/callerProfile/callerProfile";
+import SitOrder from "../pages/sitOrders/sitOreder";
 const AppRouter = () => {
     const userType = useSelector((bigPie) => bigPie.authSlice.type);
     return (
@@ -25,6 +26,7 @@ const AppRouter = () => {
             <Route path={ROUTES.PROFILE} element={<ProfilePage />} />
             <Route path={ROUTES.INVITES} element={<UserInvites />} />
             <Route path={ROUTES.CALLERPROFILE} element={<CallerProfilePage />} />
+            <Route path={ROUTES.SITORDER} element={<SitOrder />} />
             <Route path="*" element={<NotFoundPage />} />
         </Routes>
     );

@@ -28,8 +28,18 @@ router.get("/:id/:TDLId", isMarry, async (req, res, next) => {
     }
 });
 
+// user set TDL as done
+router.patch("/:id/:TDLId", isCallerOrMarry, async (req, res, next) => {
+    try {
+        const update = await TDL.setTDLAsDone(req.params.id, req.params.TDLId);
+        res.status(200).json(update);
+    } catch (err) {
+        next(err);
+    }
+});
+
 // user post new TDL
-router.post("/:id", isMarry, async (req, res, next) => {
+router.post("/:id", isCallerOrMarry, async (req, res, next) => {
     try {
         const user = await User.findByIdAndUpdate(req.params.id, { $push: { TDL: req.body } }, { new: true });
         res.json(user);

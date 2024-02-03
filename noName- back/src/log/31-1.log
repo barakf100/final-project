@@ -10,3 +10,21 @@ logged error with status code: 400
 logged error with status code: 400
         at 15:54:45 
         error was: token is invalid 
+logged error with status code: 400
+        at 18:47:8 
+        error was: token is missing 
+logged error with status code: 400
+        at 18:48:16 
+        error was: token is missing 
+logged error with status code: 400
+        at 18:49:9 
+        error was: token is missing 
+logged error with status code: 400
+        at 18:49:39 
+        error was: token is missing 
+logged error with status code: 400
+        at 18:49:51 
+        error was: token is missing 
+logged error with status code: 400
+        at 18:49:59 
+        error was: token is missing 

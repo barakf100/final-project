@@ -48,6 +48,7 @@ type IJWTPayload = {
 type ITDL = {
     name: string;
     description: string;
+    isCompleted: boolean;
     _id?: string;
 };
 export { IUser, IName, IAddress, IImage, ILogin, IJWTPayload, ITDL };

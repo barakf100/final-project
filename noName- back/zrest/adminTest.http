@@ -6,8 +6,8 @@ Content-Type: application/json
 
 {
     "nameA":{ 
-        "first": "user1first",
-        "last": "user1last"
+        "first": "user2first",
+        "last": "user2last"
     },
     "address": {
         "city": "Anytown",
@@ -22,7 +22,7 @@ Content-Type: application/json
         "src": "https://picsum.photos/200/300"
     },
     "phone": "050-8123091",
-    "email": "dcronshaw@sha.com",
+    "email": "dcronshaw12@sha.com",
     "password": "Aa12345!",
     "isMarrying": true,
     "isCaller":false
