@@ -1,0 +1,15 @@
+logged error with status code: 400
+        at 19:29:50 
+        error was: Unexpected non-whitespace character after JSON at position 274 
+logged error with status code: 400
+        at 19:29:57 
+        error was: Expected double-quoted property name in JSON at position 265 
+logged error with status code: 400
+        at 19:30:6 
+        error was: Expected double-quoted property name in JSON at position 265 
+logged error with status code: 404
+        at 19:33:40 
+        error was: User or invite not found. 
+logged error with status code: 400
+        at 21:26:9 
+        error was: Only the invite field can be updated. 

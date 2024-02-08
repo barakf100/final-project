@@ -14,6 +14,8 @@ import CallerPage from "../pages/callerMain/callerPage";
 import UserInvites from "../pages/userInvites/userInvitesPage";
 import CallerProfilePage from "../pages/callerProfile/callerProfile";
 import SitOrder from "../pages/sitOrders/sitOreder";
+import SitOrder2 from "../pages/sitOrder2/sitOrder2";
+import InvitesPage from "../pages/invites/invites";
 const AppRouter = () => {
     const userType = useSelector((bigPie) => bigPie.authSlice.type);
     return (
@@ -25,8 +27,10 @@ const AppRouter = () => {
             <Route path={ROUTES.USERS} element={<Users />} />
             <Route path={ROUTES.PROFILE} element={<ProfilePage />} />
             <Route path={ROUTES.INVITES} element={<UserInvites />} />
+            <Route path={ROUTES.INVITEPAGE} element={<InvitesPage />} />
             <Route path={ROUTES.CALLERPROFILE} element={<CallerProfilePage />} />
             <Route path={ROUTES.SITORDER} element={<SitOrder />} />
+            <Route path={ROUTES.SITORDER2} element={<SitOrder2 />} />
             <Route path="*" element={<NotFoundPage />} />
         </Routes>
     );

@@ -114,7 +114,7 @@ DELETE http://localhost:8080/api/v1/users/658dab589e38a40c090292d7
 Authorization: bearer {{token}}
 
 ### Delte invite
-DELETE http://localhost:8080/api/v1/users/invite/6592c9a7142366537e74c9da/6592c9a7142366537e74c9de
+DELETE http://localhost:8080/api/v1/users/invite/6592c9a7142366537e74c9da/65c3cbb23190a68ad5cc2958
 Authorization: bearer {{token}}
 
 ### Delte TDL

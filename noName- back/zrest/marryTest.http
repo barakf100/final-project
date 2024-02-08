@@ -83,3 +83,22 @@ Content-Type: application/json
 ### TDL done
 PATCH http://localhost:8080/api/v1/TDL/6592c9a7142366537e74c9da/65943139035f19900423f8dc
 Authorization: Bearer {{token}}
+
+### update invite
+PATCH http://localhost:8080/api/v1/users/invite/6592c9a7142366537e74c9da/6593ea5a684786a65d8c246f
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "invite":{
+        "name":{
+            "first": "barak",
+            "last": "last"
+        },
+        "group": "groom",
+        "phone": "050-8123091",
+        "isAccepted": false,
+        "isPending": true,
+        "isDeclined": false
+        }
+    }

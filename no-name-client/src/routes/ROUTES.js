@@ -8,6 +8,8 @@ const ROUTES = {
     CALLERPAGE: "/callerpage",
     CALLERPROFILE: "/callerprofile",
     INVITES: "/invites",
+    INVITEPAGE: "/invitepage",
     SITORDER: "/sitorder",
+    SITORDER2: "/sitOrder2",
 };
 export default ROUTES;

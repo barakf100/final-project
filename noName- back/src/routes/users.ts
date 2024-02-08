@@ -73,6 +73,7 @@ router.put("/:id", isUser, validateRegistration, async (req, res, next) => {
     }
 });
 
+// add second name to user
 router.patch("/nameB/:id", isMarry, async (req, res, next) => {
     try {
         const { nameB, ...otherFields } = req.body;
@@ -114,6 +115,28 @@ router.patch("/invite/:id", isUser, async (req, res, next) => {
         }
         if (invites) {
             const user = await User.findByIdAndUpdate(req.params.id, { $push: { invites: req.body.invites } }, { new: true });
+            res.json(user);
+        }
+    } catch (err) {
+        next(err);
+    }
+});
+
+router.patch("/invite/:id/:inviteId", isUser, async (req, res, next) => {
+    try {
+        const { invite, ...otherFields } = req.body;
+        if (Object.keys(otherFields).length > 0) {
+            throw new InputError("Only the invite field can be updated.", 400);
+        }
+        if (invite) {
+            const user = await User.findOneAndUpdate(
+                { _id: req.params.id, "invites._id": req.params.inviteId },
+                { $set: { "invites.$": invite } },
+                { new: true }
+            );
+            if (!user) {
+                throw new InputError("User or invite not found.", 404);
+            }
             res.json(user);
         }
     } catch (err) {

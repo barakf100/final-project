@@ -5,10 +5,11 @@ import { InputError } from "../error/Input-Error";
 import { callerMethods } from "../service/caller-service";
 import { isBodyValid } from "../middleware/is-body-valid";
 import { Logger } from "../logs-message/logger";
+import { isCallerOrMarry } from "../middleware/is-marry-or-caller";
 const router = Router();
 
 // caller gets user invites
-router.get("/:id", isCaller, async (req, res, next) => {
+router.get("/:id", isCallerOrMarry, async (req, res, next) => {
     try {
         const user = await User.findById(req.params.id);
         if (!user) throw new InputError("user not found", 401);
