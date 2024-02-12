@@ -3,7 +3,7 @@ import * as MuiIcons from "@mui/icons-material";
 import { handleColorPallet } from "../../../service/colors/change";
 import { getMyId } from "../../../service/storage/storageService";
 import messageReq from "../../../service/request/messageReq";
-const MessageComp = ({ round, option, page, setPage, id }) => {
+const MessageComp = ({ round, option, page, setPage, id, setReload }) => {
     const userId = getMyId();
     const handleChangeOption = (setFunc, direction) => {
         setFunc((prevPage) => {
@@ -18,6 +18,7 @@ const MessageComp = ({ round, option, page, setPage, id }) => {
     };
     const handleMessageChoose = (message, type) => {
         messageReq.postMessage(message, userId, type);
+        setReload((prev) => !prev);
     };
     return (
         <Mui.Box

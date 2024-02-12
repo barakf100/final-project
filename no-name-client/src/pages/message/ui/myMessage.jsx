@@ -2,10 +2,11 @@ import * as Mui from "@mui/material";
 import * as MuiIcons from "@mui/icons-material";
 import { handleColorPallet } from "../../../service/colors/change";
 import messageReq from "../../../service/request/messageReq";
-const MyMessage = ({ h, message, userId, type }) => {
+const MyMessage = ({ h, message, userId, type, setReload }) => {
     //TODO: no reload after delete
     const handleDelete = (message) => {
         const res = messageReq.deleteMessage(userId, type);
+        setReload((prev) => !prev);
     };
     return (
         <Mui.Box>

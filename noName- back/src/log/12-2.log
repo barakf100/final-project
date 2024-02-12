@@ -1,0 +1,9 @@
+logged error with status code: 400
+        at 10:37:38 
+        error was: message already exists 
+logged error with status code: 400
+        at 10:37:44 
+        error was: message already exists 
+logged error with status code: 404
+        at 10:40:34 
+        error was: message not found 

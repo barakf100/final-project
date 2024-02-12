@@ -16,6 +16,7 @@ const Messages = () => {
     const [optionAfter, setOptionAfter] = useState([]);
     const [pageAfter, setPageAfter] = useState(0);
     const [userMessage, setUserMessage] = useState(null);
+    const [reload, setReload] = useState(false);
     const [toClick, setToClick] = useState({ before: true, dayBefore: false, after: false });
     const userId = getMyId();
     useEffect(() => {
@@ -29,7 +30,7 @@ const Messages = () => {
             setUserMessage(res);
         };
         fetch();
-    }, [userId]);
+    }, [userId, reload]);
     return (
         <Mui.Box sx={{ textAlign: "center", px: 2 }}>
             <Mui.Typography variant="h4" sx={{ color: handleColorPallet("mossGreen3") }}>
@@ -58,6 +59,7 @@ const Messages = () => {
                             setPage={setPageBefore}
                             toClick={toClick.before}
                             setToClick={setToClick}
+                            setReload={setReload}
                         />
                         <MessageComp
                             round={"Day before"}
@@ -67,6 +69,7 @@ const Messages = () => {
                             setPage={setPageDayBefore}
                             toClick={toClick.dayBefore}
                             setToClick={setToClick}
+                            setReload={setReload}
                         />
                         <MessageComp
                             round={"After"}
@@ -76,6 +79,7 @@ const Messages = () => {
                             setPage={setPageAfter}
                             toClick={toClick.after}
                             setToClick={setToClick}
+                            setReload={setReload}
                         />
                     </Mui.Box>
                 </Mui.Box>
@@ -92,9 +96,21 @@ const Messages = () => {
                         You're messages
                     </Mui.Typography>
                     <Mui.Box sx={{ height: "65vh", display: "flex", flexDirection: "column", justifyContent: "space-evenly" }}>
-                        {userMessage && <MyMessage userId={userId} h={"Before"} message={userMessage.before} type="before" />}
-                        {userMessage && <MyMessage userId={userId} h={"Day before"} message={userMessage.dayBefore} type="dayBefore" />}
-                        {userMessage && <MyMessage userId={userId} h={"After"} message={userMessage.after} type="after" />}
+                        {userMessage && (
+                            <MyMessage userId={userId} h={"Before"} message={userMessage.before} type="before" setReload={setReload} />
+                        )}
+                        {userMessage && (
+                            <MyMessage
+                                userId={userId}
+                                h={"Day before"}
+                                message={userMessage.dayBefore}
+                                type="dayBefore"
+                                setReload={setReload}
+                            />
+                        )}
+                        {userMessage && (
+                            <MyMessage userId={userId} h={"After"} message={userMessage.after} type="after" setReload={setReload} />
+                        )}
                     </Mui.Box>
                 </Mui.Box>
             </Mui.Box>
