@@ -34,8 +34,13 @@ type IUser = {
     TDL?: ITDL[];
     _id?: string;
     marryDate?: Date;
+    invitation?: IImage;
+    invitationMessage?: IMessages[];
 };
-
+type IMessages = {
+    message: string;
+    _id?: string;
+};
 type ILogin = {
     email: string;
     password: string;
@@ -51,4 +56,4 @@ type ITDL = {
     isCompleted: boolean;
     _id?: string;
 };
-export { IUser, IName, IAddress, IImage, ILogin, IJWTPayload, ITDL };
+export { IUser, IName, IAddress, IImage, ILogin, IJWTPayload, ITDL, IMessages };

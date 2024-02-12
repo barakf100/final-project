@@ -1,0 +1,66 @@
+logged error with status code: 400
+        at 10:47:3 
+        error was: Expected double-quoted property name in JSON at position 79 
+logged error with status code: 404
+        at 10:50:46 
+        error was: User or invite not found. 
+logged error with status code: 400
+        at 10:54:31 
+        error was: Only the invitation field can be updated. 
+logged error with status code: 400
+        at 10:59:10 
+        error was: Bad escaped character in JSON at position 70 
+logged error with status code: 400
+        at 10:59:29 
+        error was: Bad escaped character in JSON at position 70 
+logged error with status code: 400
+        at 10:59:31 
+        error was: Bad escaped character in JSON at position 70 
+logged error with status code: 400
+        at 10:59:42 
+        error was: Bad escaped character in JSON at position 70 
+logged error with status code: 400
+        at 10:59:56 
+        error was: Expected ',' or '}' after property value in JSON at position 68 
+logged error with status code: 400
+        at 11:0:1 
+        error was: Expected ',' or '}' after property value in JSON at position 68 
+logged error with status code: 401
+        at 12:0:26 
+        error was: user not found 
+logged error with status code: 401
+        at 12:1:38 
+        error was: user not found 
+logged error with status code: 401
+        at 12:3:4 
+        error was: user not found 
+logged error with status code: 401
+        at 12:3:23 
+        error was: user not found 
+logged error with status code: 401
+        at 12:9:4 
+        error was: user not found 
+logged error with status code: 401
+        at 12:9:29 
+        error was: user not found 
+logged error with status code: 401
+        at 12:9:49 
+        error was: user not found 
+logged error with status code: 401
+        at 12:10:20 
+        error was: user not found 
+logged error with status code: 401
+        at 12:10:22 
+        error was: user not found 
+logged error with status code: 401
+        at 12:13:35 
+        error was: user not found 
+logged error with status code: 401
+        at 12:14:8 
+        error was: user not found 
+logged error with status code: undefined
+        at 12:15:45 
+        error was: Cast to embedded failed for value "message 1 update" (type string) at path "invitationMessage" because of "ObjectParameterError" 
+logged error with status code: undefined
+        at 12:16:54 
+        error was: Cast to embedded failed for value "message 1 update" (type string) at path "invitationMessage" because of "ObjectParameterError" 

@@ -1,0 +1,57 @@
+logged error with status code: 400
+        at 10:5:50 
+        error was: Unexpected token '"', "#" is not valid JSON 
+logged error with status code: 400
+        at 10:7:22 
+        error was: Unexpected token '"', "#" is not valid JSON 
+logged error with status code: 400
+        at 10:8:42 
+        error was: Unexpected token '"', "#" is not valid JSON 
+logged error with status code: 400
+        at 10:10:21 
+        error was: Unexpected token '"', "#" is not valid JSON 
+logged error with status code: 400
+        at 10:11:7 
+        error was: Unexpected token '"', "#" is not valid JSON 
+logged error with status code: 400
+        at 10:12:47 
+        error was: Unexpected token '"', "#" is not valid JSON 
+logged error with status code: 400
+        at 10:14:10 
+        error was: Unexpected token '"', "#" is not valid JSON 
+logged error with status code: 400
+        at 14:26:31 
+        error was: Unexpected token '"', "#" is not valid JSON 
+logged error with status code: 400
+        at 14:28:32 
+        error was: Unexpected token '"', "#" is not valid JSON 
+logged error with status code: 400
+        at 14:28:32 
+        error was: Unexpected token '"', "#" is not valid JSON 
+logged error with status code: 400
+        at 14:28:37 
+        error was: Unexpected token '"', "#" is not valid JSON 
+logged error with status code: 400
+        at 14:28:53 
+        error was: Unexpected token '"', "#" is not valid JSON 
+logged error with status code: 401
+        at 16:57:26 
+        error was: user can't send more than 3 messages 
+logged error with status code: 400
+        at 17:35:55 
+        error was: user can't store more than 3 messages 
+logged error with status code: 400
+        at 17:36:13 
+        error was: user can't store more than 3 messages 
+logged error with status code: 400
+        at 17:36:33 
+        error was: user can't store more than 3 messages 
+logged error with status code: 400
+        at 17:40:14 
+        error was: user can't store more than 3 messages 
+logged error with status code: 400
+        at 19:56:55 
+        error was: user can't store more than 3 messages 
+logged error with status code: 400
+        at 21:33:26 
+        error was: message already exists 

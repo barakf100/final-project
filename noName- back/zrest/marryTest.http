@@ -85,7 +85,7 @@ PATCH http://localhost:8080/api/v1/TDL/6592c9a7142366537e74c9da/65943139035f1990
 Authorization: Bearer {{token}}
 
 ### update invite
-PATCH http://localhost:8080/api/v1/users/invite/6592c9a7142366537e74c9da/6593ea5a684786a65d8c246f
+PATCH http://localhost:8080/api/v1/users/invite/6592c9a7142366537e74c9da/65c50fa193de7d5e0d1f1649
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -101,4 +101,42 @@ Content-Type: application/json
         "isPending": true,
         "isDeclined": false
         }
+}
+
+### post invitation
+POST http://localhost:8080/api/v1/invitation/6592c9a7142366537e74c9da
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "invitation":{ 
+    "alt": "user-invitation",
+    "src": "https://picsum.photos/400/400"
     }
+}
+
+### get messages
+GET http://localhost:8080/api/v1/messages/6592c9a7142366537e74c9da
+Authorization : Bearer {{token}}
+
+### post message
+POST http://localhost:8080/api/v1/messages/6592c9a7142366537e74c9da
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "message": "message 2"
+}
+
+### update message
+PUT http://localhost:8080/api/v1/messages/6592c9a7142366537e74c9da/65c74547c3fab1eb2f00859f
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "message": "message 1 update"
+}
+
+### delete message
+DELETE http://localhost:8080/api/v1/messages/6592c9a7142366537e74c9da/65c74d6bf435d5e464ca7e93
+Authorization: Bearer {{token}}

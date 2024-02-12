@@ -7,6 +7,7 @@ const links = {
         { to: ROUTES.SITORDER, children: "Sit Order" },
         { to: ROUTES.SITORDER2, children: "Sit List" },
         { to: ROUTES.INVITEPAGE, children: "Invites" },
+        { to: ROUTES.MESSAGES, children: "Messages" },
     ],
     callerLinks: [{ to: ROUTES.CALLERPROFILE, children: "Profile" }],
     adminLinks: [{ to: ROUTES.USERS, children: "Users" }],

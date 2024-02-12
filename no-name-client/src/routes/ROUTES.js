@@ -9,6 +9,7 @@ const ROUTES = {
     CALLERPROFILE: "/callerprofile",
     INVITES: "/invites",
     INVITEPAGE: "/invitepage",
+    MESSAGES: "/messages",
     SITORDER: "/sitorder",
     SITORDER2: "/sitOrder2",
 };

@@ -39,6 +39,7 @@ const setMarryDate = async (id, date) => {
             { marryDate: dateString },
             { headers: { Authorization: `bearer ${getToken()}` } }
         );
+        allToast.toastSuccess("Marry date updated");
         return res.data;
     } catch (err) {
         console.log(err);
