@@ -17,6 +17,7 @@ import SitOrder from "../pages/sitOrders/sitOreder";
 import SitOrder2 from "../pages/sitOrder2/sitOrder2";
 import InvitesPage from "../pages/invites/invites";
 import Messages from "../pages/message/message";
+import Invitation from "../pages/invitation/invitation";
 const AppRouter = () => {
     const userType = useSelector((bigPie) => bigPie.authSlice.type);
     return (
@@ -30,6 +31,7 @@ const AppRouter = () => {
             <Route path={ROUTES.INVITES} element={<UserInvites />} />
             <Route path={ROUTES.INVITEPAGE} element={<InvitesPage />} />
             <Route path={ROUTES.CALLERPROFILE} element={<CallerProfilePage />} />
+            <Route path={ROUTES.INVITATION} element={<Invitation />} />
             <Route path={ROUTES.MESSAGES} element={<Messages />} />
             <Route path={ROUTES.SITORDER} element={<SitOrder />} />
             <Route path={ROUTES.SITORDER2} element={<SitOrder2 />} />

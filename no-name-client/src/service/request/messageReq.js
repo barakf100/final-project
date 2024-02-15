@@ -4,6 +4,7 @@ import { getToken } from "../storage/storageService";
 const messageReq = {
     postMessage: async (message, id, type) => {
         try {
+            console.log(message);
             const res = await axios.post(
                 `/messages/${id}/${type}`,
                 { message: message },
@@ -17,6 +18,18 @@ const messageReq = {
     getMessages: async (id) => {
         try {
             const res = await axios.get(`/messages/${id}`, { headers: { Authorization: `bearer ${getToken()}` } });
+            return res.data;
+        } catch (err) {
+            console.log(err.response);
+        }
+    },
+    updateMessage: async (id, type, message) => {
+        try {
+            const res = await axios.put(
+                `/messages/${id}/${type}`,
+                { message: message },
+                { headers: { Authorization: `bearer ${getToken()}` } }
+            );
             return res.data;
         } catch (err) {
             console.log(err.response);

@@ -31,6 +31,7 @@ router.post("/:id/:type", isMarry, async (req, res, next) => {
         );
         res.json(updatedUser);
     } catch (err) {
+        Logger.error(err);
         next(err);
     }
 });

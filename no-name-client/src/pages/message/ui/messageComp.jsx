@@ -17,8 +17,10 @@ const MessageComp = ({ round, option, page, setPage, id, setReload }) => {
         });
     };
     const handleMessageChoose = (message, type) => {
-        messageReq.postMessage(message, userId, type);
-        setReload((prev) => !prev);
+        messageReq
+            .postMessage(message, userId, type)
+            .then(setReload((prev) => !prev))
+            .catch((err) => console.log(err));
     };
     return (
         <Mui.Box
@@ -43,7 +45,7 @@ const MessageComp = ({ round, option, page, setPage, id, setReload }) => {
                         onClick={() => {
                             handleChangeOption(setPage, "back");
                         }}
-                        sx={{ mr: 2, color: handleColorPallet("teaGreen"), alignSelf: "center" }}
+                        sx={{ mr: 2, color: handleColorPallet("teaGreen"), alignSelf: "center", cursor: "pointer" }}
                     />
                     <Mui.Typography variant="body2" textAlign="left">
                         {option[page]}
@@ -52,7 +54,7 @@ const MessageComp = ({ round, option, page, setPage, id, setReload }) => {
                         onClick={() => {
                             handleChangeOption(setPage, "forward");
                         }}
-                        sx={{ ml: 2, color: handleColorPallet("teaGreen"), alignSelf: "center" }}
+                        sx={{ ml: 2, color: handleColorPallet("teaGreen"), alignSelf: "center", cursor: "pointer" }}
                     />
                 </Mui.Box>
             </Mui.CardContent>
@@ -62,7 +64,6 @@ const MessageComp = ({ round, option, page, setPage, id, setReload }) => {
                     color="mossGreen1"
                     sx={{ alignSelf: "end" }}
                     onClick={() => {
-                        // TODO: no reload after choose
                         handleMessageChoose(option[page], id);
                     }}>
                     choose

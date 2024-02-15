@@ -34,7 +34,7 @@ type IUser = {
     TDL?: ITDL[];
     _id?: string;
     marryDate?: Date;
-    invitation?: IImage;
+    invitation?: any;
     invitationMessage?: IMessages[];
 };
 type IMessages = {

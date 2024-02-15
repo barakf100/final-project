@@ -1,4 +1,3 @@
-import { Rocket } from "@mui/icons-material";
 import ROUTES from "../routes/ROUTES";
 
 const links = {
@@ -8,6 +7,7 @@ const links = {
         { to: ROUTES.SITORDER2, children: "Sit List" },
         { to: ROUTES.INVITEPAGE, children: "Invites" },
         { to: ROUTES.MESSAGES, children: "Messages" },
+        { to: ROUTES.INVITATION, children: "Invitation" },
     ],
     callerLinks: [{ to: ROUTES.CALLERPROFILE, children: "Profile" }],
     adminLinks: [{ to: ROUTES.USERS, children: "Users" }],

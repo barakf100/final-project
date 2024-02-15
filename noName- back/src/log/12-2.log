@@ -7,3 +7,81 @@ logged error with status code: 400
 logged error with status code: 404
         at 10:40:34 
         error was: message not found 
+logged error with status code: 400
+        at 11:44:3 
+        error was: message already exists 
+logged error with status code: 400
+        at 11:44:23 
+        error was: message already exists 
+logged error with status code: 404
+        at 11:44:37 
+        error was: message not found 
+logged error with status code: undefined
+        at 13:29:0 
+        error was: Cast to ObjectId failed for value "before" (type string) at path "_id" for model "user" 
+logged error with status code: undefined
+        at 13:30:29 
+        error was: Cast to string failed for value "{ type: 'asdxx' }" (type Object) at path "message" 
+logged error with status code: undefined
+        at 13:31:55 
+        error was: Cast to string failed for value "{ type: 'a' }" (type Object) at path "message" 
+logged error with status code: undefined
+        at 13:33:1 
+        error was: Cast to string failed for value "{ type: 'asd' }" (type Object) at path "message" 
+logged error with status code: 400
+        at 14:7:42 
+        error was: message already exists 
+logged error with status code: 400
+        at 14:29:30 
+        error was: message already exists 
+logged error with status code: 400
+        at 14:42:10 
+        error was: message already exists 
+logged error with status code: 400
+        at 14:42:13 
+        error was: message already exists 
+logged error with status code: 400
+        at 14:43:30 
+        error was: message already exists 
+logged error with status code: 400
+        at 14:58:40 
+        error was: message already exists 
+logged error with status code: 404
+        at 14:59:8 
+        error was: message not found 
+logged error with status code: 400
+        at 21:21:55 
+        error was: message already exists 
+logged error with status code: 400
+        at 21:21:56 
+        error was: message already exists 
+logged error with status code: 400
+        at 21:21:56 
+        error was: message already exists 
+logged error with status code: 400
+        at 21:21:56 
+        error was: message already exists 
+logged error with status code: 400
+        at 21:22:1 
+        error was: message already exists 
+logged error with status code: 400
+        at 21:22:1 
+        error was: message already exists 
+logged error with status code: 400
+        at 21:22:2 
+        error was: message already exists 
+logged error with status code: 400
+        at 21:22:2 
+        error was: message already exists 
+logged error with status code: 400
+        at 21:22:10 
+        error was: message already exists 
+logged error with status code: 400
+        at 21:22:13 
+        error was: message already exists 
+logged error with status code: 400
+        at 21:22:25 
+        error was: message already exists 
+logged error with status code: 400
+        at 21:27:44 
+        error was: message already exists 

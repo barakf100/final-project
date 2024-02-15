@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import { IUser } from "../../@types/user";
 import { nameSchema } from "./name-schema";
 import { addressSchema } from "./address-schema";
@@ -6,7 +6,10 @@ import { imageSchema } from "./image-schema";
 import { invitedSchema } from "./invited-shcema";
 import { TDLSchema } from "./TDL-schema";
 import { messageSchema } from "./message-schema";
-
+const uploadImageSchema = new mongoose.Schema({
+    contentType: String,
+    image: Buffer,
+});
 const userSchema = new Schema<IUser>({
     nameA: nameSchema,
     nameB: { type: nameSchema, required: false },
@@ -22,7 +25,7 @@ const userSchema = new Schema<IUser>({
     invites: { type: [invitedSchema], required: false, default: [] },
     TDL: { type: [TDLSchema], required: false, default: [] },
     marryDate: { type: "Date", required: false },
-    invitation: { type: imageSchema, required: false },
+    invitation: { type: uploadImageSchema, required: false },
     invitationMessage: {
         before: messageSchema,
         dayBefore: messageSchema,

@@ -42,7 +42,7 @@ const Messages = () => {
                         mt: 2,
                         height: "70vh",
                         width: "65vw",
-                        border: "1px solid",
+                        // border: "1px solid",
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "space-evenly",
@@ -52,7 +52,7 @@ const Messages = () => {
                     </Mui.Typography>
                     <Mui.Box sx={{ display: "flex" }}>
                         <MessageComp
-                            round={"Before"}
+                            round={"Week Before"}
                             id={"before"}
                             option={optionBefore}
                             page={pageBefore}
@@ -88,16 +88,17 @@ const Messages = () => {
                         mt: 2,
                         height: "70vh",
                         width: "45vw",
-                        border: "1px solid",
+                        // border: "1px solid",
                         display: "flex",
                         flexDirection: "column",
+                        justifyContent: "space-evenly",
                     }}>
                     <Mui.Typography variant="h5" sx={{ color: handleColorPallet("mossGreen3") }}>
                         You're messages
                     </Mui.Typography>
                     <Mui.Box sx={{ height: "65vh", display: "flex", flexDirection: "column", justifyContent: "space-evenly" }}>
                         {userMessage && (
-                            <MyMessage userId={userId} h={"Before"} message={userMessage.before} type="before" setReload={setReload} />
+                            <MyMessage userId={userId} h={"Week before"} message={userMessage.before} type="before" setReload={setReload} />
                         )}
                         {userMessage && (
                             <MyMessage
