@@ -16,22 +16,28 @@ const VisuallyHiddenInput = styled("input")({
     width: 1,
 });
 
-const handleUpload = (event) => {
+const handleUpload = async (event, setReload) => {
     try {
         const userId = getMyId();
         const file = event.target.files[0];
-        const res = invitationReq.createInvitation(userId, file);
+        const res = await invitationReq.createInvitation(userId, file);
         console.log(res);
+        setReload((prev) => !prev);
     } catch (err) {
         console.log(err);
     }
 };
 
-const InputFileUpload = () => {
+const InputFileUpload = ({ setReload }) => {
     return (
         <Button component="label" role={undefined} variant="contained" tabIndex={-1} startIcon={<CloudUploadIcon />}>
             Upload file
-            <VisuallyHiddenInput type="file" onChange={handleUpload} />
+            <VisuallyHiddenInput
+                type="file"
+                onChange={(e) => {
+                    handleUpload(e, setReload);
+                }}
+            />
         </Button>
     );
 };

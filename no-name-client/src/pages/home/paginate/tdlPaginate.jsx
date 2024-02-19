@@ -8,14 +8,14 @@ const TDLPaginate = ({ TDL, setOpen, userId, setReload, done }) => {
     const [doneTDLs, setDoneTDLs] = useState([]);
     const [undoneTDLs, setUndoneTDLs] = useState([]);
     useEffect(() => {
-        const done = TDL.filter((tdl) => tdl.isCompleted === true);
-        const undone = TDL.filter((tdl) => tdl.isCompleted === false);
+        const done = TDL?.filter((tdl) => tdl.isCompleted === true);
+        const undone = TDL?.filter((tdl) => tdl.isCompleted === false);
         setDoneTDLs(done);
         setUndoneTDLs(undone);
     }, [TDL]);
     // const PaginateTDL = TDL.slice(page * ITEM_PER_PAGE, (page + 1) * ITEM_PER_PAGE);
-    const paginateDoneTDLs = doneTDLs.slice(page * ITEM_PER_PAGE, (page + 1) * ITEM_PER_PAGE);
-    const paginateUndoneTDLs = undoneTDLs.slice(page * ITEM_PER_PAGE, (page + 1) * ITEM_PER_PAGE);
+    const paginateDoneTDLs = doneTDLs?.slice(page * ITEM_PER_PAGE, (page + 1) * ITEM_PER_PAGE);
+    const paginateUndoneTDLs = undoneTDLs?.slice(page * ITEM_PER_PAGE, (page + 1) * ITEM_PER_PAGE);
 
     const handleNextPage = () => {
         if ((page + 1) * ITEM_PER_PAGE < TDL.length) {
@@ -34,7 +34,7 @@ const TDLPaginate = ({ TDL, setOpen, userId, setReload, done }) => {
     return (
         <Box sx={{ display: "flex", flexDirection: "column", gap: "3px", height: "225px", justifyContent: "space-between" }}>
             {done
-                ? paginateDoneTDLs.map((tdl) => (
+                ? paginateDoneTDLs?.map((tdl) => (
                       <Tooltip title={tdl?.description}>
                           <FormControlLabel
                               key={nextKey()}
@@ -43,7 +43,7 @@ const TDLPaginate = ({ TDL, setOpen, userId, setReload, done }) => {
                           />
                       </Tooltip>
                   ))
-                : paginateUndoneTDLs.map((tdl) => (
+                : paginateUndoneTDLs?.map((tdl) => (
                       <Tooltip title={tdl?.description}>
                           <FormControlLabel
                               key={nextKey()}

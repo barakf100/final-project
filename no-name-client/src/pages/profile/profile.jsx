@@ -35,19 +35,23 @@ const ProfilePage = () => {
                 invites,
                 TDL,
                 __v,
+                isMarrying,
+                isCaller,
+                phone,
                 nameA: { _id: _d, ...restNameA },
                 nameB: { _id: __, ...restNameB },
                 address: { _id: ___, ...restAddress },
                 image: { _id: ____, ...restImage },
                 ...rest
             } = user;
-            setUserInfo({ nameA: restNameA, nameB: restNameB, address: restAddress, image: restImage, ...rest });
+            setUserInfo({ nameA: restNameA, nameB: restNameB, address: restAddress, image: restImage, isMarrying, isCaller, phone });
         }
     }, [user]);
     const handleEditClick = () => {
         setIsEditing(true);
     };
     const handleSaveClick = () => {
+        console.log(userInfo);
         const err = validProfile(userInfo);
         if (err) {
             Object.entries(err).forEach(([key, value]) => {
@@ -55,6 +59,7 @@ const ProfilePage = () => {
             });
             return;
         }
+
         updateUser(user._id, userInfo).then(() => {
             allToast.toastSuccess("Profile updated successfully");
             dispatch(getUser());

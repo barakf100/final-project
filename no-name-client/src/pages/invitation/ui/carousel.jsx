@@ -5,7 +5,7 @@ const Item = ({ item }) => {
     return (
         <Mui.Paper>
             <Mui.Link href={item.link} target="_blank" rel="noopener">
-                <img src={item.src} alt={item.alt} height="500px" width="73%" />
+                <img style={{ border: "3px solid" }} src={item.src} alt={item.alt} height="494px" width="73%" />
             </Mui.Link>
         </Mui.Paper>
     );

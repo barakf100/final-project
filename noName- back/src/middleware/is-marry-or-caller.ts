@@ -14,10 +14,11 @@ const isCallerOrMarry: RequestHandler = async (req, res, next) => {
         req.user = user;
         const isCaller = user.isCaller;
         const isMarrying = user.isMarrying;
-        if (isCaller || isMarrying) {
+        const isAdmin = user.isAdmin;
+        if (isCaller || isMarrying || isAdmin) {
             next();
         } else {
-            throw new InputError("You are not a caller", 401);
+            throw new InputError("You are not authorizrd for this action ", 401);
         }
     } catch (err) {
         next(err);

@@ -18,15 +18,37 @@ import SitOrder2 from "../pages/sitOrder2/sitOrder2";
 import InvitesPage from "../pages/invites/invites";
 import Messages from "../pages/message/message";
 import Invitation from "../pages/invitation/invitation";
+import AllGuards from "../service/auth/allGuards";
+import AdminMain from "../pages/adminMain/adminMain";
 const AppRouter = () => {
     const userType = useSelector((bigPie) => bigPie.authSlice.type);
     return (
         <Routes>
-            <Route path={ROUTES.HOME} element={userType === "marry" ? <HomePage /> : <CallerPage />} />
+            <Route
+                path={ROUTES.HOME}
+                element={
+                    userType === "marry" ? (
+                        <HomePage />
+                    ) : userType === "caller" ? (
+                        <CallerPage />
+                    ) : userType === "admin" ? (
+                        <AdminMain />
+                    ) : (
+                        <Login />
+                    )
+                }
+            />
             <Route path={ROUTES.ABOUT} element={<About />} />
             <Route path={ROUTES.REGISTER} element={<Register />} />
             <Route path={ROUTES.LOGIN} element={<Login />} />
-            <Route path={ROUTES.USERS} element={<Users />} />
+            <Route
+                path={ROUTES.USERS}
+                element={
+                    <AllGuards who="admin">
+                        <Users />
+                    </AllGuards>
+                }
+            />
             <Route path={ROUTES.PROFILE} element={<ProfilePage />} />
             <Route path={ROUTES.INVITES} element={<UserInvites />} />
             <Route path={ROUTES.INVITEPAGE} element={<InvitesPage />} />

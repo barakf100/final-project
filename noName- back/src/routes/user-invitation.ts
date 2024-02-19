@@ -9,7 +9,6 @@ const router = Router();
 const upload = multer();
 
 router.get("/:id", isMarry, async (req, res, next) => {
-    Logger.info("User invitation route");
     try {
         const user = await User.findById(req.params.id);
         if (!user) {
@@ -28,7 +27,6 @@ router.get("/:id", isMarry, async (req, res, next) => {
 });
 
 router.post("/:id", isMarry, upload.single("image"), async (req, res, next) => {
-    Logger.info("User invitation route");
     const { invitation, ...otherFields } = req.body;
     if (Object.keys(otherFields).length > 0) {
         return next(new InputError("Only the invitation field can be updated.", 400));

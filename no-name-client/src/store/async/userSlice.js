@@ -6,7 +6,6 @@ const getUser = createAsyncThunk("users/getUser", async () => {
     try {
         const id = getMyId();
         const res = await getUserById(id);
-        console.log(res.user);
         return res.user;
     } catch (err) {
         throw err;

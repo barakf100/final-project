@@ -12,7 +12,6 @@ const useAutoLogin = () => {
             if (!token) return;
             const dataFromToken = jwtDecode(token);
             if (skipTokenTest) await axios.get(`/users/${dataFromToken._id}`);
-            console.log("auto login", dataFromToken);
             dispatch(authActions.login(dataFromToken));
         } catch (err) {
             localStorage.clear();
