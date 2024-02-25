@@ -1,4 +1,4 @@
-import { Box, AppBar, Toolbar, Typography, useMediaQuery, Avatar } from "@mui/material";
+import { Box, AppBar, Toolbar, Typography, useMediaQuery } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -6,15 +6,16 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { useState } from "react";
 import Links from "./ui/Links.jsx";
-import FilterComponent from "../../components/filter/FilterComponent.jsx";
 import LeftDrawerComponent from "./ui/LeftDrawerComponent.jsx";
 import ROUTES from "../../routes/ROUTES.js";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../store/authSlice.js";
 const Header = ({ isDarkTheme, onThemeChange }) => {
-    const screenSize = useMediaQuery("(min-width:700px)");
     const linksScreenSize = useMediaQuery("(min-width:500px)");
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleThemeChange = (event) => {
         onThemeChange(event.target.checked);
@@ -28,6 +29,10 @@ const Header = ({ isDarkTheme, onThemeChange }) => {
     };
     const handleHome = () => {
         navigate(ROUTES.HOME);
+    };
+    const handleLogOut = () => {
+        dispatch(authActions.logout());
+        navigate(ROUTES.LOGIN);
     };
     return (
         <Box sx={{ flexGrow: 1, mb: 2, position: "fixed", zIndex: 999, width: "100%" }}>
@@ -51,32 +56,14 @@ const Header = ({ isDarkTheme, onThemeChange }) => {
                         Marry.me
                     </Typography>
                     {linksScreenSize && <Links />}
-                    {screenSize && <FilterComponent route={ROUTES.HOME} />}
-                    <Box
-                        sx={{
-                            my: 2,
-                            p: 1,
-                        }}>
-                        <Typography sx={{ display: { md: "inline", cursor: "pointer" } }} onClick={handleThemeChange}>
+                    <Box>
+                        <IconButton size="medium" color="inherit" sx={{ display: { cursor: "pointer" } }} onClick={handleThemeChange}>
                             {isDarkTheme ? <DarkModeIcon /> : <LightModeIcon />}
-                        </Typography>
-                    </Box>
-                    {/* <Box sx={{ flexGrow: 1 }} /> */}
-                    {/* <Box sx={{ display: { md: "flex" } }}>
-                        {user ? (
-                            <Avatar
-                                sx={{ cursor: "pointer", display: { xs: "none", sm: "none", md: "block" } }}
-                                alt="user avatar"
-                                onClick={handleProfileClick}
-                                src={data.image?.url}
-                            />
-                        ) : (
-                            ""
-                        )}
-                        <IconButton size="large" aria-label="log out" color="inherit" onClick={handleLogOut}>
+                        </IconButton>
+                        <IconButton size="medium" aria-label="log out" color="inherit" onClick={handleLogOut}>
                             <LogoutIcon />
                         </IconButton>
-                    </Box> */}
+                    </Box>
                 </Toolbar>
             </AppBar>
             <LeftDrawerComponent isOpen={isOpen} onCloseDrawer={handleCloseDrawerClick} />

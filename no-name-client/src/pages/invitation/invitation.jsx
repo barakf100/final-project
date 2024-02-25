@@ -1,15 +1,19 @@
 import * as Mui from "@mui/material";
+import * as MuiIcons from "@mui/icons-material";
 import CarouselComponent from "./ui/carousel";
 import InputFileUpload from "./ui/uplaodButtonComp";
 import invitationReq from "../../service/request/invitationReq";
 import { getMyId } from "../../service/storage/storageService";
 import { useEffect, useState } from "react";
 import noImage from "../../assets/noImage.jpeg";
+import { FacebookShareButton, FacebookIcon } from "react-share";
 
 const Invitation = () => {
     const userId = getMyId();
     const [invitation, setInvitation] = useState(null);
     const [reload, setReload] = useState(false);
+    const imageUrl = `${process.env.REACT_APP_SERVER_URL}image/${userId}`;
+    console.log(imageUrl);
     useEffect(() => {
         const fetchInvitation = async () => {
             try {
@@ -59,6 +63,11 @@ const Invitation = () => {
                             width="100%"
                             style={{ border: "0.5px solid" }}
                         />
+                        <Mui.Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
+                            <FacebookShareButton url={imageUrl}>
+                                <FacebookIcon size={32} round={true} />
+                            </FacebookShareButton>
+                        </Mui.Box>
                     </Mui.Box>
                 </Mui.Box>
             </Mui.Box>

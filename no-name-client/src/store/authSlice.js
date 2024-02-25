@@ -15,7 +15,8 @@ const authSlice = createSlice({
             state.loggedIn = true;
             state.userData = action.payload;
             state.type = action.payload.type;
-            if (action.payload.isAdmin) state.isAdmin = true;
+            console.log(state.userData);
+            if (state.userData.type === "admin") state.isAdmin = true;
             else state.isAdmin = false;
         },
         logout(state) {
@@ -23,6 +24,7 @@ const authSlice = createSlice({
             state.isAdmin = false;
             state.type = "";
             state.userData = undefined;
+            localStorage.removeItem("token");
         },
     },
 });

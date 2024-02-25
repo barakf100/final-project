@@ -11,7 +11,7 @@ const UsersPie = ({ valA, valB, valC, labelA, labelB, labelC, title }) => {
     ];
     return (
         <>
-            <Typography textAlign="center" variant="h5">
+            <Typography textAlign="center" variant="h5" mb={3}>
                 {title}
             </Typography>
             <PieChart
@@ -26,7 +26,7 @@ const UsersPie = ({ valA, valB, valC, labelA, labelB, labelC, title }) => {
                     },
                 ]}
                 width={400}
-                height={200}
+                height={250}
             />
         </>
     );

@@ -7,6 +7,8 @@ import UsersPie from "./ui/pieChart";
 import UsersCalc from "../../service/calcs/usersCalc";
 import { addTDL } from "../../service/request/TDLReq";
 import AddTDL from "../home/addTDL/addTDL";
+import { handleColorPallet } from "../../service/colors/change";
+import Paginate from "./ui/pagination";
 
 const AdminMain = () => {
     const [open, setOpen] = React.useState(false);
@@ -17,9 +19,12 @@ const AdminMain = () => {
     }, [dispatch]);
     const users = useSelector((bigPie) => bigPie.usersSlice.users);
     const callers = users.filter((user) => user.isCaller);
+    const marry = users.filter((user) => user.isMarrying);
     const usersCount = UsersCalc.UsersCount(users);
     const invitesCount = UsersCalc.InvitesCount(users);
     const handleAddTDL = async (tdl) => {
+        tdl.name = "admin - " + tdl.name;
+        console.log(tdl);
         await addTDL(callerId, tdl);
     };
     const handleOpen = () => {
@@ -28,10 +33,10 @@ const AdminMain = () => {
     return (
         <Mui.Container component="div" sx={{ maxWidth: "100vw !important", mx: 0 }}>
             <Mui.Typography textAlign="center" variant="h3" mb={2}>
-                walcome back Admin
+                welcome back Admin
             </Mui.Typography>
             <Mui.Grid container spacing={3} sx={{ height: "79vh", width: "95vw", mx: 2 }}>
-                <Mui.Grid item xs={4}>
+                <Mui.Grid item xs={4} alignSelf="center">
                     <Mui.Box sx={{ height: "100%" }}>
                         <UsersPie
                             valA={invitesCount.acceptedCount}
@@ -42,12 +47,12 @@ const AdminMain = () => {
                             labelC="pending"
                             title={"invites success rate"}
                         />
-                        <Mui.Typography textAlign="center" variant="h6">
+                        <Mui.Typography textAlign="center" variant="h6" mt={3}>
                             success rate: {Math.round((invitesCount.acceptedCount / invitesCount.total) * 100)}%
                         </Mui.Typography>
                     </Mui.Box>
                 </Mui.Grid>
-                <Mui.Grid item xs={4}>
+                <Mui.Grid item xs={4} alignSelf="center">
                     <Mui.Box sx={{ height: "100%" }}>
                         <UsersPie
                             valA={usersCount.callers}
@@ -57,37 +62,26 @@ const AdminMain = () => {
                             labelB="marry"
                             valC="0"
                         />
+                        <Mui.Typography textAlign="center" variant="h6" mt={3}>
+                            ratio: {usersCount.callers / usersCount.callers} : {(usersCount.marry / usersCount.callers).toFixed(1)}
+                        </Mui.Typography>
                     </Mui.Box>
                 </Mui.Grid>
                 <Mui.Grid item xs={4}>
-                    <Mui.Box sx={{ height: "100%" }}>
-                        <Mui.Typography textAlign="center" variant="h5">
-                            Callers list
-                        </Mui.Typography>
-                        {callers.map((caller) => {
-                            return (
-                                <Mui.Grid container spacing={1} key={caller._id} sx={{ p: 1 }}>
-                                    <Mui.Grid item xs={4}>
-                                        <Mui.Avatar src={caller.image.src} />
-                                    </Mui.Grid>
-                                    <Mui.Grid item xs={4} alignSelf="center">
-                                        <Mui.Typography variant="body1">
-                                            {caller.nameA.first} {caller.nameA.last}
-                                        </Mui.Typography>
-                                    </Mui.Grid>
-                                    <Mui.Grid item xs={4} alignSelf="center">
-                                        <Mui.Button
-                                            onClick={() => {
-                                                handleOpen();
-                                                setCallerId(caller._id);
-                                            }}>
-                                            Add a TDL
-                                        </Mui.Button>
-                                        <AddTDL open={open} setOpen={setOpen} handleAddTDL={handleAddTDL} />
-                                    </Mui.Grid>
-                                </Mui.Grid>
-                            );
-                        })}
+                    <Mui.Box sx={{ height: "50%" }}>
+                        <Paginate
+                            who={"caller"}
+                            title="callers"
+                            handleAddTDL={handleAddTDL}
+                            handleOpen={handleOpen}
+                            items={callers}
+                            open={open}
+                            setCallerId={setCallerId}
+                            setOpen={setOpen}
+                        />
+                    </Mui.Box>
+                    <Mui.Box sx={{ height: "50%" }}>
+                        <Paginate who={"marry"} title="marry" items={marry} />
                     </Mui.Box>
                 </Mui.Grid>
             </Mui.Grid>

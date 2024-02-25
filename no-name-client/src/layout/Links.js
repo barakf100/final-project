@@ -3,14 +3,18 @@ import ROUTES from "../routes/ROUTES";
 const links = {
     marryLinks: [
         { to: ROUTES.PROFILE, children: "Profile" },
-        { to: ROUTES.SITORDER, children: "Sit Order" },
-        { to: ROUTES.SITORDER2, children: "Sit List" },
         { to: ROUTES.INVITEPAGE, children: "Invites" },
         { to: ROUTES.MESSAGES, children: "Messages" },
         { to: ROUTES.INVITATION, children: "Invitation" },
     ],
-    callerLinks: [{ to: ROUTES.CALLERPROFILE, children: "Profile" }],
-    adminLinks: [{ to: ROUTES.USERS, children: "Users" }],
+    callerLinks: [
+        { to: ROUTES.CALLERPROFILE, children: "Profile" },
+        { to: ROUTES.WEDDINGCALENDER, children: "Wedding Calendar" },
+    ],
+    adminLinks: [
+        { to: ROUTES.USERS, children: "Users" },
+        { to: ROUTES.WEDDINGCALENDER, children: "Wedding Calender" },
+    ],
     alwaysLinks: [],
     logoutLinks: [
         { to: ROUTES.LOGIN, children: "Login" },

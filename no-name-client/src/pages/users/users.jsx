@@ -23,7 +23,10 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import FilterComponent from "../../components/filter/FilterComponent";
 import ROUTES from "../../routes/ROUTES";
 import "../../fonts.css";
-
+// TODO: pagination
+// TODO: add user
+// TODO: remove user
+// TODO: edit user
 const Users = () => {
     const [sortDirection, setSortDirection] = useState(null);
     const dispatch = useDispatch();

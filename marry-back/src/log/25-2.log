@@ -1,0 +1,54 @@
+logged error with status code: 401
+        at 11:35:56 
+        error was: Invalid password 
+logged error with status code: 401
+        at 11:35:58 
+        error was: Invalid password 
+logged error with status code: 401
+        at 11:36:22 
+        error was: Invalid Email 
+logged error with status code: 401
+        at 11:36:42 
+        error was: Invalid Email 
+logged error with status code: 401
+        at 12:25:1 
+        error was: Invalid Email 
+logged error with status code: 401
+        at 14:46:11 
+        error was: user not found 
+logged error with status code: 401
+        at 14:46:12 
+        error was: user not found 
+logged error with status code: 401
+        at 14:46:35 
+        error was: Invalid password 
+logged error with status code: 404
+        at 14:49:16 
+        error was: No invitation found 
+logged error with status code: 404
+        at 14:49:16 
+        error was: No invitation found 
+logged error with status code: 401
+        at 14:49:32 
+        error was: Invalid password 
+logged error with status code: 401
+        at 14:49:36 
+        error was: Invalid Email 
+logged error with status code: 401
+        at 14:49:40 
+        error was: Invalid Email 
+logged error with status code: 401
+        at 14:49:55 
+        error was: Invalid Email 
+logged error with status code: 401
+        at 14:56:59 
+        error was: Invalid password 
+logged error with status code: 401
+        at 14:57:24 
+        error was: Invalid password 
+logged error with status code: 401
+        at 15:0:2 
+        error was: Invalid password 
+logged error with status code: 400
+        at 15:48:49 
+        error was: token is missing 

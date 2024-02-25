@@ -12,6 +12,7 @@ const ROUTES = {
     INVITEPAGE: "/invitepage",
     INVITATION: "/invitation",
     MESSAGES: "/messages",
+    WEDDINGCALENDER: "/weddingcalender",
     SITORDER: "/sitorder",
     SITORDER2: "/sitOrder2",
 };

@@ -53,7 +53,6 @@ const HomePage = () => {
     const handleReload = () => {
         setReload((prev) => !prev);
     };
-    // TODO: add TDL
     const handleAddTDL = async (tdl) => {
         try {
             await addTDL(getMyId(), tdl);
@@ -198,9 +197,11 @@ const HomePage = () => {
                         fontFamily="Quattrocento sans"
                         color={handleColorPallet("mossGreen3")}>
                         accepted guest groups
-                        {user?.invites.map((invite) =>
-                            invite.isAccepted === true ? <Typography key={nextKey()}>{invite.group}</Typography> : null
-                        )}
+                        {Array.from(
+                            new Set(user?.invites.filter((invite) => invite.isAccepted === true).map((invite) => invite.group))
+                        ).map((group) => (
+                            <Typography key={nextKey()}>{group}</Typography>
+                        ))}
                     </Typography>
                 </Box>
                 {/* invites by status */}
