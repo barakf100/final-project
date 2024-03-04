@@ -1,5 +1,4 @@
 import * as Mui from "@mui/material";
-import * as MuiIcons from "@mui/icons-material";
 import MessageComp from "./ui/messageComp";
 import message from "./ui/message";
 import { useEffect, useState } from "react";
@@ -9,6 +8,7 @@ import messageReq from "../../service/request/messageReq";
 import { getMyId } from "../../service/storage/storageService";
 
 const Messages = () => {
+    const screenBreak = Mui.useMediaQuery("(min-width:1100px)");
     const [optionBefore, setOptionBefore] = useState([]);
     const [pageBefore, setPageBefore] = useState(0);
     const [optionDayBefore, setOptionDayBefore] = useState([]);
@@ -36,13 +36,20 @@ const Messages = () => {
             <Mui.Typography variant="h4" sx={{ color: handleColorPallet("mossGreen3") }}>
                 Messages
             </Mui.Typography>
-            <Mui.Box sx={{ mt: 2, width: "100%", display: "flex", gap: "1.5vw" }}>
+            <Mui.Box
+                sx={{
+                    mt: 2,
+                    width: "100%",
+                    display: "flex",
+                    gap: "1.5vw",
+                    flexDirection: screenBreak ? "row" : "column",
+                    alignItems: "center",
+                }}>
                 <Mui.Box
                     sx={{
                         mt: 2,
                         height: "70vh",
-                        width: "65vw",
-                        // border: "1px solid",
+                        width: screenBreak ? "65vw" : "90vw",
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "space-evenly",
@@ -87,8 +94,7 @@ const Messages = () => {
                     sx={{
                         mt: 2,
                         height: "70vh",
-                        width: "45vw",
-                        // border: "1px solid",
+                        width: screenBreak ? "45vw" : "90vw",
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "space-evenly",

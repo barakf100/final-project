@@ -1,11 +1,10 @@
 import axios from "axios";
-const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlZ0ByZWcuY29tIiwiaWF0IjoxNzA0MTM1NTg1fQ.Lsc10zoCo2mDz6-x5M7V7UPZt0Xcrv6zIP2Nu9E1Mo4";
+import { getToken } from "../../service/storage/storageService";
 const getAllUsers = async () => {
     try {
         const res = await axios.get("/users/", {
             headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${getToken()}`,
             },
         });
         return res.data;
@@ -14,4 +13,17 @@ const getAllUsers = async () => {
     }
 };
 
-export { getAllUsers };
+const removeUser = async (id) => {
+    try {
+        const res = await axios.delete(`/users/${id}`, {
+            headers: {
+                Authorization: `Bearer ${getToken()}`,
+            },
+        });
+        return res.data;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+export { getAllUsers, removeUser };

@@ -10,6 +10,7 @@ import { InputError } from "../error/Input-Error";
 import { isAdminOrCaller } from "../middleware/is-admin-or-caller";
 import { isMarry } from "../middleware/is-marry";
 import { Logger } from "../logs-message/logger";
+import { isCallerOrMarry } from "../middleware/is-marry-or-caller";
 
 const router = Router();
 // register new user
@@ -46,7 +47,7 @@ router.get("/", isAdminOrCaller, async (req, res, next) => {
 
 // admin get user by id , user get himself
 // params: id is the user id
-router.get("/:id", isAdminOrUser, async (req, res, next) => {
+router.get("/:id", isCallerOrMarry, async (req, res, next) => {
     try {
         const userDoc = await User.findById(req.params.id);
         if (!userDoc) {
@@ -62,7 +63,7 @@ router.get("/:id", isAdminOrUser, async (req, res, next) => {
 
 // user update himself
 // params: id is the user id
-router.put("/:id", isUser, validateRegistration, async (req, res, next) => {
+router.put("/:id", isAdminOrUser, validateRegistration, async (req, res, next) => {
     try {
         // req.body.password = await auth.hashPassword(req.body.password);
         const saved = await User.findByIdAndUpdate({ _id: req.params.id }, req.body, { new: true });

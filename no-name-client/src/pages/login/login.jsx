@@ -1,4 +1,3 @@
-// import * as React from "react";
 import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -13,18 +12,14 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import axios from "axios";
 import ROUTES from "../../routes/ROUTES";
 import { validateLogin } from "../../validation/loginValidation";
 import { Alert } from "@mui/material";
 import useAutoLogin from "../../hooks/useAutoLogin";
-import { JWTDecode, storeToken } from "../../service/storage/storageService";
+import { JWTDecode } from "../../service/storage/storageService";
 import { login } from "../../service/request/allReq";
-import { toastSuccess } from "../../service/toast/toast";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../store/authSlice";
-// import ServerToast from "../../toast/toastServer";
 import loginBg from "../../assets/login2.jpeg";
 import { handleColorPallet } from "../../service/colors/change";
 const Login = () => {
@@ -44,7 +39,7 @@ const Login = () => {
             });
             setErrorsState(joiResponse);
             if (joiResponse) return;
-            let data = await login(emailValue, passwordValue);
+            let data = await login(emailValue, passwordValue, rememberMe);
             dispatch(authActions.login(JWTDecode(data.jwt)));
             autoLogin(false); //skip token test
             navigate(ROUTES.HOME);
@@ -59,7 +54,8 @@ const Login = () => {
         setPasswordValue(e.target.value);
     };
     const handleRememberMeChange = () => {
-        setRememberMe(!rememberMe);
+        setRememberMe((prev) => !prev);
+        console.log(rememberMe);
     };
     return (
         <Grid container component="main" sx={{ height: "85vh" }}>

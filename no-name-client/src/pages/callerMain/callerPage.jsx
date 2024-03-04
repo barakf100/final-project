@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../../store/async/usersSlice";
-import { Container, Typography, Box } from "@mui/material";
+import { Container, Typography, Box, useMediaQuery } from "@mui/material";
 import { getUser } from "../../store/async/userSlice";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/ROUTES";
@@ -12,6 +12,7 @@ import { getMyId } from "../../service/storage/storageService";
 import UsersPaginate from "./ui/paginateUsers.jsx";
 import AddTDL from "../home/addTDL/addTDL.jsx";
 const CallerPage = () => {
+    const screenBreak = useMediaQuery("(max-width:1100px)");
     const [users, setUsers] = useState([]);
     const [caller, setCaller] = useState({});
     const [TDL, setTDL] = useState([]);
@@ -66,28 +67,38 @@ const CallerPage = () => {
     }, [reload]);
     return (
         <Container
+            maxWidth="xl"
             sx={{
                 textAlign: "center",
             }}>
             <Typography variant="h2">Welcome back {caller?.nameA?.first} </Typography>
-            <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-around", mt: 3 }}>
-                <Typography variant="h5">Users</Typography>
-                <Typography variant="h5">TO DO LIST</Typography>
-            </Box>
-            <Container maxWidth="xl" sx={{ display: "flex", width: "100%", px: "0!important", justifyContent: "space-between" }}>
-                <UsersPaginate users={users} handleAvatarClick={handleAvatarClick} />
-                <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", mt: 3 }}>
+            <Container
+                maxWidth="xl"
+                sx={{
+                    display: "flex",
+                    width: "100%",
+                    px: "0!important",
+                    justifyContent: screenBreak ? "center" : "space-between",
+                    flexDirection: screenBreak ? "column" : "row",
+                }}>
+                <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                    <UsersPaginate users={users} handleAvatarClick={handleAvatarClick} screenBreak={screenBreak} />
+                </Box>
+                <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                    <Typography mb={1} variant="h5">
+                        TO DO LIST
+                    </Typography>
                     <Box
                         sx={{
-                            height: "420px",
-                            width: "500px",
+                            height: "64vh",
+                            width: screenBreak ? "80vw" : "45vw",
                             border: `.9px solid`,
                             borderRadius: "10px",
                             borderColor: handleColorPallet("teaGreen"),
                             px: "15px",
                             paddingTop: "10px",
                         }}>
-                        <Box sx={{ display: "flex", flexDirection: "column", gap: "3px", height: "210px" }}>
+                        <Box sx={{ display: "flex", flexDirection: "column", height: "29vh" }}>
                             <Typography
                                 component="div"
                                 variant="h5"
@@ -99,7 +110,7 @@ const CallerPage = () => {
                             <TDLPaginate TDL={TDL} userId={caller?._id} done={false} setOpen={setOpenTDL} setReload={setReload} />
                             <AddTDL open={openTDL} setOpen={setOpenTDL} handleAddTDL={handleAddTDL} />
                         </Box>
-                        <Box sx={{ display: "flex", flexDirection: "column", gap: "3px", height: "210px" }}>
+                        <Box sx={{ display: "flex", flexDirection: "column", height: "29vh", mt: 1 }}>
                             <Typography
                                 component="div"
                                 variant="h5"

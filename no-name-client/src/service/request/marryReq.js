@@ -14,7 +14,11 @@ const getUserById = async (id) => {
 };
 
 const updateUser = async (id, user) => {
+    console.log("here");
+    console.log(user);
     try {
+        console.log("here 2");
+        console.log("req", `/users/${id}`);
         const res = await axios.put(`/users/${id}`, user, { headers: { Authorization: `bearer ${getToken()}` } });
         return res.data;
     } catch (err) {

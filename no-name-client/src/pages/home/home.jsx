@@ -66,7 +66,12 @@ const HomePage = () => {
             <Typography component="div" variant="h3" textAlign="center" marginBottom="25px" fontFamily="Quattrocento sans">
                 Welcome to the Home Page
             </Typography>
-            <Box style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "13px" }}>
+            <Box
+                sx={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(3, 1fr)",
+                    gap: "13px",
+                }}>
                 <Box
                     sx={{
                         height: "210px",
@@ -124,7 +129,7 @@ const HomePage = () => {
                     </Box>
                     <Box sx={{ flex: "1" /*border: `.9px solid`, borderColor: handleColorPallet("teaGreen")*/ }}>
                         <Typography fontFamily="Quattrocento sans" fontSize="1rem" textAlign="center">
-                            Total invites
+                            Total
                         </Typography>
                         <Typography fontFamily="Quattrocento sans" fontSize="3rem" textAlign="center">
                             {user?.invites.length}

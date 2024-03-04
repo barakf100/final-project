@@ -1,46 +1,14 @@
-import { Box, Drawer, useMediaQuery } from "@mui/material";
-import { useSelector } from "react-redux";
-// import { adminLinks, alwaysLinks, loggedInLinks, loggedOutLinks } from "../../myLinks";
-// import NavLinkComponent from "../NavLinkComponent";
-import nextKey from "generate-my-key";
-import FilterComponent from "../../../components/filter/FilterComponent";
+import { Drawer, Box } from "@mui/material";
+import Links from "./Links";
+import LogoutAndThemeButton from "./buttons";
 
-const LeftDrawerComponent = ({ isOpen, onCloseDrawer }) => {
-    const loggedIn = useSelector((bigPie) => bigPie.authSlice.loggedIn);
-    const admin = useSelector((bigPie) => bigPie.authSlice.isAdmin);
-    const screenSize = useMediaQuery("(max-width:700px)");
-    // const list = () => (
-    // <Box sx={{ width: { auto: 250 } }} role="presentation" onClick={onCloseDrawer} onKeyDown={onCloseDrawer}>
-    //     {alwaysLinks.map((myItem) => (
-    //         <NavLinkComponent to={myItem.to} key={nextKey()} from={"drawer"}>
-    //             {myItem.children}
-    //         </NavLinkComponent>
-    //     ))}
-    //     {loggedIn &&
-    //         !admin &&
-    //         loggedInLinks.map((myItem) => (
-    //             <NavLinkComponent to={myItem.to} key={nextKey()} from={"drawer"}>
-    //                 {myItem.children}
-    //             </NavLinkComponent>
-    //         ))}
-    //     {!loggedIn &&
-    //         loggedOutLinks.map((myItem) => (
-    //             <NavLinkComponent to={myItem.to} key={nextKey()} from={"drawer"}>
-    //                 {myItem.children}
-    //             </NavLinkComponent>
-    //         ))}
-    //     {admin &&
-    //         adminLinks.map((myItem) => (
-    //             <NavLinkComponent to={myItem.to} key={nextKey()} from={"drawer"}>
-    //                 {myItem.children}
-    //             </NavLinkComponent>
-    //         ))}
-    // </Box>
-    // );
+const LeftDrawerComponent = ({ isOpen, onCloseDrawer, isDarkTheme, handleThemeChange }) => {
     return (
         <Drawer sx={{ mt: 2 }} anchor="left" open={isOpen} onClose={onCloseDrawer}>
-            {screenSize && <FilterComponent />}
-            {/* {list()} */}
+            <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
+                <LogoutAndThemeButton isDarkTheme={isDarkTheme} onThemeChange={handleThemeChange} />
+            </Box>
+            {<Links from="drawer" />}
         </Drawer>
     );
 };

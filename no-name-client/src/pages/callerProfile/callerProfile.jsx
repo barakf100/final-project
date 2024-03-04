@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Typography, Button, Box } from "@mui/material";
+import { Typography, Button, Box, useMediaQuery } from "@mui/material";
 import callerProfile from "../../assets/callerProfile.jpeg";
 import { handleColorPallet } from "../../service/colors/change";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,6 +11,7 @@ import { allToast } from "../../service/toast/toast";
 import dayjs from "dayjs";
 
 const CallerProfilePage = () => {
+    const screen = useMediaQuery("(min-width:750px)");
     const dispatch = useDispatch();
     const [isEditing, setIsEditing] = useState(false);
     const [userInfo, setUserInfo] = useState({
@@ -88,9 +89,11 @@ const CallerProfilePage = () => {
                 "header ."
                 `,
             }}>
-            <Box sx={{ gridArea: "header", width: "45vw", height: "85vh" }}>
-                <img src={callerProfile} alt="rings" width="128%" height="100%" />
-            </Box>
+            {screen && (
+                <Box sx={{ gridArea: "header", width: "45vw", height: "85vh" }}>
+                    <img src={callerProfile} alt="rings" width="128%" height="100%" />
+                </Box>
+            )}
             <Box
                 sx={{
                     gridArea: "main",
@@ -103,7 +106,7 @@ const CallerProfilePage = () => {
                     "first2 last2"
                     "details details"
                     `,
-                    width: "30vw",
+                    width: screen ? "30vw" : "90vw",
                     justifySelf: "center",
                     "& h6": {
                         mt: 2,

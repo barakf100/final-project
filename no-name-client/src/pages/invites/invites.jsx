@@ -27,6 +27,7 @@ const CustomTextField = ({ id, setNewInvite, newInvite, ...props }) => {
     );
 };
 const InvitesPage = () => {
+    const screen = mui.useMediaQuery("(min-width: 550px)");
     const [page, setPage] = useState(0);
     const [invitesArr, setInvitesArr] = useState(null);
     const [isAdd, setIsAdd] = useState(true);
@@ -92,9 +93,11 @@ const InvitesPage = () => {
                 <mui.Table>
                     <mui.TableHead>
                         <mui.TableRow>
-                            <mui.TableCell sx={{ borderRight: "1px solid beige", borderTop: "1px solid beige" }} align="center">
-                                #
-                            </mui.TableCell>
+                            {screen && (
+                                <mui.TableCell sx={{ borderRight: "1px solid beige", borderTop: "1px solid beige" }} align="center">
+                                    #
+                                </mui.TableCell>
+                            )}
                             <mui.TableCell align="center">First Name</mui.TableCell>
                             <mui.TableCell align="center">Last Name</mui.TableCell>
                             <mui.TableCell align="center">Group</mui.TableCell>
@@ -105,12 +108,13 @@ const InvitesPage = () => {
                     <mui.TableBody>
                         {PaginateInvites?.map((invite, index) => (
                             <mui.TableRow key={invite?._id}>
-                                <mui.TableCell sx={{ width: "30px", borderRight: "1px solid beige" }} align="center">
-                                    {page * ITEM_PER_PAGE + index + 1}
-                                </mui.TableCell>
+                                {screen && (
+                                    <mui.TableCell sx={{ width: "30px", borderRight: "1px solid beige" }} align="center">
+                                        {page * ITEM_PER_PAGE + index + 1}
+                                    </mui.TableCell>
+                                )}
                                 <mui.TableCell align="center">
                                     {editId === invite?._id ? (
-                                        // <mui.TextField id="name.first" value={invite?.name.first} />
                                         <CustomTextField id="name.first" newInvite={editingInvite} setNewInvite={setEditingInvite} />
                                     ) : (
                                         invite?.name.first
@@ -118,7 +122,6 @@ const InvitesPage = () => {
                                 </mui.TableCell>
                                 <mui.TableCell align="center">
                                     {editId === invite?._id ? (
-                                        // <mui.TextField id="name.last" value={invite?.name.last} />
                                         <CustomTextField id="name.last" newInvite={editingInvite} setNewInvite={setEditingInvite} />
                                     ) : (
                                         invite?.name.last
@@ -126,7 +129,6 @@ const InvitesPage = () => {
                                 </mui.TableCell>
                                 <mui.TableCell align="center">
                                     {editId === invite?._id ? (
-                                        // <mui.TextField id="group" value={invite?.group} />
                                         <CustomTextField id="group" newInvite={editingInvite} setNewInvite={setEditingInvite} />
                                     ) : (
                                         invite?.group
@@ -134,7 +136,6 @@ const InvitesPage = () => {
                                 </mui.TableCell>
                                 <mui.TableCell align="center">
                                     {editId === invite?._id ? (
-                                        //  <mui.TextField id="phone" value={invite?.phone} />
                                         <CustomTextField id="phone" newInvite={editingInvite} setNewInvite={setEditingInvite} />
                                     ) : (
                                         invite?.phone

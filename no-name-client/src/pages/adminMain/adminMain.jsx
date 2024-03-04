@@ -6,8 +6,6 @@ import { getUsers } from "../../store/async/usersSlice";
 import UsersPie from "./ui/pieChart";
 import UsersCalc from "../../service/calcs/usersCalc";
 import { addTDL } from "../../service/request/TDLReq";
-import AddTDL from "../home/addTDL/addTDL";
-import { handleColorPallet } from "../../service/colors/change";
 import Paginate from "./ui/pagination";
 
 const AdminMain = () => {
@@ -36,7 +34,7 @@ const AdminMain = () => {
                 welcome back Admin
             </Mui.Typography>
             <Mui.Grid container spacing={3} sx={{ height: "79vh", width: "95vw", mx: 2 }}>
-                <Mui.Grid item xs={4} alignSelf="center">
+                <Mui.Grid item xs={12} md={6} lg={4} xl={4} alignSelf="center">
                     <Mui.Box sx={{ height: "100%" }}>
                         <UsersPie
                             valA={invitesCount.acceptedCount}
@@ -48,11 +46,12 @@ const AdminMain = () => {
                             title={"invites success rate"}
                         />
                         <Mui.Typography textAlign="center" variant="h6" mt={3}>
-                            success rate: {Math.round((invitesCount.acceptedCount / invitesCount.total) * 100)}%
+                            success rate:{" "}
+                            {Math.round((invitesCount.acceptedCount / (invitesCount.total === 0 ? 1 : invitesCount.total)) * 100)}%
                         </Mui.Typography>
                     </Mui.Box>
                 </Mui.Grid>
-                <Mui.Grid item xs={4} alignSelf="center">
+                <Mui.Grid item xs={12} md={6} lg={4} xl={4} alignSelf="center">
                     <Mui.Box sx={{ height: "100%" }}>
                         <UsersPie
                             valA={usersCount.callers}
@@ -67,7 +66,7 @@ const AdminMain = () => {
                         </Mui.Typography>
                     </Mui.Box>
                 </Mui.Grid>
-                <Mui.Grid item xs={4}>
+                <Mui.Grid item xs={12} md={6} lg={4} xl={4}>
                     <Mui.Box sx={{ height: "50%" }}>
                         <Paginate
                             who={"caller"}

@@ -12,6 +12,7 @@ import {
     InputAdornment,
     Tooltip,
 } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 import registerImage from "../../assets/register.jpeg";
 import { handleColorPallet } from "../../service/colors/change";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -20,6 +21,7 @@ import { register } from "../../service/request/allReq";
 import validProfile from "../../validation/profileValid";
 import { allToast } from "../../service/toast/toast";
 const Register = () => {
+    const screenBreak = useMediaQuery("(min-width: 850px)");
     const [showPassword, setShowPassword] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [select, setSelect] = useState(0); // 0: Marry, 1: Caller
@@ -94,9 +96,11 @@ const Register = () => {
     };
     return (
         <Container maxWidth={"xl"} sx={{ display: "flex", gap: "2vw", justifyContent: "space-between", height: "85vh" }}>
-            <Box sx={{ flex: 1 }}>
-                <img src={registerImage} alt="flowers" width="87%" height="95%" />
-            </Box>
+            {screenBreak && (
+                <Box sx={{ flex: 1 }}>
+                    <img src={registerImage} alt="flowers" width="87%" height="95%" />
+                </Box>
+            )}
             <Box sx={{ flex: 1.1, textAlign: "center" }}>
                 <Typography color={handleColorPallet("teaGreen")} variant="h3">
                     Register

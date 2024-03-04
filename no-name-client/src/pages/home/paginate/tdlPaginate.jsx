@@ -32,7 +32,7 @@ const TDLPaginate = ({ TDL, setOpen, userId, setReload, done }) => {
         setReload((state) => !state);
     };
     return (
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "3px", height: "225px", justifyContent: "space-between" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", height: "20vh", justifyContent: "space-between" }}>
             {done
                 ? paginateDoneTDLs?.map((tdl) => (
                       <Tooltip title={tdl?.description}>

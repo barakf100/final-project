@@ -11,13 +11,10 @@ import { userCallerRouter } from "./routes/user-caller";
 import { userTDLRouter } from "./routes/user-TDL";
 import { userInvitationRouter } from "./routes/user-invitation";
 import { userMessageRouter } from "./routes/user-message";
-import path from "path";
 
 configDotEnv();
 connect();
 const app = express();
-
-app.use(express.static(path.join(__dirname + "build")));
 
 app.use(express.json());
 app.use(cors());

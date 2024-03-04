@@ -2,40 +2,32 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { getUsers } from "../../store/async/usersSlice";
 import { useDispatch, useSelector } from "react-redux";
-import {
-    Container,
-    Button,
-    TableContainer,
-    Paper,
-    TableHead,
-    TableRow,
-    TableCell,
-    Avatar,
-    Table,
-    TableBody,
-    Typography,
-    Box,
-} from "@mui/material";
-import RemoveIcon from "@mui/icons-material/Remove";
-import EditIcon from "@mui/icons-material/Edit";
+import { Container, Button, TableContainer, Paper, TableHead, TableRow, TableCell, Table, TableBody, Typography, Box } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+import { useMediaQuery } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import FilterComponent from "../../components/filter/FilterComponent";
 import ROUTES from "../../routes/ROUTES";
 import "../../fonts.css";
-// TODO: pagination
-// TODO: add user
-// TODO: remove user
-// TODO: edit user
+import UserPaginate from "./ui/usersPaginate";
+import AddUser from "./ui/addUser";
 const Users = () => {
+    const screenSize = useMediaQuery("(max-width:1000px)");
+    const tableScreenSize = useMediaQuery("(max-width:800px)");
+    const ITEM_PER_PAGE = screenSize ? 4 : 5;
     const [sortDirection, setSortDirection] = useState(null);
+    const [reload, setReload] = useState(false);
+    const [page, setPage] = useState(0);
+    const [add, setAdd] = useState(false);
     const dispatch = useDispatch();
     const location = useLocation();
     const filter = new URLSearchParams(location.search).get("filter");
     useEffect(() => {
         dispatch(getUsers());
-    }, [dispatch]);
+    }, [dispatch, reload]);
     const users = useSelector((state) => state.usersSlice.users).filter((user) => (filter ? user.nameA.first.startsWith(filter) : true));
+    useEffect(() => {}, [users, reload]);
     const handleSort = () => {
         setSortDirection(sortDirection === "asc" ? "desc" : "asc");
     };
@@ -49,6 +41,16 @@ const Users = () => {
             return bValue - aValue;
         }
     });
+    const handleNextPage = () => {
+        if ((page + 1) * ITEM_PER_PAGE < users.length) {
+            setPage(page + 1);
+        }
+    };
+    const handlePreviousPage = () => {
+        if (page > 0) {
+            setPage(page - 1);
+        }
+    };
     return (
         <Typography component="div">
             <Container
@@ -63,8 +65,14 @@ const Users = () => {
                 </Typography>
                 <Box sx={{ display: "flex" }}>
                     <FilterComponent route={ROUTES.USERS} />
-                    <Button variant="contained" color="mossGreen3" sx={{ height: "5vh", color: "background.default" }}>
-                        add
+                    <Button
+                        onClick={() => {
+                            setAdd((prev) => !prev);
+                        }}
+                        variant="contained"
+                        color="mossGreen3"
+                        sx={{ height: "5vh", color: "background.default" }}>
+                        Add
                     </Button>
                 </Box>
             </Container>
@@ -89,14 +97,14 @@ const Users = () => {
                     <Table>
                         <TableHead>
                             <TableRow>
-                                <TableCell align="center"></TableCell>
-                                <TableCell align="center">First Name</TableCell>
-                                <TableCell align="center">Last Name</TableCell>
+                                {!tableScreenSize && <TableCell align="center"></TableCell>}
+                                <TableCell align="center">First</TableCell>
+                                <TableCell align="center">Last</TableCell>
                                 <TableCell align="center">Email</TableCell>
                                 <TableCell align="center">Phone</TableCell>
-                                <TableCell align="center">Country</TableCell>
+                                {!tableScreenSize && <TableCell align="center">Country</TableCell>}
                                 <TableCell align="center">
-                                    Guest Number
+                                    Guests
                                     <Button
                                         color="mossGreen2"
                                         style={{ minWidth: "5px" }}
@@ -106,34 +114,30 @@ const Users = () => {
                                         {sortDirection === "asc" ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
                                     </Button>
                                 </TableCell>
-                                <TableCell align="center"></TableCell>
-                                <TableCell align="center"></TableCell>
+                                <TableCell align="center">type</TableCell>
+                                <TableCell align="center">actions</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {sortedUsers.map((user) => (
-                                <TableRow key={user._id}>
-                                    <TableCell align="center">
-                                        <Avatar alt="user avatar" src={user.avatar} />
-                                    </TableCell>
-                                    <TableCell align="center">{user.nameA.first}</TableCell>
-                                    <TableCell align="center">{user.nameA.last}</TableCell>
-                                    <TableCell align="center">{user.email}</TableCell>
-                                    <TableCell align="center">{user.phone}</TableCell>
-                                    <TableCell align="center">{user.address.country}</TableCell>
-                                    <TableCell align="center">{user.invites.length}</TableCell>
-                                    <TableCell align="center" width={"80px"}>
-                                        <Button color="mossGreen2" style={{ minWidth: "40px" }}>
-                                            <RemoveIcon />
-                                        </Button>
-                                        <Button color="mossGreen2" style={{ minWidth: "40px" }}>
-                                            <EditIcon />
-                                        </Button>
-                                    </TableCell>
-                                </TableRow>
-                            ))}
+                            <UserPaginate
+                                ITEM_PER_PAGE={ITEM_PER_PAGE}
+                                page={page}
+                                sortedUsers={sortedUsers}
+                                setReload={setReload}
+                                tableScreenSize={tableScreenSize}
+                            />
+                            {add ? <AddUser open={add} setOpen={setAdd} setReload={setReload} /> : null}
                         </TableBody>
                     </Table>
+                    <Box
+                        sx={{ display: "flex", justifyContent: "center", margin: "0 auto", position: "absolute", bottom: 10, left: "45%" }}>
+                        <Button sx={{ height: "30px" }} color="mossGreen1" onClick={handlePreviousPage}>
+                            Previous
+                        </Button>
+                        <Button sx={{ height: "30px" }} color="mossGreen1" onClick={handleNextPage}>
+                            Next
+                        </Button>
+                    </Box>
                 </TableContainer>
             </Container>
         </Typography>

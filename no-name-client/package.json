@@ -50,7 +50,7 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "buildNCopy": "npm run build && (cp -r build ../noName-back/)",
+        "buildNCopy": "npm run build && (xcopy build ..\\marry-back\\build\\ /E /I /Y)",
         "eject": "react-scripts eject"
     },
     "eslintConfig": {

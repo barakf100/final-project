@@ -15,7 +15,6 @@ const links = {
         { to: ROUTES.USERS, children: "Users" },
         { to: ROUTES.WEDDINGCALENDER, children: "Wedding Calender" },
     ],
-    alwaysLinks: [],
     logoutLinks: [
         { to: ROUTES.LOGIN, children: "Login" },
         { to: ROUTES.REGISTER, children: "Register" },

@@ -15,10 +15,10 @@ register.propTypes = {
     user: PropTypes.object.isRequired,
 };
 
-const login = async (email, password) => {
+const login = async (email, password, remember) => {
     try {
         const res = await axios.post("/users/login", { email, password });
-        storeToken(res.data.jwt, true);
+        storeToken(res.data.jwt, remember);
         allToast.toastSuccess("Login Success");
         return res.data;
     } catch (err) {
@@ -28,6 +28,7 @@ const login = async (email, password) => {
 login.propTypes = {
     email: PropTypes.string.isRequired,
     pass: PropTypes.string.isRequired,
+    remember: PropTypes.bool.isRequired,
 };
 
 export { register, login };

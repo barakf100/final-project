@@ -1,0 +1,6 @@
+logged error with status code: undefined
+        at 13:48:6 
+        error was: E11000 duplicate key error collection: no-name.users index: email_1 dup key: { email: "marry@marry.com" } 
+logged error with status code: 413
+        at 16:24:58 
+        error was: request entity too large 
