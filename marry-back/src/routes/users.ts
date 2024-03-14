@@ -31,6 +31,7 @@ router.post("/login", validateLogin, async (req, res, next) => {
         const jwt = await validateUser(email, password);
         res.json(jwt);
     } catch (err) {
+        Logger.error(err);
         next(err);
     }
 });
