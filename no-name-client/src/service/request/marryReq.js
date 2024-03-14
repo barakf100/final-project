@@ -53,6 +53,7 @@ const setMarryDate = async (id, date) => {
 const setNameB = async (id, nameB) => {
     try {
         const res = await axios.patch(`/users/nameB/${id}`, { nameB }, { headers: { Authorization: `bearer ${getToken()}` } });
+        allToast.toastSuccess("Name added");
         return res.data;
     } catch (err) {
         console.log(err);

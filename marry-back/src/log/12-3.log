@@ -1,0 +1,3 @@
+logged error with status code: undefined
+        at 13:26:15 
+        error was: user validation failed: image.alt: Path `alt` is required., image.src: Path `src` is required. 

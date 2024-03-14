@@ -29,11 +29,11 @@ const MessagesPop = ({ open, setOpen, invitationMessage, phoneNumber }) => {
                             <Mui.Typography variant="h6" fontWeight="bold">
                                 Week before
                             </Mui.Typography>
-                            {invitationMessage.before ? invitationMessage.before.message : "not set yet by user"}
+                            {invitationMessage?.before ? invitationMessage?.before.message : "not set yet by user"}
                             <Mui.Button
-                                disabled={!invitationMessage.before}
+                                disabled={!invitationMessage?.before}
                                 onClick={() => {
-                                    handleSendMEssage(invitationMessage.before.message, phoneNumber);
+                                    handleSendMEssage(invitationMessage?.before.message, phoneNumber);
                                 }}
                                 sx={{ marginTop: "auto", color: handleColorPallet("mossGreen2") }}>
                                 send
@@ -43,11 +43,11 @@ const MessagesPop = ({ open, setOpen, invitationMessage, phoneNumber }) => {
                             <Mui.Typography variant="h6" fontWeight="bold">
                                 Day before
                             </Mui.Typography>
-                            {invitationMessage.dayBefore ? invitationMessage.dayBefore.message : "not set yet by user"}
+                            {invitationMessage?.dayBefore ? invitationMessage?.dayBefore.message : "not set yet by user"}
                             <Mui.Button
-                                disabled={!invitationMessage.dayBefore}
+                                disabled={!invitationMessage?.dayBefore}
                                 onClick={() => {
-                                    handleSendMEssage(invitationMessage.dayBefore.message, phoneNumber);
+                                    handleSendMEssage(invitationMessage?.dayBefore.message, phoneNumber);
                                 }}
                                 sx={{ marginTop: "auto", color: handleColorPallet("mossGreen2") }}>
                                 send
@@ -57,11 +57,11 @@ const MessagesPop = ({ open, setOpen, invitationMessage, phoneNumber }) => {
                             <Mui.Typography variant="h6" fontWeight="bold">
                                 After
                             </Mui.Typography>
-                            {invitationMessage.after ? invitationMessage.after.message : "not set yet by user"}
+                            {invitationMessage?.after ? invitationMessage?.after.message : "not set yet by user"}
                             <Mui.Button
-                                disabled={!invitationMessage.after}
+                                disabled={!invitationMessage?.after}
                                 onClick={() => {
-                                    handleSendMEssage(invitationMessage.after.message, phoneNumber);
+                                    handleSendMEssage(invitationMessage?.after.message, phoneNumber);
                                 }}
                                 sx={{ marginTop: "auto", color: handleColorPallet("mossGreen2") }}>
                                 send

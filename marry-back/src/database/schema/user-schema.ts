@@ -6,6 +6,7 @@ import { imageSchema } from "./image-schema";
 import { invitedSchema } from "./invited-shcema";
 import { TDLSchema } from "./TDL-schema";
 import { messageSchema } from "./message-schema";
+import dayjs from "dayjs";
 const uploadImageSchema = new mongoose.Schema({
     contentType: String,
     image: Buffer,

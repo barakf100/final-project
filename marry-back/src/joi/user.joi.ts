@@ -1,5 +1,5 @@
 import Joi from "joi";
-import format from "@joi/date";
+import dayjs from "dayjs";
 import { IAddress, IImage, IName, IUser } from "../@types/user";
 import { passRegex, phoneRegex } from "./patterns";
 

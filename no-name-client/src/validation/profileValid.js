@@ -1,6 +1,7 @@
 import Joi from "joi";
 import { passRegex, phoneRegex } from "./regex";
 import validation from "./validation";
+import dayjs from "dayjs";
 const profileValid = Joi.object({
     nameA: Joi.object({
         first: Joi.string().min(2).max(20).required().messages({
@@ -27,7 +28,7 @@ const profileValid = Joi.object({
             .max(20)
             .required()
             .messages({ "string.empty": "last name empty", "string.min": "last name is too short", "string.max": "last name is too long" }),
-    }),
+    }).required(),
     address: Joi.object({
         state: Joi.string().min(2).max(50).allow("").messages({ "string.min": "state is too short", "string.max": "state is too long" }),
         country: Joi.string()
@@ -57,11 +58,11 @@ const profileValid = Joi.object({
             .messages({ "string.empty": "zip is empty", "string.min": "zip is too short", "string.max": "zip is too long" }),
     }),
     image: Joi.object({
-        alt: Joi.string().min(4).max(200).required(),
+        alt: Joi.string().min(4).max(200).allow(""),
         src: Joi.string()
             .min(12)
             .max(200)
-            .required()
+            .allow("")
             .messages({ "string.empty": "src is empty", "string.min": "src is too short", "string.max": "src is too long" }),
     }),
     email: Joi.string()
@@ -83,7 +84,23 @@ const profileValid = Joi.object({
         .required(),
     isMarrying: Joi.boolean().required(),
     isCaller: Joi.boolean().required(),
-    marryDate: Joi.date().greater("now").messages({ "date.greater": "marry date is in the past :)" }),
+
+    marryDate: Joi.string()
+        .custom((value, helpers) => {
+            const format = "DD/MM/YYYY";
+            if (!dayjs(value, format).isValid()) {
+                return helpers.error("any.invalid");
+            }
+            if (dayjs(value, format).isBefore(dayjs())) {
+                return helpers.error("date.past");
+            }
+            return value;
+        }, "Date validation")
+        .messages({
+            "any.invalid": "Please use DD/MM/YYYY",
+            "date.past": "marry date is in the past :)",
+            "string.empty": "marry date is empty",
+        }),
 });
 const validProfile = (inputToCheck) => validation(profileValid, inputToCheck);
 export default validProfile;

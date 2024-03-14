@@ -44,4 +44,18 @@ router.post("/:id", isMarry, upload.single("image"), async (req, res, next) => {
         next(err);
     }
 });
+
+router.delete("/:id", isMarry, async (req, res, next) => {
+    try {
+        const user = await User.findByIdAndUpdate(
+            req.params.id,
+            { invitation: { contentType: Buffer.alloc(0), image: Buffer.alloc(0) } },
+            { new: true }
+        );
+    } catch (err) {
+        Logger.error(err);
+        next(err);
+    }
+});
+
 export { router as userInvitationRouter };

@@ -3,7 +3,9 @@ import { phoneRegex } from "./regex";
 import validation from "./validation";
 
 const inviteValidation = Joi.object({
+    _id: Joi.string(),
     name: Joi.object({
+        _id: Joi.string(),
         first: Joi.string().min(2).max(20).required().messages({
             "string.empty": "first name empty",
             "string.min": "first name is too short",
@@ -28,6 +30,9 @@ const inviteValidation = Joi.object({
             "string.empty": "phone is empty",
         })
         .required(),
+    isAccepted: Joi.boolean(),
+    isPending: Joi.boolean(),
+    isDeclined: Joi.boolean(),
 }).required();
 
 const inviteValid = (inputToCheck) => validation(inviteValidation, inputToCheck);

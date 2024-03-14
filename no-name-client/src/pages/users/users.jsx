@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 import { getUsers } from "../../store/async/usersSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Button, TableContainer, Paper, TableHead, TableRow, TableCell, Table, TableBody, Typography, Box } from "@mui/material";
-import IconButton from "@mui/material/IconButton";
 import { useMediaQuery } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
@@ -96,7 +95,7 @@ const Users = () => {
                     }}>
                     <Table>
                         <TableHead>
-                            <TableRow>
+                            <TableRow sx={{ "& .MuiTableCell-root": { py: 1, px: { xs: 0, sm: 1 } } }}>
                                 {!tableScreenSize && <TableCell align="center"></TableCell>}
                                 <TableCell align="center">First</TableCell>
                                 <TableCell align="center">Last</TableCell>
@@ -107,15 +106,15 @@ const Users = () => {
                                     Guests
                                     <Button
                                         color="mossGreen2"
-                                        style={{ minWidth: "5px" }}
+                                        sx={{ minWidth: "5px" }}
                                         onClick={() => {
                                             handleSort("Guest Number");
                                         }}>
                                         {sortDirection === "asc" ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
                                     </Button>
                                 </TableCell>
-                                <TableCell align="center">type</TableCell>
-                                <TableCell align="center">actions</TableCell>
+                                <TableCell align="center">Type</TableCell>
+                                <TableCell align="center">Action</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>

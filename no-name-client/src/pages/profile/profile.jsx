@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Typography, Button, Box } from "@mui/material";
+import { Typography, Button, Box, useMediaQuery } from "@mui/material";
 import ringImage from "../../assets/profile.jpeg";
 import { handleColorPallet } from "../../service/colors/change";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,9 +8,10 @@ import dayjs from "dayjs";
 import { updateUser } from "../../service/request/marryReq";
 import EditableTextField from "./styled/styledTextField";
 import validProfile from "../../validation/profileValid";
-import { allToast } from "../../service/toast/toast";
+import { allToast, toastBreak } from "../../service/toast/toast";
 
 const ProfilePage = () => {
+    const screen = useMediaQuery("(min-width:750px)");
     const dispatch = useDispatch();
     const [isEditing, setIsEditing] = useState(false);
     const [userInfo, setUserInfo] = useState({
@@ -27,6 +28,7 @@ const ProfilePage = () => {
 
     const user = useSelector((state) => state.userSlice.user);
     useEffect(() => {
+        let restNameB = { first: "", last: "" };
         if (user) {
             const {
                 _id,
@@ -38,13 +40,19 @@ const ProfilePage = () => {
                 isMarrying,
                 isCaller,
                 phone,
+                email,
                 nameA: { _id: _d, ...restNameA },
-                nameB: { _id: __, ...restNameB },
+                // nameB: { _id: __, ...restNameB },
                 address: { _id: ___, ...restAddress },
                 image: { _id: ____, ...restImage },
                 ...rest
             } = user;
-            setUserInfo({ nameA: restNameA, nameB: restNameB, address: restAddress, image: restImage, isMarrying, isCaller, phone });
+            if (user.nameB) {
+                const {
+                    nameB: { _id: __, ...restNameB },
+                } = user;
+            }
+            setUserInfo({ nameA: restNameA, nameB: restNameB, address: restAddress, image: restImage, isMarrying, isCaller, phone, email });
         }
     }, [user]);
     const handleEditClick = () => {
@@ -53,10 +61,9 @@ const ProfilePage = () => {
     const handleSaveClick = () => {
         console.log(userInfo);
         const err = validProfile(userInfo);
+        console.log(err);
         if (err) {
-            Object.entries(err).forEach(([key, value]) => {
-                allToast.toastError(`${key} : ${value}`);
-            });
+            toastBreak(err, "error");
             return;
         }
 
@@ -95,9 +102,11 @@ const ProfilePage = () => {
                 "header ."
                 `,
             }}>
-            <Box sx={{ gridArea: "header", width: "45vw", height: "85vh" }}>
-                <img src={ringImage} alt="rings" width="128%" height="100%" />
-            </Box>
+            {screen && (
+                <Box sx={{ gridArea: "header", width: "45vw", height: "85vh" }}>
+                    <img src={ringImage} alt="rings" width="128%" height="100%" />
+                </Box>
+            )}
             <Box
                 sx={{
                     gridArea: "main",
@@ -110,7 +119,7 @@ const ProfilePage = () => {
                     "first2 last2"
                     "details details"
                     `,
-                    width: "30vw",
+                    width: screen ? "30vw" : "90vw",
                     justifySelf: "center",
                 }}>
                 <Typography sx={{ mt: 1 }} color={handleColorPallet("teaGreen")} gridArea="head1" variant="h4">
@@ -149,16 +158,18 @@ const ProfilePage = () => {
                         )}
                     </Typography>
                 </Typography>
-                <Typography variant="h6">
-                    Last name:
-                    <Typography variant="body1">
-                        {isEditing ? (
-                            <EditableTextField value={userInfo?.nameB.last} onChange={handleInputChange} name="nameB" subName="last" />
-                        ) : (
-                            user?.nameB.last
-                        )}
+                {user?.nameB && (
+                    <Typography variant="h6">
+                        Last name:
+                        <Typography variant="body1">
+                            {isEditing ? (
+                                <EditableTextField value={userInfo?.nameB.last} onChange={handleInputChange} name="nameB" subName="last" />
+                            ) : (
+                                user?.nameB.last
+                            )}
+                        </Typography>
                     </Typography>
-                </Typography>
+                )}
                 <Typography sx={{ mt: 1 }} color={handleColorPallet("teaGreen")} gridArea="details" variant="h4">
                     Details
                 </Typography>

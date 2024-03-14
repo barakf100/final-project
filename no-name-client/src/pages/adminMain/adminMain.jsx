@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import * as Mui from "@mui/material";
-import * as MuiIcons from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../../store/async/usersSlice";
 import UsersPie from "./ui/pieChart";
@@ -21,8 +20,7 @@ const AdminMain = () => {
     const usersCount = UsersCalc.UsersCount(users);
     const invitesCount = UsersCalc.InvitesCount(users);
     const handleAddTDL = async (tdl) => {
-        tdl.name = "admin - " + tdl.name;
-        console.log(tdl);
+        tdl.name = "from admin - " + tdl.name;
         await addTDL(callerId, tdl);
     };
     const handleOpen = () => {
@@ -33,9 +31,9 @@ const AdminMain = () => {
             <Mui.Typography textAlign="center" variant="h3" mb={2}>
                 welcome back Admin
             </Mui.Typography>
-            <Mui.Grid container spacing={3} sx={{ height: "79vh", width: "95vw", mx: 2 }}>
+            <Mui.Grid container spacing={3} sx={{ height: "79vh", width: "95vw" }}>
                 <Mui.Grid item xs={12} md={6} lg={4} xl={4} alignSelf="center">
-                    <Mui.Box sx={{ height: "100%" }}>
+                    <Mui.Box sx={{ height: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
                         <UsersPie
                             valA={invitesCount.acceptedCount}
                             labelA="accepted"
@@ -52,7 +50,7 @@ const AdminMain = () => {
                     </Mui.Box>
                 </Mui.Grid>
                 <Mui.Grid item xs={12} md={6} lg={4} xl={4} alignSelf="center">
-                    <Mui.Box sx={{ height: "100%" }}>
+                    <Mui.Box sx={{ height: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
                         <UsersPie
                             valA={usersCount.callers}
                             valB={usersCount.marry}

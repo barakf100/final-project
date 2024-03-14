@@ -1,5 +1,6 @@
 import axios from "axios";
 import { getToken } from "../storage/storageService";
+import { allToast } from "../toast/toast";
 
 const messageReq = {
     postMessage: async (message, id, type) => {
@@ -10,6 +11,7 @@ const messageReq = {
                 { message: message },
                 { headers: { Authorization: `bearer ${getToken()}` } }
             );
+            allToast.toastSuccess("Message posted!");
             return res.data;
         } catch (err) {
             console.log(err.response);
@@ -30,6 +32,7 @@ const messageReq = {
                 { message: message },
                 { headers: { Authorization: `bearer ${getToken()}` } }
             );
+            allToast.toastSuccess("Message updated!");
             return res.data;
         } catch (err) {
             console.log(err.response);
@@ -38,6 +41,7 @@ const messageReq = {
     deleteMessage: async (id, type) => {
         try {
             const res = await axios.delete(`/messages/${id}/${type}`, { headers: { Authorization: `bearer ${getToken()}` } });
+            allToast.toastSuccess("Message deleted!");
             return res.data;
         } catch (err) {
             console.log(err.response);

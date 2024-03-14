@@ -1,5 +1,6 @@
 import { Typography, Box, Container, Button } from "@mui/material";
 import "../../fonts.css";
+import * as Mui from "@mui/material";
 import { useEffect, useState } from "react";
 import { JWTDecode, getMyId, getToken } from "../../service/storage/storageService";
 import { getUserById } from "../../service/request/marryReq";
@@ -15,6 +16,8 @@ import { NamePickerDialog } from "./namePicker/namePickerDialog";
 import nextKey from "generate-my-key";
 import AddTDL from "./addTDL/addTDL";
 const HomePage = () => {
+    const screenSM = Mui.useMediaQuery("(min-width:900px)");
+    const screenXS = Mui.useMediaQuery("(min-width:600px)");
     const [user, setUser] = useState(null);
     const [TDL, setTDL] = useState([]);
     const [inviteStatus, setInviteStatus] = useState(null);
@@ -62,20 +65,18 @@ const HomePage = () => {
         }
     };
     return (
-        <Container maxWidth={"xl"}>
+        <Container maxWidth={"xl"} sx={{ padding: "0 !important" }}>
             <Typography component="div" variant="h3" textAlign="center" marginBottom="25px" fontFamily="Quattrocento sans">
                 Welcome to the Home Page
             </Typography>
-            <Box
-                sx={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(3, 1fr)",
-                    gap: "13px",
-                }}>
-                <Box
+            <Mui.Grid container width="97vw" sx={{ "& .MuiGrid-root": { p: 1, my: 1 }, justifyContent: "center", margin: "0 auto" }}>
+                <Mui.Grid
+                    item
+                    md={4}
+                    sm={6}
+                    xs={11}
                     sx={{
-                        height: "210px",
-                        gridRow: "1 / 3",
+                        height: "30vh",
                         fontFamily: "Montserrat",
                         display: "flex",
                         justifyContent: "center",
@@ -88,64 +89,80 @@ const HomePage = () => {
                     }}>
                     Cheers to the beginning of your wonderful journey! Welcome to our wedding planning app—where dreams come true, one
                     detail at a time.
-                </Box>
+                </Mui.Grid>
                 {/* invites status */}
-                <Box style={{ display: "flex", gap: "10px", height: "100px" }}>
-                    <Box sx={{ flex: "1" /*border: `.9px solid`, borderColor: handleColorPallet("teaGreen")*/ }}>
-                        <Typography fontFamily="Quattrocento sans" fontSize="1rem" textAlign="center">
-                            Declined
-                        </Typography>
-                        <Typography
-                            sx={{ color: handleColorPallet("mossGreen1") }}
-                            fontFamily="Quattrocento sans"
-                            fontSize="3rem"
-                            textAlign="center">
-                            {inviteStatus?.declinedInvites.length}
-                        </Typography>
-                    </Box>
-                    <Box sx={{ flex: "1" /*border: `.9px solid`, borderColor: handleColorPallet("teaGreen")*/ }}>
-                        <Typography fontFamily="Quattrocento sans" fontSize="1rem" textAlign="center">
-                            Pending
-                        </Typography>
-                        <Typography
-                            sx={{ color: handleColorPallet("beige") }}
-                            fontFamily="Quattrocento sans"
-                            fontSize="3rem"
-                            textAlign="center">
-                            {inviteStatus?.pendingInvites.length}
-                        </Typography>
-                    </Box>
-                    <Box sx={{ flex: "1" /*border: `.9px solid`, borderColor: handleColorPallet("teaGreen")*/ }}>
-                        <Typography fontFamily="Quattrocento sans" fontSize="1rem" textAlign="center">
-                            Accepted
-                        </Typography>
-                        <Typography
-                            sx={{ color: handleColorPallet("mossGreen3") }}
-                            fontFamily="Quattrocento sans"
-                            fontSize="3rem"
-                            textAlign="center">
-                            {inviteStatus?.acceptedInvites.length}
-                        </Typography>
-                    </Box>
-                    <Box sx={{ flex: "1" /*border: `.9px solid`, borderColor: handleColorPallet("teaGreen")*/ }}>
-                        <Typography fontFamily="Quattrocento sans" fontSize="1rem" textAlign="center">
-                            Total
-                        </Typography>
-                        <Typography fontFamily="Quattrocento sans" fontSize="3rem" textAlign="center">
-                            {user?.invites.length}
-                        </Typography>
-                    </Box>
-                </Box>
-                {/* invites progress */}
-                <Box sx={{ height: "100px", gridRow: "2", textAlign: "center" }}>
-                    Progress <MyProgressBar invitesStatus={inviteStatus} />
-                </Box>
-                {/* names and date */}
-                <Box
+                <Mui.Grid
+                    item
+                    md={3}
+                    sm={5}
+                    xs={11}
                     sx={{
-                        height: "210px",
-                        gridColumn: "3 / 3",
-                        gridRow: "1 / 3",
+                        display: "flex",
+                        mx: screenXS ? 2 : 0,
+                        border: `.9px solid`,
+                        borderRadius: "10px",
+                        borderColor: handleColorPallet("teaGreen"),
+                    }}>
+                    <Box sx={{ flex: "1" }}>
+                        <Box sx={{ display: "flex", justifyContent: "center" }}>
+                            <Box sx={{ flex: "1" }}>
+                                <Typography fontFamily="Quattrocento sans" fontSize="1rem" textAlign="center">
+                                    Declined
+                                </Typography>
+                                <Typography
+                                    sx={{ color: handleColorPallet("mossGreen1") }}
+                                    fontFamily="Quattrocento sans"
+                                    fontSize="3rem"
+                                    textAlign="center">
+                                    {inviteStatus?.declinedInvites.length}
+                                </Typography>
+                            </Box>
+                            <Box sx={{ flex: "1" /*border: `.9px solid`, borderColor: handleColorPallet("teaGreen")*/ }}>
+                                <Typography fontFamily="Quattrocento sans" fontSize="1rem" textAlign="center">
+                                    Pending
+                                </Typography>
+                                <Typography
+                                    sx={{ color: handleColorPallet("beige") }}
+                                    fontFamily="Quattrocento sans"
+                                    fontSize="3rem"
+                                    textAlign="center">
+                                    {inviteStatus?.pendingInvites.length}
+                                </Typography>
+                            </Box>
+                            <Box sx={{ flex: "1" /*border: `.9px solid`, borderColor: handleColorPallet("teaGreen")*/ }}>
+                                <Typography fontFamily="Quattrocento sans" fontSize="1rem" textAlign="center">
+                                    Accepted
+                                </Typography>
+                                <Typography
+                                    sx={{ color: handleColorPallet("mossGreen3") }}
+                                    fontFamily="Quattrocento sans"
+                                    fontSize="3rem"
+                                    textAlign="center">
+                                    {inviteStatus?.acceptedInvites.length}
+                                </Typography>
+                            </Box>
+                            <Box sx={{ flex: "1" /*border: `.9px solid`, borderColor: handleColorPallet("teaGreen")*/ }}>
+                                <Typography fontFamily="Quattrocento sans" fontSize="1rem" textAlign="center">
+                                    Total
+                                </Typography>
+                                <Typography fontFamily="Quattrocento sans" fontSize="3rem" textAlign="center">
+                                    {user?.invites.length}
+                                </Typography>
+                            </Box>
+                        </Box>
+                        {/* invites progress */}
+                        <Box sx={{ textAlign: "center" }}>
+                            Progress <MyProgressBar invitesStatus={inviteStatus} />
+                        </Box>
+                    </Box>
+                </Mui.Grid>
+                {/* names and date */}
+                <Mui.Grid
+                    item
+                    md={4}
+                    sm={6}
+                    xs={11}
+                    sx={{
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "space-evenly",
@@ -185,15 +202,66 @@ const HomePage = () => {
                             setReload={setReload}
                         />
                     </Box>
-                </Box>
-                {/* groups */}
-                <Box
+                </Mui.Grid>
+                {/* invites by status */}
+                <Mui.Grid
+                    item
+                    md={4}
+                    sm={5}
+                    xs={11}
                     sx={{
-                        height: "450px",
+                        height: "80vh",
                         border: `.9px solid`,
                         borderRadius: "10px",
                         borderColor: handleColorPallet("teaGreen"),
-                        paddingTop: "10px",
+                        mx: screenSM ? 0 : screenXS ? 2 : 0,
+                    }}>
+                    <Box sx={{ display: "flex", flexDirection: "column", gap: "3px", height: "26vh" }}>
+                        <Typography
+                            component="div"
+                            variant="h5"
+                            textAlign="center"
+                            fontFamily="Quattrocento sans"
+                            color={handleColorPallet("mossGreen3")}>
+                            Accepted
+                        </Typography>
+                        <InviteStatusPaginate invites={inviteStatus?.acceptedInvites} />
+                    </Box>
+                    <Box sx={{ display: "flex", flexDirection: "column", gap: "3px", height: "26vh" }}>
+                        <Typography
+                            component="div"
+                            variant="h5"
+                            textAlign="center"
+                            fontFamily="Quattrocento sans"
+                            color={handleColorPallet("mossGreen3")}>
+                            Pending
+                        </Typography>
+                        <InviteStatusPaginate invites={inviteStatus?.pendingInvites} />
+                    </Box>
+                    <Box sx={{ display: "flex", flexDirection: "column", gap: "3px", height: "26vh" }}>
+                        <Typography
+                            component="div"
+                            variant="h5"
+                            textAlign="center"
+                            fontFamily="Quattrocento sans"
+                            color={handleColorPallet("mossGreen3")}>
+                            Declined
+                        </Typography>
+                        <InviteStatusPaginate invites={inviteStatus?.declinedInvites} />
+                    </Box>
+                </Mui.Grid>
+                {/* groups */}
+                <Mui.Grid
+                    item
+                    md={3}
+                    sm={6}
+                    xs={11}
+                    sx={{
+                        height: "80vh",
+                        border: `.9px solid`,
+                        borderRadius: "10px",
+                        borderColor: handleColorPallet("teaGreen"),
+                        mx: screenSM ? 2 : 0,
                     }}>
                     <Typography
                         component="div"
@@ -208,65 +276,21 @@ const HomePage = () => {
                             <Typography key={nextKey()}>{group}</Typography>
                         ))}
                     </Typography>
-                </Box>
-                {/* invites by status */}
-                <Box
-                    sx={{
-                        height: "450px",
-                        border: `.9px solid`,
-                        borderRadius: "10px",
-                        borderColor: handleColorPallet("teaGreen"),
-                        px: "15px",
-                        paddingTop: "10px",
-                    }}>
-                    <Box sx={{ display: "flex", flexDirection: "column", gap: "3px", height: "150px" }}>
-                        <Typography
-                            component="div"
-                            variant="h5"
-                            textAlign="center"
-                            fontFamily="Quattrocento sans"
-                            color={handleColorPallet("mossGreen3")}>
-                            Accepted
-                        </Typography>
-                        {/* {user?.invites.map((invite) => (invite.isAccepted === true ? <Typography>{invite.name.first}</Typography> : null))} */}
-                        <InviteStatusPaginate invites={inviteStatus?.acceptedInvites} />
-                    </Box>
-                    <Box sx={{ display: "flex", flexDirection: "column", gap: "3px", height: "150px" }}>
-                        <Typography
-                            component="div"
-                            variant="h5"
-                            textAlign="center"
-                            fontFamily="Quattrocento sans"
-                            color={handleColorPallet("mossGreen3")}>
-                            Pending
-                        </Typography>
-                        {/* {user?.invites.map((invite) => (invite.isPending === true ? <Typography>{invite.name.first}</Typography> : null))} */}
-                        <InviteStatusPaginate invites={inviteStatus?.pendingInvites} />
-                    </Box>
-                    <Box sx={{ display: "flex", flexDirection: "column", gap: "3px", height: "150px" }}>
-                        <Typography
-                            component="div"
-                            variant="h5"
-                            textAlign="center"
-                            fontFamily="Quattrocento sans"
-                            color={handleColorPallet("mossGreen3")}>
-                            Declined
-                        </Typography>
-                        {/* {user?.invites.map((invite) => (invite.isDeclined === true ? <Typography>{invite.name.first}</Typography> : null))} */}
-                        <InviteStatusPaginate invites={inviteStatus?.declinedInvites} />
-                    </Box>
-                </Box>
+                </Mui.Grid>
                 {/* TDL */}
-                <Box
+                <Mui.Grid
+                    item
+                    md={4}
+                    sm={5}
+                    xs={11}
                     sx={{
-                        height: "450px",
+                        height: "80vh",
                         border: `.9px solid`,
                         borderRadius: "10px",
                         borderColor: handleColorPallet("teaGreen"),
-                        px: "15px",
-                        paddingTop: "10px",
+                        mx: screenSM ? 0 : screenXS ? 2 : 0,
                     }}>
-                    <Box sx={{ display: "flex", flexDirection: "column", gap: "3px", height: "225px" }}>
+                    <Box sx={{ display: "flex", flexDirection: "column", gap: "3px", height: "45vh" }}>
                         <Typography
                             component="div"
                             variant="h5"
@@ -278,7 +302,7 @@ const HomePage = () => {
                         <TDLPaginate TDL={TDL} setOpen={setOpenTDL} userId={user?._id} setReload={setReload} done={false} />
                         <AddTDL open={openTDL} setOpen={setOpenTDL} handleAddTDL={handleAddTDL} />
                     </Box>
-                    <Box sx={{ display: "flex", flexDirection: "column", gap: "3px", height: "225px" }}>
+                    <Box sx={{ display: "flex", flexDirection: "column", gap: "3px", height: "45vh" }}>
                         <Typography
                             component="div"
                             variant="h5"
@@ -289,8 +313,8 @@ const HomePage = () => {
                         </Typography>
                         <TDLPaginate TDL={TDL} setOpen={setOpenTDL} userId={user?._id} setReload={setReload} done={true} />
                     </Box>
-                </Box>
-            </Box>
+                </Mui.Grid>
+            </Mui.Grid>
         </Container>
     );
 };

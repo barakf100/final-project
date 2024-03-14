@@ -7,12 +7,25 @@ import DialogContent from "@mui/material/DialogContent";
 import Box from "@mui/material/Box";
 import { handleColorPallet } from "../../../service/colors/change";
 import { setNameB } from "../../../service/request/marryReq";
+import validatePartner from "../../../validation/parterValid";
+import { allToast } from "../../../service/toast/toast";
 const NamePickerDialog = ({ openTextField, setOpenTextField, id, name, setName, setReload }) => {
     const handleChange = (event) => {
         setName({
             ...name,
             [event.target.id]: event.target.value,
         });
+    };
+    const handleSave = async () => {
+        if (!name.middle) name.middle = "";
+        const error = validatePartner({ name });
+        console.log(error);
+        if (error) {
+            allToast.toastError(error.first || error.last);
+        }
+        await setNameB(id, name);
+        setOpenTextField(false);
+        setReload((prev) => !prev);
     };
     return (
         <React.Fragment>
@@ -32,7 +45,6 @@ const NamePickerDialog = ({ openTextField, setOpenTextField, id, name, setName, 
                             id="first"
                             name="First name"
                             label="First name"
-                            // fullWidth
                             variant="standard"
                             onChange={handleChange}
                         />
@@ -42,7 +54,6 @@ const NamePickerDialog = ({ openTextField, setOpenTextField, id, name, setName, 
                             id="Middle"
                             name="Middle name"
                             label="Middle name"
-                            // fullWidth
                             variant="standard"
                             onChange={handleChange}
                         />
@@ -53,7 +64,6 @@ const NamePickerDialog = ({ openTextField, setOpenTextField, id, name, setName, 
                             id="last"
                             name="Last name"
                             label="Last name"
-                            // fullWidth
                             variant="standard"
                             onChange={handleChange}
                         />
@@ -65,11 +75,14 @@ const NamePickerDialog = ({ openTextField, setOpenTextField, id, name, setName, 
                     </Button>
                     <Button
                         sx={{ color: handleColorPallet("mossGreen1") }}
-                        onClick={async () => {
-                            await setNameB(id, name);
-                            setOpenTextField(false);
-                            setReload((prev) => !prev);
-                        }}>
+                        onClick={
+                            handleSave
+                            //     async () => {
+                            //     await setNameB(id, name);
+                            //     setOpenTextField(false);
+                            //     setReload((prev) => !prev);
+                            // }
+                        }>
                         Save
                     </Button>
                 </DialogActions>

@@ -9,18 +9,19 @@ import Login from "../pages/login/login";
 import Users from "../pages/users/users";
 import ProfilePage from "../pages/profile/profile";
 import Register from "../pages/register/register";
-import { useSelector } from "react-redux";
 import CallerPage from "../pages/callerMain/callerPage";
 import UserInvites from "../pages/userInvites/userInvitesPage";
 import CallerProfilePage from "../pages/callerProfile/callerProfile";
 import InvitesPage from "../pages/invites/invites";
 import Messages from "../pages/message/message";
 import Invitation from "../pages/invitation/invitation";
-import AllGuards from "../service/auth/allGuards";
 import AdminMain from "../pages/adminMain/adminMain";
 import WeddingCal from "../pages/weddingCalander/weddingCal";
+import Guards from "../service/auth/guards";
+import useUserRole from "../hooks/useUserRole";
+import Register2 from "../pages/register/register copy";
 const AppRouter = () => {
-    const userType = useSelector((bigPie) => bigPie.authSlice.type);
+    const userType = useUserRole();
     return (
         <Routes>
             <Route
@@ -38,23 +39,72 @@ const AppRouter = () => {
                 }
             />
             <Route path={ROUTES.ABOUT} element={<About />} />
-            <Route path={ROUTES.REGISTER} element={<Register />} />
+            <Route path={ROUTES.REGISTER} element={<Register2 />} />
             <Route path={ROUTES.LOGIN} element={<Login />} />
             <Route
                 path={ROUTES.USERS}
                 element={
-                    <AllGuards who="admin">
+                    <Guards.AdminGuard>
                         <Users />
-                    </AllGuards>
+                    </Guards.AdminGuard>
                 }
             />
-            <Route path={ROUTES.WEDDINGCALENDER} element={<WeddingCal />} />
-            <Route path={ROUTES.PROFILE} element={<ProfilePage />} />
-            <Route path={ROUTES.INVITES} element={<UserInvites />} />
-            <Route path={ROUTES.INVITEPAGE} element={<InvitesPage />} />
-            <Route path={ROUTES.CALLERPROFILE} element={<CallerProfilePage />} />
-            <Route path={ROUTES.INVITATION} element={<Invitation />} />
-            <Route path={ROUTES.MESSAGES} element={<Messages />} />
+            <Route
+                path={ROUTES.WEDDINGCALENDER}
+                element={
+                    <Guards.CallerOrAdminGuard>
+                        <WeddingCal />
+                    </Guards.CallerOrAdminGuard>
+                }
+            />
+            <Route
+                path={ROUTES.PROFILE}
+                element={
+                    <Guards.MarryGuard>
+                        <ProfilePage />
+                    </Guards.MarryGuard>
+                }
+            />
+            <Route
+                path={ROUTES.INVITES}
+                element={
+                    <Guards.CallerGuard>
+                        <UserInvites />
+                    </Guards.CallerGuard>
+                }
+            />
+            <Route
+                path={ROUTES.INVITEPAGE}
+                element={
+                    <Guards.MarryGuard>
+                        <InvitesPage />
+                    </Guards.MarryGuard>
+                }
+            />
+            <Route
+                path={ROUTES.CALLERPROFILE}
+                element={
+                    <Guards.CallerGuard>
+                        <CallerProfilePage />
+                    </Guards.CallerGuard>
+                }
+            />
+            <Route
+                path={ROUTES.INVITATION}
+                element={
+                    <Guards.MarryGuard>
+                        <Invitation />
+                    </Guards.MarryGuard>
+                }
+            />
+            <Route
+                path={ROUTES.MESSAGES}
+                element={
+                    <Guards.MarryGuard>
+                        <Messages />
+                    </Guards.MarryGuard>
+                }
+            />
             <Route path="*" element={<NotFoundPage />} />
         </Routes>
     );

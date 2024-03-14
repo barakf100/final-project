@@ -5,6 +5,8 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Fragment } from "react";
+import validateTDL from "../../../validation/tdlValid";
+import { toastBreak } from "../../../service/toast/toast";
 
 export default function AddTDL({ open, setOpen, handleAddTDL }) {
     const handleClose = () => {
@@ -24,9 +26,14 @@ export default function AddTDL({ open, setOpen, handleAddTDL }) {
                         const formJson = Object.fromEntries(formData.entries());
                         const name = formJson.name;
                         const description = formJson.description;
-                        const tdl = { name: name, description: description };
-                        handleAddTDL(tdl);
-                        handleClose();
+                        const tdl = { name: name, description: description, isCompleted: false };
+                        const err = validateTDL(tdl);
+                        if (err) {
+                            toastBreak(err, "error");
+                        } else {
+                            handleAddTDL(tdl);
+                            handleClose();
+                        }
                     },
                 }}>
                 <DialogTitle>Add TDL</DialogTitle>

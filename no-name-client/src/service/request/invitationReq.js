@@ -1,5 +1,6 @@
 import axios from "axios";
 import { getToken } from "../storage/storageService";
+import { allToast } from "../toast/toast";
 const invitationReq = {
     getInvitation: async (id) => {
         const res = await axios
@@ -19,8 +20,16 @@ const invitationReq = {
             })
             .then((res) => console.log(res.data))
             .catch((err) => console.log(err));
+        allToast.toastSuccess("Invitation uploaded!");
     },
-    deleteInvitation: async () => {},
+    deleteInvitation: async (id) => {
+        await axios
+            .delete(`/invitation/${id}`, {
+                headers: { Authorization: `bearer ${getToken()}` },
+            })
+            .then((res) => allToast.toastSuccess("Invitation deleted!"))
+            .catch((err) => console.log(err));
+    },
 };
 
 export default invitationReq;

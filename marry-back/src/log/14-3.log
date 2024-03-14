@@ -1,0 +1,18 @@
+logged error with status code: 404
+        at 11:36:23 
+        error was: No invitation found 
+logged error with status code: 404
+        at 11:36:23 
+        error was: No invitation found 
+logged error with status code: 401
+        at 12:11:55 
+        error was: Invalid Email 
+logged error with status code: 401
+        at 12:12:2 
+        error was: Invalid Email 
+logged error with status code: undefined
+        at 12:59:52 
+        error was: E11000 duplicate key error collection: no-name.users index: email_1 dup key: { email: "reg4@reg.com" } 
+logged error with status code: undefined
+        at 13:1:50 
+        error was: E11000 duplicate key error collection: no-name.users index: email_1 dup key: { email: "reg6@reg.com" } 

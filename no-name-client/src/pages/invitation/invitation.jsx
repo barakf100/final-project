@@ -13,12 +13,10 @@ const Invitation = () => {
     const [invitation, setInvitation] = useState(null);
     const [reload, setReload] = useState(false);
     const imageUrl = `${process.env.REACT_APP_SERVER_URL}image/${userId}`;
-    console.log(imageUrl);
     useEffect(() => {
         const fetchInvitation = async () => {
             try {
                 const res = await invitationReq.getInvitation(userId);
-                console.log(res);
                 setInvitation(res);
             } catch (err) {
                 console.error(err);
@@ -52,7 +50,7 @@ const Invitation = () => {
                             </Mui.Typography>
                         </Mui.Box>
                         <Mui.Box sx={{ alignSelf: "center" }}>
-                            <InputFileUpload setReload={setReload} />
+                            <InputFileUpload setReload={setReload} invitation={invitation} />
                         </Mui.Box>
                     </Mui.Box>
                     <Mui.Box sx={{ width: screenBreakMobile ? "50%" : "75%", height: "72vh" }}>

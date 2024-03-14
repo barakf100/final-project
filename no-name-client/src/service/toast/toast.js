@@ -3,7 +3,7 @@ const allToast = {
     toastSuccess: (msg) => {
         toast.success(msg, {
             position: "top-center",
-            autoClose: 5000,
+            autoClose: 4000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -15,7 +15,7 @@ const allToast = {
     toastError: (msg) => {
         toast.error(msg, {
             position: "top-center",
-            autoClose: 5000,
+            autoClose: 4000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -25,5 +25,15 @@ const allToast = {
         });
     },
 };
-
-export { allToast };
+const toastBreak = (msg, type) => {
+    if (type === "success") {
+        Object.entries(msg).forEach(([key, value]) => {
+            allToast.toastSuccess(`${key} : ${value}`);
+        });
+    } else if (type === "error") {
+        Object.entries(msg).forEach(([key, value]) => {
+            allToast.toastError(`${key} : ${value}`);
+        });
+    }
+};
+export { allToast, toastBreak };

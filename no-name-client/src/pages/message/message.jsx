@@ -9,6 +9,7 @@ import { getMyId } from "../../service/storage/storageService";
 
 const Messages = () => {
     const screenBreak = Mui.useMediaQuery("(min-width:1100px)");
+    const messageBreak = Mui.useMediaQuery("(min-width:800px)");
     const [optionBefore, setOptionBefore] = useState([]);
     const [pageBefore, setPageBefore] = useState(0);
     const [optionDayBefore, setOptionDayBefore] = useState([]);
@@ -48,7 +49,7 @@ const Messages = () => {
                 <Mui.Box
                     sx={{
                         mt: 2,
-                        height: "70vh",
+                        // height: "70vh",
                         width: screenBreak ? "65vw" : "90vw",
                         display: "flex",
                         flexDirection: "column",
@@ -57,7 +58,13 @@ const Messages = () => {
                     <Mui.Typography variant="h5" sx={{ color: handleColorPallet("mossGreen3") }}>
                         Templates
                     </Mui.Typography>
-                    <Mui.Box sx={{ display: "flex" }}>
+                    <Mui.Box
+                        sx={{
+                            display: "flex",
+                            flexDirection: messageBreak ? "row" : "column",
+                            justifyContent: "center",
+                            alignItems: "center",
+                        }}>
                         <MessageComp
                             round={"Week Before"}
                             id={"before"}
@@ -93,7 +100,7 @@ const Messages = () => {
                 <Mui.Box
                     sx={{
                         mt: 2,
-                        height: "70vh",
+                        // height: "70vh",
                         width: screenBreak ? "45vw" : "90vw",
                         display: "flex",
                         flexDirection: "column",
@@ -102,7 +109,7 @@ const Messages = () => {
                     <Mui.Typography variant="h5" sx={{ color: handleColorPallet("mossGreen3") }}>
                         You're messages
                     </Mui.Typography>
-                    <Mui.Box sx={{ height: "65vh", display: "flex", flexDirection: "column", justifyContent: "space-evenly" }}>
+                    <Mui.Box sx={{ display: "flex", flexDirection: "column", justifyContent: "space-evenly" }}>
                         {userMessage && (
                             <MyMessage userId={userId} h={"Week before"} message={userMessage.before} type="before" setReload={setReload} />
                         )}

@@ -19,13 +19,14 @@ const CallerProfilePage = () => {
         address: { city: "", country: "", street: "", houseNumber: "", zip: "" },
         email: "",
         phone: "",
-        marryDate: dayjs("today").format("YYYY-MM-DD"),
+        // marryDate: dayjs("today").format("YYYY-MM-DD"),
     });
     useEffect(() => {
         dispatch(getUser());
     }, [dispatch]);
 
     const user = useSelector((state) => state.userSlice.user);
+    console.log(user);
     useEffect(() => {
         if (user) {
             const {
@@ -36,11 +37,12 @@ const CallerProfilePage = () => {
                 TDL,
                 __v,
                 nameA: { _id: _d, ...restNameA },
+                nameB: { _id: _e, ...restNameB },
                 address: { _id: ___, ...restAddress },
                 image: { _id: ____, ...restImage },
                 ...rest
             } = user;
-            setUserInfo({ nameA: restNameA, address: restAddress, image: restImage, ...rest });
+            setUserInfo({ nameA: restNameA, nameB: restNameB, address: restAddress, image: restImage, ...rest });
         }
     }, [user]);
     const handleEditClick = () => {
@@ -48,7 +50,8 @@ const CallerProfilePage = () => {
     };
     const handleSaveClick = () => {
         const err = validProfile(userInfo);
-        if (err) {
+        delete err?.marryDate;
+        if (err.length > 0) {
             Object.entries(err).forEach(([key, value]) => {
                 allToast.toastError(`${key} : ${value}`);
             });

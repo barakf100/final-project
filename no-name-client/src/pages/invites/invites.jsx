@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { getAllInvites } from "../../service/request/callerReq";
 import { getMyId } from "../../service/storage/storageService";
 import { addInvite, deleteInvite, updateInvite } from "../../service/request/invitesReq";
+import inviteValid from "../../validation/inviteValidation";
+import { toastBreak } from "../../service/toast/toast";
 const ITEM_PER_PAGE = 6;
 const CustomTextField = ({ id, setNewInvite, newInvite, ...props }) => {
     const handleChange = (e) => {
@@ -55,20 +57,29 @@ const InvitesPage = () => {
     };
     const PaginateInvites = invitesArr?.slice(page * ITEM_PER_PAGE, (page + 1) * ITEM_PER_PAGE);
     const handleSave = () => {
-        addInvite(userId, { invites: newInvite });
-        setNewInvite({
-            name: { first: "", last: "" },
-            group: "",
-            phone: "",
-            isAccepted: false,
-            isDeclined: false,
-            isPending: true,
-        });
-        setIsAdd((prev) => !prev);
+        const err = inviteValid(newInvite);
+        if (err) toastBreak(err, "error");
+        else {
+            addInvite(userId, { invites: newInvite });
+            setNewInvite({
+                name: { first: "", last: "" },
+                group: "",
+                phone: "",
+                isAccepted: false,
+                isDeclined: false,
+                isPending: true,
+            });
+            setIsAdd((prev) => !prev);
+            setReload((prev) => !prev);
+        }
     };
-    const handleEditSave = (editingInvite, inviteId) => {
-        updateInvite(userId, inviteId, editingInvite);
-        setReload((prev) => !prev);
+    const handleEditSave = async (editingInvite, inviteId) => {
+        const err = inviteValid(editingInvite);
+        if (err) toastBreak(err, "error");
+        else {
+            await updateInvite(userId, inviteId, editingInvite);
+            setReload((prev) => !prev);
+        }
     };
     const handleDelete = (userId, inviteId) => {
         deleteInvite(userId, inviteId);
@@ -78,6 +89,7 @@ const InvitesPage = () => {
         if ((page + 1) * ITEM_PER_PAGE < invitesArr.length) {
             setPage(page + 1);
         }
+        setReload((prev) => !prev);
     };
     const handlePreviousPage = () => {
         if (page > 0) {
@@ -92,22 +104,24 @@ const InvitesPage = () => {
             <mui.TableContainer component={mui.Paper} sx={{ border: `1px solid beige`, boxShadow: 0 }}>
                 <mui.Table>
                     <mui.TableHead>
-                        <mui.TableRow>
+                        <mui.TableRow sx={{ "& .MuiTableCell-root": { fontSize: { md: "1.1rem", sm: "0.9rem", xs: "0.8rem" } } }}>
                             {screen && (
                                 <mui.TableCell sx={{ borderRight: "1px solid beige", borderTop: "1px solid beige" }} align="center">
                                     #
                                 </mui.TableCell>
                             )}
-                            <mui.TableCell align="center">First Name</mui.TableCell>
-                            <mui.TableCell align="center">Last Name</mui.TableCell>
+                            <mui.TableCell align="center">First</mui.TableCell>
+                            <mui.TableCell align="center">Last</mui.TableCell>
                             <mui.TableCell align="center">Group</mui.TableCell>
                             <mui.TableCell align="center">Phone</mui.TableCell>
-                            <mui.TableCell align="center">actions</mui.TableCell>
+                            <mui.TableCell align="center">Actions</mui.TableCell>
                         </mui.TableRow>
                     </mui.TableHead>
                     <mui.TableBody>
                         {PaginateInvites?.map((invite, index) => (
-                            <mui.TableRow key={invite?._id}>
+                            <mui.TableRow
+                                key={invite?._id}
+                                sx={{ "& .MuiTableCell-root": { fontSize: { md: "1.1rem", sm: "0.9rem", xs: "0.6rem" } } }}>
                                 {screen && (
                                     <mui.TableCell sx={{ width: "30px", borderRight: "1px solid beige" }} align="center">
                                         {page * ITEM_PER_PAGE + index + 1}
@@ -146,7 +160,7 @@ const InvitesPage = () => {
                                         {!(editId === invite?._id) ? (
                                             <icons.Edit
                                                 color="mossGreen1"
-                                                sx={{ cursor: "pointer" }}
+                                                sx={{ cursor: "pointer", fontSize: "large" }}
                                                 onClick={() => {
                                                     setEditId(invite?._id);
                                                     setEditingInvite(invite);
@@ -155,7 +169,7 @@ const InvitesPage = () => {
                                         ) : (
                                             <icons.Save
                                                 color="mossGreen1"
-                                                sx={{ cursor: "pointer" }}
+                                                sx={{ cursor: "pointer", fontSize: "large" }}
                                                 onClick={(e) => {
                                                     setEditId(null);
                                                     handleEditSave(editingInvite, invite?._id);
@@ -164,7 +178,7 @@ const InvitesPage = () => {
                                         )}
                                         <icons.Delete
                                             color="mossGreen1"
-                                            sx={{ cursor: "pointer" }}
+                                            sx={{ cursor: "pointer", fontSize: "large" }}
                                             onClick={() => {
                                                 handleDelete(userId, invite?._id);
                                             }}
@@ -181,9 +195,11 @@ const InvitesPage = () => {
                             </mui.TableRow>
                         ) : (
                             <mui.TableRow>
-                                <mui.TableCell sx={{ borderRight: "1px solid beige", height: "24px" }} align="center">
-                                    {invitesArr?.length + 1}
-                                </mui.TableCell>
+                                {screen && (
+                                    <mui.TableCell sx={{ borderRight: "1px solid beige", height: "24px" }} align="center">
+                                        {invitesArr?.length + 1}
+                                    </mui.TableCell>
+                                )}
                                 <mui.TableCell align="center">
                                     <CustomTextField id="name.first" newInvite={newInvite} setNewInvite={setNewInvite} />
                                 </mui.TableCell>
@@ -197,7 +213,7 @@ const InvitesPage = () => {
                                     <CustomTextField id="phone" newInvite={newInvite} setNewInvite={setNewInvite} />
                                 </mui.TableCell>
                                 <mui.TableCell align="center" onClick={handleSave}>
-                                    <icons.Save color="mossGreen1" sx={{ cursor: "pointer" }} />
+                                    <icons.Save color="mossGreen1" sx={{ cursor: "pointer", fontSize: "large" }} />
                                 </mui.TableCell>
                             </mui.TableRow>
                         )}

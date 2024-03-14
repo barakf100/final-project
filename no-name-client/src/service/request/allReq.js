@@ -2,9 +2,11 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import { storeToken } from "../storage/storageService";
 import { allToast } from "../toast/toast";
+import dayjs from "dayjs";
 const register = async (user) => {
     try {
-        const res = await axios.post("/users/", user);
+        const modDate = { ...user, marryDate: dayjs(user.marryDate, "DD/MM/YYYY").toISOString() };
+        const res = await axios.post("/users/", modDate);
         return res.data;
     } catch (err) {
         console.log(err);

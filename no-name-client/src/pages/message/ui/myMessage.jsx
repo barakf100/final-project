@@ -4,6 +4,7 @@ import { handleColorPallet } from "../../../service/colors/change";
 import messageReq from "../../../service/request/messageReq";
 import { useEffect, useState } from "react";
 const MyMessage = ({ h, message, userId, type, setReload }) => {
+    const screenBreak = Mui.useMediaQuery("(min-width:1100px)");
     const [edit, setEdit] = useState(false);
     const [editMessage, setEditMessage] = useState(false);
     const [customMessage, setCustomMessage] = useState({
@@ -45,7 +46,12 @@ const MyMessage = ({ h, message, userId, type, setReload }) => {
                 {!edit ? (
                     message ? (
                         editMessage ? (
-                            <Mui.TextField sx={{ width: "25vw" }} multiline value={customMessage.type} onChange={handleChange} />
+                            <Mui.TextField
+                                sx={{ width: screenBreak ? "25vw" : "80vw" }}
+                                multiline
+                                value={customMessage.type}
+                                onChange={handleChange}
+                            />
                         ) : (
                             message.message
                         )

@@ -5,6 +5,7 @@ import { getMyId } from "../../../service/storage/storageService";
 import messageReq from "../../../service/request/messageReq";
 const MessageComp = ({ round, option, page, setPage, id, setReload }) => {
     const screenBreak = Mui.useMediaQuery("(min-width:1100px)");
+    const messageBreak = Mui.useMediaQuery("(min-width:800px)");
     const userId = getMyId();
     const handleChangeOption = (setFunc, direction) => {
         setFunc((prevPage) => {
@@ -30,7 +31,7 @@ const MessageComp = ({ round, option, page, setPage, id, setReload }) => {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                width: screenBreak ? "18vw" : "28vw",
+                width: screenBreak ? "18vw" : messageBreak ? "28vw" : "75vw",
                 height: "55vh",
                 border: "1.6px solid beige",
             }}>
