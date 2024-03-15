@@ -40,6 +40,7 @@ const Login = () => {
             setErrorsState(joiResponse);
             if (joiResponse) return;
             let data = await login(emailValue, passwordValue, rememberMe);
+            console.log(data);
             dispatch(authActions.login(JWTDecode(data.jwt)));
             autoLogin(false); //skip token test
             navigate(ROUTES.HOME);
