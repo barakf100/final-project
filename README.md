@@ -31,15 +31,19 @@ This project is a full-stack web application built with React.js for the fronten
 - Node.js, pnpm and npm installed on your machine
 
 ### Getting Started
+#### install
+- Backend : pnpm add
+- Frontend : npm i
+#### start
 - Backend : pnpm start
 - Frontend : npm start
 
-### technologys
-## Frontend
+## technologys
+### Frontend
 - React js
 - Material UI
-## Backend
+### Backend
 - Typescript
 - Express
-## Database
+### Database
 - MongoDB
