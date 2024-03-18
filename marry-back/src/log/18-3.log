@@ -34,3 +34,12 @@ logged error with status code: 401
 logged error with status code: 401
         at 10:44:24 
         error was: Invalid password 
+logged error with status code: 401
+        at 11:2:54 
+        error was: Invalid Email 
+logged error with status code: 401
+        at 11:3:10 
+        error was: Invalid Email 
+logged error with status code: 401
+        at 11:3:40 
+        error was: Invalid password 
