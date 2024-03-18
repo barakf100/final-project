@@ -3,7 +3,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { removeUser } from "../../../service/request/adminReq";
 const UserPaginate = ({ page, sortedUsers, ITEM_PER_PAGE, setReload, tableScreenSize }) => {
     const handleDelete = async (id) => {
-        const res = await removeUser(id);
+        await removeUser(id);
         handleReload();
     };
     const handleReload = () => {

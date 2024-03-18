@@ -48,18 +48,6 @@ router.post("/:id", isCallerOrMarry, async (req, res, next) => {
     }
 });
 
-// user update his TDL
-// params: id is the user id
-//         TDLId is the TDL id
-router.patch("/:id/:TDLId", isMarry, async (req, res, next) => {
-    try {
-        const update = await TDL.updateTDLByUser(req.params.id, req.params.TDLId, req.body);
-        res.status(200).json(update);
-    } catch (err) {
-        next(err);
-    }
-});
-
 // user delete his TDL
 /* params: 
         id is the user id 

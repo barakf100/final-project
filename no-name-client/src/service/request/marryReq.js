@@ -21,15 +21,6 @@ const updateUser = async (id, user) => {
     }
 };
 
-const deleteUser = async (id) => {
-    try {
-        const res = await axios.delete(`/users/${id}`);
-        return res.data;
-    } catch (err) {
-        console.log(err);
-    }
-};
-
 const setMarryDate = async (id, date) => {
     try {
         const dateString = date.toISOString().slice(0, 10);
@@ -55,4 +46,4 @@ const setNameB = async (id, nameB) => {
     }
 };
 
-export { getUserById, updateUser, deleteUser, setMarryDate, setNameB };
+export { getUserById, updateUser, setMarryDate, setNameB };

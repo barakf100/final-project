@@ -12,7 +12,6 @@ import { splitInvitesByStatus } from "../../service/invites/invites";
 import InviteStatusPaginate from "./paginate/inviteStatusPaginate";
 import { DatePickerValue } from "./date/datePicker";
 import dayjs from "dayjs";
-import { NamePickerDialog } from "./namePicker/namePickerDialog";
 import nextKey from "generate-my-key";
 import AddTDL from "./addTDL/addTDL";
 const HomePage = () => {
@@ -25,13 +24,8 @@ const HomePage = () => {
     const { _id } = JWTDecode(getToken());
     const [value, setValue] = useState(dayjs("today"));
     const [open, setOpen] = useState(false);
-    const [openTextField, setOpenTextField] = useState(false);
     const [openTDL, setOpenTDL] = useState(false);
-    const [name, setName] = useState({
-        first: "",
-        middle: "",
-        last: "",
-    });
+
     useEffect(() => {
         const fetchUser = async () => {
             const { user: usr } = await getUserById(_id);
@@ -186,21 +180,6 @@ const HomePage = () => {
                             {value.$D ? "Modify date" : "Add date"}
                         </Button>
                         <DatePickerValue open={open} setOpen={setOpen} value={value} setValue={setValue} id={_id} />
-                        <Button
-                            onClick={() => setOpenTextField(true)}
-                            variant="contained"
-                            color="mossGreen2"
-                            sx={{ height: "5vh", color: "background.default", display: user?.nameB?.first ? "none" : "block" }}>
-                            Add partner
-                        </Button>
-                        <NamePickerDialog
-                            openTextField={openTextField}
-                            setOpenTextField={setOpenTextField}
-                            id={_id}
-                            name={name}
-                            setName={setName}
-                            setReload={setReload}
-                        />
                     </Box>
                 </Mui.Grid>
                 {/* invites by status */}

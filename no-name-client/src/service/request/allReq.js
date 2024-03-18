@@ -7,7 +7,6 @@ const register = async (user) => {
     try {
         const modDate = { ...user, marryDate: dayjs(user.marryDate, "DD/MM/YYYY").toISOString() };
         const res = await axios.post("/users/", modDate);
-        allToast.toastSuccess("Register successfully");
         return res.data;
     } catch (err) {
         console.log(err);
@@ -25,7 +24,8 @@ const login = async (email, password, remember) => {
         allToast.toastSuccess("Login Success");
         return res.data;
     } catch (err) {
-        console.log(err);
+        allToast.toastError(err.response.data.message);
+        console.log(err.response.data.message);
     }
 };
 login.propTypes = {

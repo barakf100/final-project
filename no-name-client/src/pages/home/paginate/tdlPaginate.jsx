@@ -27,7 +27,7 @@ const TDLPaginate = ({ TDL, setOpen, userId, setReload, done }) => {
         }
     };
     const handleCheck = async (e, tdlId) => {
-        const done = await TDLDone(userId, tdlId);
+        await TDLDone(userId, tdlId);
         setReload((state) => !state);
     };
     return (

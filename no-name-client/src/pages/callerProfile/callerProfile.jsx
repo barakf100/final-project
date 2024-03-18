@@ -8,7 +8,6 @@ import { updateUser } from "../../service/request/marryReq";
 import EditableTextField from "../profile/styled/styledTextField";
 import validProfile from "../../validation/profileValid";
 import { allToast } from "../../service/toast/toast";
-import dayjs from "dayjs";
 
 const CallerProfilePage = () => {
     const screen = useMediaQuery("(min-width:750px)");
