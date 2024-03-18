@@ -5,7 +5,6 @@ import { allToast } from "../toast/toast";
 const messageReq = {
     postMessage: async (message, id, type) => {
         try {
-            console.log(message);
             const res = await axios.post(
                 `/messages/${id}/${type}`,
                 { message: message },

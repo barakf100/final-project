@@ -4,11 +4,10 @@ import ringImage from "../../assets/profile.jpeg";
 import { handleColorPallet } from "../../service/colors/change";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../store/async/userSlice";
-import dayjs from "dayjs";
 import { updateUser } from "../../service/request/marryReq";
 import EditableTextField from "./styled/styledTextField";
 import validProfile from "../../validation/profileValid";
-import { allToast, toastBreak } from "../../service/toast/toast";
+import { toastBreak } from "../../service/toast/toast";
 
 const ProfilePage = () => {
     const screen = useMediaQuery("(min-width:750px)");
@@ -28,7 +27,6 @@ const ProfilePage = () => {
 
     const user = useSelector((state) => state.userSlice.user);
     useEffect(() => {
-        let restNameB = { first: "", last: "" };
         if (user) {
             const {
                 _id,
@@ -42,33 +40,33 @@ const ProfilePage = () => {
                 phone,
                 email,
                 nameA: { _id: _d, ...restNameA },
-                // nameB: { _id: __, ...restNameB },
+                nameB: { _id: __, ...restNameB },
                 address: { _id: ___, ...restAddress },
                 image: { _id: ____, ...restImage },
                 ...rest
             } = user;
-            if (user.nameB) {
-                const {
-                    nameB: { _id: __, ...restNameB },
-                } = user;
-            }
-            setUserInfo({ nameA: restNameA, nameB: restNameB, address: restAddress, image: restImage, isMarrying, isCaller, phone, email });
+            setUserInfo({
+                nameA: restNameA,
+                nameB: restNameB,
+                address: restAddress,
+                image: restImage,
+                isMarrying,
+                isCaller,
+                phone,
+                email,
+            });
         }
     }, [user]);
     const handleEditClick = () => {
         setIsEditing(true);
     };
     const handleSaveClick = () => {
-        console.log(userInfo);
         const err = validProfile(userInfo);
-        console.log(err);
         if (err) {
             toastBreak(err, "error");
             return;
         }
-
         updateUser(user._id, userInfo).then(() => {
-            allToast.toastSuccess("Profile updated successfully");
             dispatch(getUser());
             setIsEditing(false);
         });
@@ -91,7 +89,7 @@ const ProfilePage = () => {
     return (
         <Box
             sx={{
-                height: "80vh",
+                height: "85.8vh",
                 textAlign: "left",
                 display: "grid",
                 gridTemplateRows: "1fr 1fr",
@@ -103,7 +101,7 @@ const ProfilePage = () => {
                 `,
             }}>
             {screen && (
-                <Box sx={{ gridArea: "header", width: "45vw", height: "85vh" }}>
+                <Box sx={{ gridArea: "header", width: "45vw", height: "80vh" }}>
                     <img src={ringImage} alt="rings" width="128%" height="100%" />
                 </Box>
             )}
@@ -248,20 +246,6 @@ const ProfilePage = () => {
                     phone:
                     <Typography variant="body1">
                         {isEditing ? <EditableTextField value={userInfo?.phone} onChange={handleInputChange} name="phone" /> : user?.phone}
-                    </Typography>
-                </Typography>
-                <Typography variant="h6">
-                    Wedding date:
-                    <Typography variant="body1">
-                        {isEditing ? (
-                            <EditableTextField
-                                value={dayjs(userInfo?.marryDate).format("DD/MM/YYYY")}
-                                onChange={handleInputChange}
-                                name="marryDate"
-                            />
-                        ) : (
-                            dayjs(user?.marryDate).format("DD/MM/YYYY")
-                        )}
                     </Typography>
                 </Typography>
             </Box>

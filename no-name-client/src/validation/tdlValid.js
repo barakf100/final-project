@@ -2,10 +2,10 @@ import Joi from "joi";
 import validation from "./validation";
 
 const tdlValid = Joi.object({
-    name: Joi.string().min(2).max(15).required().messages({
+    name: Joi.string().min(2).max(30).required().messages({
         "string.empty": "name is empty",
         "string.min": "name is too short",
-        "string.max": "name is too long)",
+        "string.max": "name is too long",
     }),
     description: Joi.string().min(2).max(50).required().messages({
         "string.empty": "description empty",

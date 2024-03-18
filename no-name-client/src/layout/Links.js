@@ -18,6 +18,7 @@ const links = {
     logoutLinks: [
         { to: ROUTES.LOGIN, children: "Login" },
         { to: ROUTES.REGISTER, children: "Register" },
+        { to: ROUTES.ABOUT, children: "About" },
     ],
 };
 

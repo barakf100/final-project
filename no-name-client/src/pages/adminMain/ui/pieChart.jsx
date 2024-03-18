@@ -5,7 +5,7 @@ import { useTheme } from "@mui/material/styles";
 const UsersPie = ({ valA, valB, valC, labelA, labelB, labelC, title }) => {
     const theme = useTheme();
     const colors = [
-        `${handleColorPallet("beige")(theme)}`,
+        `${handleColorPallet("cornsilk")(theme)}`,
         `${handleColorPallet("teaGreen")(theme)}`,
         `${handleColorPallet("mossGreen1")(theme)}`,
     ];

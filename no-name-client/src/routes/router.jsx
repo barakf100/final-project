@@ -19,7 +19,6 @@ import AdminMain from "../pages/adminMain/adminMain";
 import WeddingCal from "../pages/weddingCalander/weddingCal";
 import Guards from "../service/auth/guards";
 import useUserRole from "../hooks/useUserRole";
-import Register2 from "../pages/register/register copy";
 const AppRouter = () => {
     const userType = useUserRole();
     return (
@@ -39,7 +38,7 @@ const AppRouter = () => {
                 }
             />
             <Route path={ROUTES.ABOUT} element={<About />} />
-            <Route path={ROUTES.REGISTER} element={<Register2 />} />
+            <Route path={ROUTES.REGISTER} element={<Register />} />
             <Route path={ROUTES.LOGIN} element={<Login />} />
             <Route
                 path={ROUTES.USERS}

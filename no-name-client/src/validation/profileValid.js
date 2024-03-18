@@ -52,10 +52,10 @@ const profileValid = Joi.object({
             "number.min": "house number is too small",
             "number.max": "house number is too large",
         }),
-        Zip: Joi.string()
-            .min(1)
-            .max(30)
-            .messages({ "string.empty": "zip is empty", "string.min": "zip is too short", "string.max": "zip is too long" }),
+        Zip: Joi.number()
+            .min(1000)
+            .max(9999999)
+            .messages({ "number.empty": "zip is empty", "number.min": "zip is too short", "number.max": "zip is too long" }),
     }),
     image: Joi.object({
         alt: Joi.string().min(4).max(200).allow(""),

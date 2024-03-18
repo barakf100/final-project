@@ -4,7 +4,7 @@ import nextKey from "generate-my-key";
 const ITEM_PER_PAGE = 3;
 const InviteStatusPaginate = ({ invites }) => {
     const [page, setPage] = useState(0);
-    if (!invites) return <div>loading...</div>; // change to loading
+    if (!invites) return <div>loading...</div>;
     const PaginateInvites = invites.slice(page * ITEM_PER_PAGE, (page + 1) * ITEM_PER_PAGE);
     const handleNextPage = () => {
         if ((page + 1) * ITEM_PER_PAGE < invites.length) {

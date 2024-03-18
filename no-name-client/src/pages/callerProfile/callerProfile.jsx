@@ -19,14 +19,12 @@ const CallerProfilePage = () => {
         address: { city: "", country: "", street: "", houseNumber: "", zip: "" },
         email: "",
         phone: "",
-        // marryDate: dayjs("today").format("YYYY-MM-DD"),
     });
     useEffect(() => {
         dispatch(getUser());
     }, [dispatch]);
 
     const user = useSelector((state) => state.userSlice.user);
-    console.log(user);
     useEffect(() => {
         if (user) {
             const {
@@ -51,17 +49,20 @@ const CallerProfilePage = () => {
     const handleSaveClick = () => {
         const err = validProfile(userInfo);
         delete err?.marryDate;
-        if (err.length > 0) {
-            Object.entries(err).forEach(([key, value]) => {
-                allToast.toastError(`${key} : ${value}`);
+        if (err) {
+            if (Object.entries(err).length) {
+                Object.entries(err).forEach(([key, value]) => {
+                    allToast.toastError(`${key} : ${value}`);
+                });
+                return;
+            }
+        } else {
+            updateUser(user._id, userInfo).then(() => {
+                allToast.toastSuccess("Profile updated successfully");
+                dispatch(getUser());
+                setIsEditing(false);
             });
-            return;
         }
-        updateUser(user._id, userInfo).then(() => {
-            allToast.toastSuccess("Profile updated successfully");
-            dispatch(getUser());
-            setIsEditing(false);
-        });
     };
     const handleInputChange = (key, subKey, value) => {
         setUserInfo((prevState) => {

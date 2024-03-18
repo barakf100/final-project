@@ -49,7 +49,6 @@ const Messages = () => {
                 <Mui.Box
                     sx={{
                         mt: 2,
-                        // height: "70vh",
                         width: screenBreak ? "65vw" : "90vw",
                         display: "flex",
                         flexDirection: "column",
@@ -100,7 +99,6 @@ const Messages = () => {
                 <Mui.Box
                     sx={{
                         mt: 2,
-                        // height: "70vh",
                         width: screenBreak ? "45vw" : "90vw",
                         display: "flex",
                         flexDirection: "column",

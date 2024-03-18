@@ -19,7 +19,6 @@ const NamePickerDialog = ({ openTextField, setOpenTextField, id, name, setName, 
     const handleSave = async () => {
         if (!name.middle) name.middle = "";
         const error = validatePartner({ name });
-        console.log(error);
         if (error) {
             allToast.toastError(error.first || error.last);
         }
@@ -73,16 +72,7 @@ const NamePickerDialog = ({ openTextField, setOpenTextField, id, name, setName, 
                     <Button sx={{ color: handleColorPallet("mossGreen1") }} onClick={() => setOpenTextField(false)}>
                         Cancel
                     </Button>
-                    <Button
-                        sx={{ color: handleColorPallet("mossGreen1") }}
-                        onClick={
-                            handleSave
-                            //     async () => {
-                            //     await setNameB(id, name);
-                            //     setOpenTextField(false);
-                            //     setReload((prev) => !prev);
-                            // }
-                        }>
+                    <Button sx={{ color: handleColorPallet("mossGreen1") }} onClick={handleSave}>
                         Save
                     </Button>
                 </DialogActions>

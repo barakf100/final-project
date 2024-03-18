@@ -15,7 +15,6 @@ const authSlice = createSlice({
             state.loggedIn = true;
             state.userData = action.payload;
             state.type = action.payload.type;
-            console.log(state.userData);
             if (state.userData.type === "admin") state.isAdmin = true;
             else state.isAdmin = false;
         },

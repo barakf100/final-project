@@ -5,7 +5,6 @@ const UserPaginate = ({ page, sortedUsers, ITEM_PER_PAGE, setReload, tableScreen
     const handleDelete = async (id) => {
         const res = await removeUser(id);
         handleReload();
-        console.log(res);
     };
     const handleReload = () => {
         setReload((prev) => !prev);

@@ -2,8 +2,6 @@ import axios from "axios";
 import { getToken } from "../storage/storageService";
 import { allToast } from "../toast/toast";
 
-// TODO: check all the requests
-
 const getAllTDLs = async (id) => {
     try {
         const token = getToken();
@@ -51,7 +49,6 @@ const TDLDone = async (id, TDLId) => {
                 },
             }
         );
-        console.log(res, "res");
         return res.data;
     } catch (err) {
         console.log(err);

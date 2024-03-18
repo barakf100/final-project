@@ -51,7 +51,7 @@ const InvitesPage = () => {
             setInvitesArr(invites);
         };
         fetchInvites();
-    }, [userId, newInvite, reload]);
+    }, [userId, reload]);
     const handleAdd = () => {
         setIsAdd((prev) => !prev);
     };
@@ -81,8 +81,8 @@ const InvitesPage = () => {
             setReload((prev) => !prev);
         }
     };
-    const handleDelete = (userId, inviteId) => {
-        deleteInvite(userId, inviteId);
+    const handleDelete = async (userId, inviteId) => {
+        await deleteInvite(userId, inviteId);
         setReload((prev) => !prev);
     };
     const handleNextPage = () => {
@@ -97,7 +97,7 @@ const InvitesPage = () => {
         }
     };
     return (
-        <mui.Box>
+        <mui.Box sx={{ height: "85vh" }}>
             <mui.Typography sx={{ textAlign: "center" }} variant="h4">
                 Invites
             </mui.Typography>

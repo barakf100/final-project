@@ -18,11 +18,9 @@ const MessageComp = ({ round, option, page, setPage, id, setReload }) => {
             }
         });
     };
-    const handleMessageChoose = (message, type) => {
-        messageReq
-            .postMessage(message, userId, type)
-            .then(setReload((prev) => !prev))
-            .catch((err) => console.log(err));
+    const handleMessageChoose = async (message, type) => {
+        await messageReq.postMessage(message, userId, type);
+        setReload((prev) => !prev);
     };
     return (
         <Mui.Box

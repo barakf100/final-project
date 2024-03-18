@@ -22,15 +22,14 @@ import validProfile from "../../validation/profileValid";
 import { allToast } from "../../service/toast/toast";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/ROUTES";
-import dayjs from "dayjs";
-import { bool } from "joi";
 const Register = () => {
     const navigate = useNavigate();
     const screenBreak = useMediaQuery("(min-width: 850px)");
     const [iseCaller, setIsCaller] = useState(false);
+    const [type, setType] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const [select, setSelect] = useState(0); // 0: Marry, 1: Caller
+    const [select, setSelect] = useState(2); // 0: Marry, 1: Caller
     const [userInfo, setUserInfo] = useState({
         nameA: { first: "", last: "" },
         nameB: { first: "", last: "" },
@@ -43,35 +42,19 @@ const Register = () => {
         isMarrying: undefined,
         isCaller: undefined,
     });
-    const [registerUser, setRegisterUser] = useState({});
     const [myError, setMyError] = useState({});
-    const handleInputChange = (key, subKey, value) => {
-        setUserInfo((prevState) => {
-            if (subKey) {
-                return {
-                    ...prevState,
-                    [key]: { ...prevState[key], [subKey]: value },
-                };
-            } else {
-                return {
-                    ...prevState,
-                    [key]: value,
-                };
-            }
-        });
-    };
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleSelectChange = (e) => {
         if (e.target.value === 0) {
-            setUserInfo({ ...userInfo, isMarrying: true, isCaller: false });
+            setUserInfo({ ...userInfo, isMarrying: true, isCaller: false, nameB: {}, marryDate: "" });
             setSelect(0);
             setIsCaller(false);
-            console.log(userInfo);
+            setType(true);
         } else {
             setIsCaller(true);
             setUserInfo({ ...userInfo, nameB: { first: "..", last: ".." }, marryDate: "01/01/9999", isMarrying: false, isCaller: true });
             setSelect(1);
-            console.log(userInfo);
+            setType(true);
         }
     };
     const handleChange = (event) => {
@@ -94,20 +77,15 @@ const Register = () => {
         }
     };
     const handleSubmit = async (e) => {
-        console.log(userInfo);
         const errors = validProfile(userInfo);
         setMyError(errors);
         e.preventDefault();
         setIsSubmitted(true);
         if (errors) {
-            console.log(errors);
             return allToast.toastError("Register failed");
         } else {
             setMyError({});
-            const date = dayjs(userInfo.marryDate, "DD/MM/YYYY").toISOString();
-            setRegisterUser({ ...userInfo, marryDate: date });
-            await register(registerUser);
-            allToast.toastSuccess("Register successfully");
+            await register(userInfo);
             navigate(ROUTES.LOGIN);
         }
     };
@@ -133,18 +111,19 @@ const Register = () => {
                             },
                         }}>
                         <TextField
-                            error={isSubmitted && !!myError?.first}
-                            helperText={myError?.first}
+                            error={isSubmitted && !!myError?.["nameA.first"]}
+                            helperText={myError?.["nameA.first"]}
                             onChange={handleChange}
+                            disabled={!type}
                             name="nameA.first"
                             label="First name"
                             variant="standard"
                             required
                         />
                         <TextField
-                            error={isSubmitted && !!myError?.nameB?.first}
-                            helperText={myError?.second}
-                            disabled={iseCaller}
+                            error={isSubmitted && !!myError?.["nameB.first"]}
+                            helperText={myError?.["nameB.first"]}
+                            disabled={iseCaller || !type}
                             onChange={handleChange}
                             name="nameB.first"
                             label="Partner first"
@@ -152,26 +131,29 @@ const Register = () => {
                             required
                         />
                         <TextField
-                            error={isSubmitted && !!myError?.city}
-                            helperText={myError?.city}
+                            error={isSubmitted && !!myError?.["address.city"]}
+                            helperText={myError?.["address.city"]}
                             onChange={handleChange}
+                            disabled={!type}
                             name="address.city"
                             label="City"
                             variant="standard"
                             required
                         />
                         <TextField
-                            error={isSubmitted && !!myError?.state}
-                            helperText={myError?.state}
+                            error={isSubmitted && !!myError?.["address.state"]}
+                            helperText={myError?.["address.state"]}
                             onChange={handleChange}
+                            disabled={!type}
                             name="address.state"
                             label="State"
                             variant="standard"
                         />
                         <TextField
-                            error={isSubmitted && !!myError?.houseNumber}
-                            helperText={myError?.houseNumber}
+                            error={isSubmitted && !!myError?.["address.houseNumber"]}
+                            helperText={myError?.["address.houseNumber"]}
                             onChange={handleChange}
+                            disabled={!type}
                             name="address.houseNumber"
                             label="House number"
                             variant="standard"
@@ -181,6 +163,7 @@ const Register = () => {
                             error={isSubmitted && !!myError?.email}
                             helperText={myError?.email}
                             onChange={handleChange}
+                            disabled={!type}
                             name="email"
                             label="Email"
                             variant="standard"
@@ -198,6 +181,7 @@ const Register = () => {
                                 error={isSubmitted && !!myError?.password}
                                 helperText={myError?.password}
                                 onChange={handleChange}
+                                disabled={!type}
                                 name="password"
                                 type={showPassword ? "text" : "password"}
                                 label="Password"
@@ -214,7 +198,7 @@ const Register = () => {
                                 required
                             />
                         </Tooltip>
-                        <TextField onChange={handleChange} name="image.src" label="Image" variant="standard" />
+                        <TextField onChange={handleChange} disabled={!type} name="image.src" label="Image" variant="standard" />
                     </Box>
                     <Box
                         sx={{
@@ -226,18 +210,19 @@ const Register = () => {
                             },
                         }}>
                         <TextField
-                            error={isSubmitted && !!myError?.last}
-                            helperText={myError?.last}
+                            error={isSubmitted && !!myError?.["nameA.last"]}
+                            helperText={myError?.["nameA.last"]}
                             onChange={handleChange}
+                            disabled={!type}
                             name="nameA.last"
                             label="Last name"
                             variant="standard"
                             required
                         />
                         <TextField
-                            error={isSubmitted && !!myError?.nameB?.last}
-                            helperText={myError?.last}
-                            disabled={iseCaller}
+                            error={isSubmitted && !!myError?.["nameB.last"]}
+                            helperText={myError?.["nameB.last"]}
+                            disabled={iseCaller || !type}
                             onChange={handleChange}
                             name="nameB.last"
                             label="Partner last"
@@ -245,27 +230,30 @@ const Register = () => {
                             required
                         />
                         <TextField
-                            error={isSubmitted && !!myError?.country}
-                            helperText={myError?.country}
+                            error={isSubmitted && !!myError?.["address.country"]}
+                            helperText={myError?.["address.country"]}
                             onChange={handleChange}
+                            disabled={!type}
                             name="address.country"
                             label="Country"
                             variant="standard"
                             required
                         />
                         <TextField
-                            error={isSubmitted && !!myError?.street}
-                            helperText={myError?.street}
+                            error={isSubmitted && !!myError?.["address.street"]}
+                            helperText={myError?.["address.street"]}
                             onChange={handleChange}
+                            disabled={!type}
                             name="address.street"
                             label="Street"
                             variant="standard"
                             required
                         />
                         <TextField
-                            error={isSubmitted && !!myError?.Zip}
-                            helperText={myError?.Zip}
+                            error={isSubmitted && !!myError?.["address.Zip"]}
+                            helperText={myError?.["address.Zip"]}
                             onChange={handleChange}
+                            disabled={!type}
                             name="address.Zip"
                             label="Zip"
                             variant="standard"
@@ -275,6 +263,7 @@ const Register = () => {
                             error={isSubmitted && !!myError?.phone}
                             helperText={myError?.phone}
                             onChange={handleChange}
+                            disabled={!type}
                             name="phone"
                             label="Phone number"
                             variant="standard"
@@ -284,20 +273,25 @@ const Register = () => {
                         <TextField
                             error={isSubmitted && !!myError?.marryDate}
                             helperText={myError?.marryDate}
-                            disabled={iseCaller}
+                            disabled={iseCaller || !type}
                             onChange={handleChange}
                             name="marryDate"
                             label="Wedding date"
                             variant="standard"
                             required
                         />
-                        <Select value={select} label="Age" sx={{ width: "198px", mt: 4, textAlign: "left" }} onChange={handleSelectChange}>
+                        <Select
+                            autoFocus={true}
+                            value={select}
+                            label="Age"
+                            sx={{ width: "198px", mt: 4, textAlign: "left" }}
+                            onChange={handleSelectChange}>
                             <MenuItem value={0}>Marry</MenuItem>
                             <MenuItem value={1}>Caller</MenuItem>
                         </Select>
                     </Box>
                 </FormControl>
-                <Button variant="contained" onClick={handleSubmit} sx={{ mt: 2, ml: 2 }}>
+                <Button variant="contained" onClick={handleSubmit} disabled={!type} sx={{ mt: 2, ml: 2 }}>
                     Submit
                 </Button>
             </Box>

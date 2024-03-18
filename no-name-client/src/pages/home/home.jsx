@@ -122,7 +122,7 @@ const HomePage = () => {
                                     Pending
                                 </Typography>
                                 <Typography
-                                    sx={{ color: handleColorPallet("beige") }}
+                                    sx={{ color: handleColorPallet("teaGreen") }}
                                     fontFamily="Quattrocento sans"
                                     fontSize="3rem"
                                     textAlign="center">

@@ -49,7 +49,7 @@ const Layout = ({ children }) => {
     };
     return (
         <ThemeProvider theme={themes}>
-            <Box sx={{ height: "100vh", display: "flex" }}>
+            <Box sx={{ height: "100%", display: "flex" }}>
                 <Header isDarkTheme={isDarkTheme} onThemeChange={handleThemeChange} />
                 <Main>{children}</Main>
             </Box>

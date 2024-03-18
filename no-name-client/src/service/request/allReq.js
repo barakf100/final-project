@@ -7,6 +7,7 @@ const register = async (user) => {
     try {
         const modDate = { ...user, marryDate: dayjs(user.marryDate, "DD/MM/YYYY").toISOString() };
         const res = await axios.post("/users/", modDate);
+        allToast.toastSuccess("Register successfully");
         return res.data;
     } catch (err) {
         console.log(err);

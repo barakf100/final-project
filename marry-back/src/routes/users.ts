@@ -11,6 +11,7 @@ import { isAdminOrCaller } from "../middleware/is-admin-or-caller";
 import { isMarry } from "../middleware/is-marry";
 import { Logger } from "../logs-message/logger";
 import { isCallerOrMarry } from "../middleware/is-marry-or-caller";
+import dayjs from "dayjs";
 
 const router = Router();
 // register new user
@@ -66,7 +67,6 @@ router.get("/:id", isCallerOrMarry, async (req, res, next) => {
 // params: id is the user id
 router.put("/:id", isAdminOrUser, validateRegistration, async (req, res, next) => {
     try {
-        // req.body.password = await auth.hashPassword(req.body.password);
         const saved = await User.findByIdAndUpdate({ _id: req.params.id }, req.body, { new: true });
         res.json(saved);
     } catch (err) {

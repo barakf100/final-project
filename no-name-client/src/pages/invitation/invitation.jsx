@@ -12,7 +12,6 @@ const Invitation = () => {
     const userId = getMyId();
     const [invitation, setInvitation] = useState(null);
     const [reload, setReload] = useState(false);
-    const imageUrl = `${process.env.REACT_APP_SERVER_URL}image/${userId}`;
     useEffect(() => {
         const fetchInvitation = async () => {
             try {

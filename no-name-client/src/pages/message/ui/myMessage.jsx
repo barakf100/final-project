@@ -15,20 +15,18 @@ const MyMessage = ({ h, message, userId, type, setReload }) => {
     useEffect(() => {
         setCustomMessage({ type: message?.message });
     }, [message?.message]);
-    const handleDelete = (message) => {
-        messageReq
-            .deleteMessage(userId, type)
-            .then(setReload((prev) => !prev))
-            .catch((err) => console.log(err));
+    const handleDelete = async (message) => {
+        await messageReq.deleteMessage(userId, type);
+        setReload((prev) => !prev);
     };
     const handleEditClick = () => {
         setEdit((prev) => !prev);
     };
-    const handleSaveClick = (from, what) => {
+    const handleSaveClick = async (from, what) => {
         if (from === "customMessage") setEdit((prev) => !prev);
         else if (from === "editMessage") setEditMessage((prev) => !prev);
-        if (customMessage.type && what === "postMessage") messageReq.postMessage(customMessage.type, userId, type);
-        else if (customMessage.type && what === "updateMessage") messageReq.updateMessage(userId, type, customMessage.type);
+        if (customMessage.type && what === "postMessage") await messageReq.postMessage(customMessage.type, userId, type);
+        else if (customMessage.type && what === "updateMessage") await messageReq.updateMessage(userId, type, customMessage.type);
         setReload((prev) => !prev);
     };
     const handleChange = (e, type) => {

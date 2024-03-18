@@ -1,5 +1,6 @@
 import axios from "axios";
 import { getToken } from "../../service/storage/storageService";
+import { allToast } from "../toast/toast";
 const getAllUsers = async () => {
     try {
         const res = await axios.get("/users/", {
@@ -20,6 +21,7 @@ const removeUser = async (id) => {
                 Authorization: `Bearer ${getToken()}`,
             },
         });
+        allToast.toastSuccess("User Removed");
         return res.data;
     } catch (err) {
         console.log(err);

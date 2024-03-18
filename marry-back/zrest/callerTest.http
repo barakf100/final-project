@@ -6,12 +6,12 @@ GET http://localhost:8080/api/v1/userCaller/6592c9a7142366537e74c9da
 Authorization: bearer {{token}}
 
 ### caller update invite
-PATCH http://localhost:8080/api/v1/userCaller/6592c9a7142366537e74c9da/6593ea65684786a65d8c2484
+PATCH http://localhost:8080/api/v1/userCaller/65db367b40c6a48e7f35e19e/65f4986e9e00eaca02930090
 Authorization: bearer {{token}}
 Content-Type: application/json
 
 {
-    "isAccepted": false,
-    "isDeclined": true,
+    "isAccepted": true,
+    "isDeclined": false,
     "isPending": false
 }

@@ -2,7 +2,7 @@ import { Router } from "express";
 import { isCaller } from "../middleware/is-caller";
 import { User } from "../database/model/user";
 import { InputError } from "../error/Input-Error";
-import { callerMethods } from "../service/caller-service";
+import { callerMethods, updateInvite } from "../service/caller-service";
 import { isBodyValid } from "../middleware/is-body-valid";
 import { Logger } from "../logs-message/logger";
 import { isCallerOrMarry } from "../middleware/is-marry-or-caller";
@@ -23,9 +23,10 @@ router.get("/:id", isCallerOrMarry, async (req, res, next) => {
 //  caller update invite
 router.patch("/:id/:inviteId", isCaller, isBodyValid, async (req, res, next) => {
     try {
-        const updateInvites = await callerMethods.updateInvite(req, res, next);
+        const updateInvites = await updateInvite(req, res, next);
         res.status(200).json({ message: "invite updated", invites: updateInvites });
     } catch (err) {
+        Logger.error(err);
         next(err);
     }
 });

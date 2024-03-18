@@ -2,8 +2,6 @@ import axios from "axios";
 import { getToken } from "../storage/storageService";
 import { allToast } from "../toast/toast";
 
-// TODO: check all the requests
-
 const getUserById = async (id) => {
     try {
         const res = await axios.get(`/users/${id}`, { headers: { Authorization: `bearer ${getToken()}` } });
@@ -14,12 +12,9 @@ const getUserById = async (id) => {
 };
 
 const updateUser = async (id, user) => {
-    console.log("here");
-    console.log(user);
     try {
-        console.log("here 2");
-        console.log("req", `/users/${id}`);
         const res = await axios.put(`/users/${id}`, user, { headers: { Authorization: `bearer ${getToken()}` } });
+        allToast.toastSuccess("Profile updated successfully");
         return res.data;
     } catch (err) {
         console.log(err);

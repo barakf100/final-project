@@ -33,7 +33,6 @@ const Guards = {
     },
     AdminGuard: ({ children }) => {
         const type = useUserRole();
-        console.log(type);
         if (type === "admin") {
             return children;
         } else {

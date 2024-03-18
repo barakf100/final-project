@@ -61,7 +61,6 @@ const InputFileUpload = ({ setReload, invitation }) => {
                 startIcon={<DeleteIcon />}
                 disabled={!invitation}
                 onClick={() => {
-                    console.log("delete");
                     handleDelete(setReload);
                 }}>
                 delete

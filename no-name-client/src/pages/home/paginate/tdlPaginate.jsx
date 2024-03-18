@@ -13,7 +13,6 @@ const TDLPaginate = ({ TDL, setOpen, userId, setReload, done }) => {
         setDoneTDLs(done);
         setUndoneTDLs(undone);
     }, [TDL]);
-    // const PaginateTDL = TDL.slice(page * ITEM_PER_PAGE, (page + 1) * ITEM_PER_PAGE);
     const paginateDoneTDLs = doneTDLs?.slice(page * ITEM_PER_PAGE, (page + 1) * ITEM_PER_PAGE);
     const paginateUndoneTDLs = undoneTDLs?.slice(page * ITEM_PER_PAGE, (page + 1) * ITEM_PER_PAGE);
 

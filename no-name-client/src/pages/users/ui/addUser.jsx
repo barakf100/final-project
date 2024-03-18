@@ -3,13 +3,16 @@ import * as Mui from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import validProfile from "../../../validation/profileValid";
-import { allToast } from "../../../service/toast/toast";
+import { toastBreak } from "../../../service/toast/toast";
 import { register } from "../../../service/request/allReq";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import dayjs from "dayjs";
 const AddUser = (props) => {
     const { open, setOpen, setReload } = props;
+    const [iseCaller, setIsCaller] = useState(false);
+    const [type, setType] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [select, setSelect] = useState(); // 0: Marry, 1: Caller
@@ -17,6 +20,7 @@ const AddUser = (props) => {
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const [userInfo, setUserInfo] = useState({
         nameA: { first: "", last: "" },
+        nameB: { first: "", last: "" },
         address: { city: "", country: "", street: "", houseNumber: "", Zip: "" },
         image: { src: "https://picsum.photos/200/300", alt: "profile image" },
         email: "",
@@ -42,13 +46,18 @@ const AddUser = (props) => {
         });
     };
     const handleSelectChange = (e) => {
+        setType(true);
         if (e.target.value === 0) {
             handleInputChange("isMarrying", null, true);
             handleInputChange("isCaller", null, false);
+            setUserInfo({ ...userInfo, nameB: {}, marryDate: "" });
+            setIsCaller(false);
             setSelect(0);
         } else {
             handleInputChange("isMarrying", null, false);
             handleInputChange("isCaller", null, true);
+            setUserInfo({ ...userInfo, nameB: { first: "..", last: ".." }, marryDate: "01/01/9999" });
+            setIsCaller(true);
             setSelect(1);
         }
     };
@@ -56,7 +65,7 @@ const AddUser = (props) => {
         handleChange({
             target: {
                 name: "marryDate",
-                value: date.$d,
+                value: dayjs(date.$d).format("DD/MM/YYYY"),
             },
         });
     };
@@ -81,19 +90,16 @@ const AddUser = (props) => {
         }
     };
     const handleSubmit = async (e) => {
-        console.log(userInfo);
         e.preventDefault();
         setIsSubmitted(true);
         const errors = validProfile(userInfo);
         if (errors && Object.keys(errors).length > 0) {
-            Object.entries(errors).forEach(([key, value]) => {
-                allToast.toastError(`${key} : ${value}`);
-            });
+            toastBreak(errors, "error");
             setMyError(errors);
         } else {
-            register(userInfo);
+            await register(userInfo);
             setReload((prev) => !prev);
-            allToast.toastSuccess("Register successfully");
+            handleClose();
         }
     };
     const handleClose = () => {
@@ -113,6 +119,7 @@ const AddUser = (props) => {
                 <Mui.TextField
                     required
                     error={isSubmitted && !!myError?.first}
+                    disabled={!type}
                     onChange={handleChange}
                     name="nameA.first"
                     label="First Name"
@@ -121,6 +128,7 @@ const AddUser = (props) => {
                 <Mui.TextField
                     required
                     error={isSubmitted && !!myError?.first}
+                    disabled={!type}
                     onChange={handleChange}
                     name="nameA.last"
                     label="Last Name"
@@ -132,16 +140,18 @@ const AddUser = (props) => {
                     required
                     error={isSubmitted && !!myError?.first}
                     onChange={handleChange}
-                    name="address.city"
-                    label="City"
+                    name="nameB.first"
+                    disabled={!type || iseCaller}
+                    label="Partner Name"
                     variant="outlined"
                 />
                 <Mui.TextField
                     required
                     error={isSubmitted && !!myError?.first}
                     onChange={handleChange}
-                    name="address.country"
-                    label="country"
+                    disabled={iseCaller || !type}
+                    name="nameB.last"
+                    label="Partner Last"
                     variant="outlined"
                 />
             </Mui.Box>
@@ -150,12 +160,34 @@ const AddUser = (props) => {
                     required
                     error={isSubmitted && !!myError?.first}
                     onChange={handleChange}
+                    disabled={!type}
+                    name="address.city"
+                    label="City"
+                    variant="outlined"
+                />
+                <Mui.TextField
+                    required
+                    error={isSubmitted && !!myError?.first}
+                    onChange={handleChange}
+                    disabled={!type}
+                    name="address.country"
+                    label="country"
+                    variant="outlined"
+                />
+            </Mui.Box>
+            <Mui.Box sx={{ display: "flex" }}>
+                <Mui.TextField
+                    required
+                    disabled={!type}
+                    error={isSubmitted && !!myError?.first}
+                    onChange={handleChange}
                     name="address.street"
                     label="Street"
                     variant="outlined"
                 />
                 <Mui.TextField
                     required
+                    disabled={!type}
                     error={isSubmitted && !!myError?.first}
                     onChange={handleChange}
                     name="address.houseNumber"
@@ -166,6 +198,7 @@ const AddUser = (props) => {
             <Mui.Box sx={{ display: "flex" }}>
                 <Mui.TextField
                     required
+                    disabled={!type}
                     error={isSubmitted && !!myError?.first}
                     onChange={handleChange}
                     name="address.Zip"
@@ -174,6 +207,7 @@ const AddUser = (props) => {
                 />
                 <Mui.TextField
                     required
+                    disabled={!type}
                     error={isSubmitted && !!myError?.first}
                     onChange={handleChange}
                     name="email"
@@ -184,6 +218,7 @@ const AddUser = (props) => {
             <Mui.Box sx={{ display: "flex" }}>
                 <Mui.TextField
                     required
+                    disabled={!type}
                     error={isSubmitted && !!myError?.first}
                     onChange={handleChange}
                     name="phone"
@@ -193,7 +228,7 @@ const AddUser = (props) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
                         sx={{ width: "226px" }}
-                        required
+                        disabled={iseCaller || !type}
                         error={isSubmitted && !!myError?.first}
                         onChange={handleDateChange}
                         name="marryDate"
@@ -213,6 +248,7 @@ const AddUser = (props) => {
                     }>
                     <Mui.TextField
                         required
+                        disabled={!type}
                         error={isSubmitted && !!myError?.first}
                         sx={{ maxWidth: "226px" }}
                         onChange={handleChange}

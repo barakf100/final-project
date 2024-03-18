@@ -1,0 +1,6 @@
+logged error with status code: 401
+        at 20:45:12 
+        error was: Invalid password 
+logged error with status code: 400
+        at 20:53:31 
+        error was: message already exists 

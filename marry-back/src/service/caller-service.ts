@@ -24,4 +24,4 @@ const callerMethods = {
     updateInvite,
 };
 
-export { callerMethods };
+export { callerMethods, updateInvite };

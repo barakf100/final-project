@@ -2,7 +2,6 @@ import axios from "axios";
 import { allToast } from "../toast/toast";
 import { getToken } from "../storage/storageService";
 
-// add validation
 const addInvite = async (id, invite) => {
     try {
         const res = await axios.patch(`/users/invite/${id}`, invite, { headers: { Authorization: `bearer ${getToken()}` } });

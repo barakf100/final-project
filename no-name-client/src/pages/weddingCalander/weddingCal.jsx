@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 const WeddingCal = () => {
-    console.log("WeddingCal");
     const [events, setEvents] = useState([]);
     const users = useSelector((state) => state.usersSlice.users);
     useEffect(() => {

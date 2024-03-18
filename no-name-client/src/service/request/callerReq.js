@@ -1,7 +1,6 @@
 import axios from "axios";
 import { getToken } from "../storage/storageService";
-
-// TODO: check all the requests
+import { allToast } from "../toast/toast";
 
 const getAllInvites = async (userId) => {
     try {
@@ -15,6 +14,7 @@ const getAllInvites = async (userId) => {
 const updateArrival = async (userId, inviteId, arrival) => {
     try {
         const res = await axios.patch(`/userCaller/${userId}/${inviteId}`, arrival, { headers: { Authorization: `bearer ${getToken()}` } });
+        allToast.toastSuccess("Arrival updated");
         return res.data;
     } catch (err) {
         console.log(err);
