@@ -1,6 +1,7 @@
 import { auth } from "../service/auth-service";
 import { User } from "./model/user";
 import { users } from "./initDB/usersInit";
+import { Logger } from "../logs-message/logger";
 
 const initDB = async () => {
     const countUsers = await User.countDocuments();
@@ -13,6 +14,7 @@ const initDB = async () => {
             user.password = await auth.hashPassword(user.password);
             const saved = await new User(user).save();
         }
+        Logger.info("DB initialized with users.");
     }
 };
 

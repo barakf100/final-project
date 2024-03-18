@@ -43,3 +43,69 @@ logged error with status code: 401
 logged error with status code: 401
         at 11:3:40 
         error was: Invalid password 
+logged error with status code: undefined
+        at 11:41:7 
+        error was: user validation failed: email: Path `email` (`shaked.ashuri@gmail.com`) is longer than the maximum allowed length (20). 
+logged error with status code: 401
+        at 11:41:28 
+        error was: Invalid Email 
+logged error with status code: 401
+        at 11:41:40 
+        error was: Invalid Email 
+logged error with status code: 401
+        at 11:42:8 
+        error was: Invalid Email 
+logged error with status code: undefined
+        at 11:44:20 
+        error was: user validation failed: email: Path `email` (`shaked.ashuri@gmail.com`) is longer than the maximum allowed length (20). 
+logged error with status code: undefined
+        at 11:46:28 
+        error was: user validation failed: email: Path `email` (`shaked.ashuri@gmail.com`) is longer than the maximum allowed length (20). 
+logged error with status code: 404
+        at 12:1:49 
+        error was: No invitation found 
+logged error with status code: 404
+        at 12:1:49 
+        error was: No invitation found 
+logged error with status code: 401
+        at 12:26:12 
+        error was: Invalid password 
+logged error with status code: undefined
+        at 13:29:36 
+        error was: E11000 duplicate key error collection: test.users index: email_1 dup key: { email: "barak4@gmail.com" } 
+logged error with status code: undefined
+        at 13:30:23 
+        error was: Cannot destructure property 'isAdmin' of '(intermediate value)' as it is null. 
+logged error with status code: undefined
+        at 13:30:35 
+        error was: Cannot destructure property 'isAdmin' of '(intermediate value)' as it is null. 
+logged error with status code: undefined
+        at 13:30:35 
+        error was: Cannot destructure property 'isAdmin' of '(intermediate value)' as it is null. 
+logged error with status code: undefined
+        at 13:30:35 
+        error was: Cannot destructure property 'isAdmin' of '(intermediate value)' as it is null. 
+logged error with status code: undefined
+        at 13:30:35 
+        error was: Cannot destructure property 'isAdmin' of '(intermediate value)' as it is null. 
+logged error with status code: undefined
+        at 13:30:39 
+        error was: Cannot destructure property 'isAdmin' of '(intermediate value)' as it is null. 
+logged error with status code: undefined
+        at 13:30:39 
+        error was: Cannot destructure property 'isAdmin' of '(intermediate value)' as it is null. 
+logged error with status code: undefined
+        at 13:30:54 
+        error was: Cannot destructure property 'isAdmin' of '(intermediate value)' as it is null. 
+logged error with status code: undefined
+        at 13:30:54 
+        error was: Cannot destructure property 'isAdmin' of '(intermediate value)' as it is null. 
+logged error with status code: undefined
+        at 13:31:28 
+        error was: Cannot destructure property 'isAdmin' of '(intermediate value)' as it is null. 
+logged error with status code: undefined
+        at 13:31:28 
+        error was: Cannot destructure property 'isAdmin' of '(intermediate value)' as it is null. 
+logged error with status code: 401
+        at 13:32:36 
+        error was: Invalid Email 

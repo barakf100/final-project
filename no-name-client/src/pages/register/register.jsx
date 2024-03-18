@@ -6,6 +6,7 @@ import {
     TextField,
     Select,
     MenuItem,
+    FormHelperText,
     FormControl,
     Button,
     IconButton,
@@ -25,7 +26,7 @@ import ROUTES from "../../routes/ROUTES";
 const Register = () => {
     const navigate = useNavigate();
     const screenBreak = useMediaQuery("(min-width: 850px)");
-    const [iseCaller, setIsCaller] = useState(false);
+    const [isCaller, setIsCaller] = useState(false);
     const [type, setType] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
@@ -50,12 +51,12 @@ const Register = () => {
             setSelect(0);
             setIsCaller(false);
             setType(true);
-        } else {
+        } else if (e.target.value === 1) {
             setIsCaller(true);
             setUserInfo({ ...userInfo, nameB: { first: "..", last: ".." }, marryDate: "01/01/9999", isMarrying: false, isCaller: true });
             setSelect(1);
             setType(true);
-        }
+        } else setType(false);
     };
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -123,7 +124,7 @@ const Register = () => {
                         <TextField
                             error={isSubmitted && !!myError?.["nameB.first"]}
                             helperText={myError?.["nameB.first"]}
-                            disabled={iseCaller || !type}
+                            disabled={isCaller || !type}
                             onChange={handleChange}
                             name="nameB.first"
                             label="Partner first"
@@ -209,6 +210,15 @@ const Register = () => {
                                 bottom: "-16.5px",
                             },
                         }}>
+                        <Select
+                            autoFocus={true}
+                            value={select}
+                            sx={{ width: "198px", mt: 4, textAlign: "left" }}
+                            onChange={handleSelectChange}>
+                            <MenuItem value={0}>Marry</MenuItem>
+                            <MenuItem value={1}>Caller</MenuItem>
+                            <MenuItem value={2}>Choose</MenuItem>
+                        </Select>
                         <TextField
                             error={isSubmitted && !!myError?.["nameA.last"]}
                             helperText={myError?.["nameA.last"]}
@@ -222,7 +232,7 @@ const Register = () => {
                         <TextField
                             error={isSubmitted && !!myError?.["nameB.last"]}
                             helperText={myError?.["nameB.last"]}
-                            disabled={iseCaller || !type}
+                            disabled={isCaller || !type}
                             onChange={handleChange}
                             name="nameB.last"
                             label="Partner last"
@@ -273,22 +283,13 @@ const Register = () => {
                         <TextField
                             error={isSubmitted && !!myError?.marryDate}
                             helperText={myError?.marryDate}
-                            disabled={iseCaller || !type}
+                            disabled={isCaller || !type}
                             onChange={handleChange}
                             name="marryDate"
                             label="Wedding date"
                             variant="standard"
                             required
                         />
-                        <Select
-                            autoFocus={true}
-                            value={select}
-                            label="Age"
-                            sx={{ width: "198px", mt: 4, textAlign: "left" }}
-                            onChange={handleSelectChange}>
-                            <MenuItem value={0}>Marry</MenuItem>
-                            <MenuItem value={1}>Caller</MenuItem>
-                        </Select>
                     </Box>
                 </FormControl>
                 <Button variant="contained" onClick={handleSubmit} disabled={!type} sx={{ mt: 2, ml: 2 }}>

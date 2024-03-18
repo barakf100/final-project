@@ -7,6 +7,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { Fragment } from "react";
 import validateTDL from "../../../validation/tdlValid";
 import { toastBreak } from "../../../service/toast/toast";
+import { handleColorPallet } from "../../../service/colors/change";
 
 export default function AddTDL({ open, setOpen, handleAddTDL }) {
     const handleClose = () => {
@@ -51,8 +52,12 @@ export default function AddTDL({ open, setOpen, handleAddTDL }) {
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Cancel</Button>
-                    <Button type="submit">Add</Button>
+                    <Button sx={{ color: handleColorPallet("mossGreen3") }} onClick={handleClose}>
+                        Cancel
+                    </Button>
+                    <Button sx={{ color: handleColorPallet("mossGreen3") }} type="submit">
+                        Add
+                    </Button>
                 </DialogActions>
             </Dialog>
         </Fragment>

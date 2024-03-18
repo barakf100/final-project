@@ -15,7 +15,7 @@ const AddUser = (props) => {
     const [type, setType] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const [select, setSelect] = useState(); // 0: Marry, 1: Caller
+    const [select, setSelect] = useState(2); // 0: Marry, 1: Caller
     const [myError, setMyError] = useState({});
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const [userInfo, setUserInfo] = useState({
@@ -50,15 +50,18 @@ const AddUser = (props) => {
         if (e.target.value === 0) {
             handleInputChange("isMarrying", null, true);
             handleInputChange("isCaller", null, false);
-            setUserInfo({ ...userInfo, nameB: {}, marryDate: "" });
+            setUserInfo({ ...userInfo, nameB: {}, marryDate: "", isMarrying: true, isCaller: false });
             setIsCaller(false);
             setSelect(0);
-        } else {
+        } else if (e.target.value === 1) {
             handleInputChange("isMarrying", null, false);
             handleInputChange("isCaller", null, true);
-            setUserInfo({ ...userInfo, nameB: { first: "..", last: ".." }, marryDate: "01/01/9999" });
+            setUserInfo({ ...userInfo, nameB: { first: "..", last: ".." }, marryDate: "01/01/9999", isMarrying: false, isCaller: true });
             setIsCaller(true);
             setSelect(1);
+        } else {
+            setType(false);
+            setSelect(2);
         }
     };
     const handleDateChange = (date) => {
@@ -115,6 +118,25 @@ const AddUser = (props) => {
             open={open}
             onClose={handleClose}>
             <Mui.DialogTitle textAlign="center">Register new user</Mui.DialogTitle>
+            <Mui.Box sx={{ display: "flex" }}>
+                <Mui.Select value={select} label="Age" sx={{ width: "226px", textAlign: "left" }} onChange={handleSelectChange} required>
+                    <Mui.MenuItem value={0}>Marry</Mui.MenuItem>
+                    <Mui.MenuItem value={1}>Caller</Mui.MenuItem>
+                    <Mui.MenuItem value={2}>Choose type</Mui.MenuItem>
+                </Mui.Select>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DatePicker
+                        sx={{ width: "226px" }}
+                        disabled={iseCaller || !type}
+                        error={isSubmitted && !!myError?.first}
+                        onChange={handleDateChange}
+                        name="marryDate"
+                        label="Wedding date"
+                        variant="outlined"
+                        format="DD/MM/YYYY"
+                    />
+                </LocalizationProvider>
+            </Mui.Box>
             <Mui.Box sx={{ display: "flex" }}>
                 <Mui.TextField
                     required
@@ -210,8 +232,8 @@ const AddUser = (props) => {
                     disabled={!type}
                     error={isSubmitted && !!myError?.first}
                     onChange={handleChange}
-                    name="email"
-                    label="email"
+                    name="phone"
+                    label="Phone"
                     variant="outlined"
                 />
             </Mui.Box>
@@ -221,24 +243,10 @@ const AddUser = (props) => {
                     disabled={!type}
                     error={isSubmitted && !!myError?.first}
                     onChange={handleChange}
-                    name="phone"
-                    label="Phone"
+                    name="email"
+                    label="email"
                     variant="outlined"
                 />
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DatePicker
-                        sx={{ width: "226px" }}
-                        disabled={iseCaller || !type}
-                        error={isSubmitted && !!myError?.first}
-                        onChange={handleDateChange}
-                        name="marryDate"
-                        label="Wedding date"
-                        variant="outlined"
-                        format="DD/MM/YYYY"
-                    />
-                </LocalizationProvider>
-            </Mui.Box>
-            <Mui.Box sx={{ display: "flex" }}>
                 <Mui.Tooltip
                     title={
                         <Mui.Typography variant="body2">
@@ -267,10 +275,6 @@ const AddUser = (props) => {
                         }}
                     />
                 </Mui.Tooltip>
-                <Mui.Select value={select} label="Age" sx={{ width: "226px", textAlign: "left" }} onChange={handleSelectChange} required>
-                    <Mui.MenuItem value={0}>Marry</Mui.MenuItem>
-                    <Mui.MenuItem value={1}>Caller</Mui.MenuItem>
-                </Mui.Select>
             </Mui.Box>
             <Mui.DialogActions sx={{ display: "flex", justifyContent: "center" }}>
                 <Mui.Button onClick={handleClose} color="mossGreen1">

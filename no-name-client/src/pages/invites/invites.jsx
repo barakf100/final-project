@@ -56,11 +56,11 @@ const InvitesPage = () => {
         setIsAdd((prev) => !prev);
     };
     const PaginateInvites = invitesArr?.slice(page * ITEM_PER_PAGE, (page + 1) * ITEM_PER_PAGE);
-    const handleSave = () => {
+    const handleSave = async () => {
         const err = inviteValid(newInvite);
         if (err) toastBreak(err, "error");
         else {
-            addInvite(userId, { invites: newInvite });
+            await addInvite(userId, { invites: newInvite });
             setNewInvite({
                 name: { first: "", last: "" },
                 group: "",

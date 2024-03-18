@@ -28,7 +28,8 @@ const schema = Joi.object<IUser>({
     }),
     email: Joi.string()
         .email({ tlds: { allow: false } })
-        .min(5),
+        .min(5)
+        .max(50),
     password: Joi.string().min(7).max(20).pattern(passRegex).messages({
         "string.pattern.base": "pass rules",
         "string.empty": "pass empty",

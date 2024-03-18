@@ -44,7 +44,7 @@ const AdminMain = () => {
                             title={"invites success rate"}
                         />
                         <Mui.Typography textAlign="center" variant="h6" mt={3}>
-                            success rate:{" "}
+                            success rate:
                             {Math.round((invitesCount.acceptedCount / (invitesCount.total === 0 ? 1 : invitesCount.total)) * 100)}%
                         </Mui.Typography>
                     </Mui.Box>
@@ -60,7 +60,8 @@ const AdminMain = () => {
                             valC="0"
                         />
                         <Mui.Typography textAlign="center" variant="h6" mt={3}>
-                            ratio: {usersCount.callers / usersCount.callers} : {(usersCount.marry / usersCount.callers).toFixed(1)}
+                            ratio: {usersCount.callers / usersCount.callers ? usersCount.callers / usersCount.callers : 0} :
+                            {usersCount.marry / usersCount.callers ? usersCount.marry / usersCount.callers.toFixed(1) : 0}
                         </Mui.Typography>
                     </Mui.Box>
                 </Mui.Grid>

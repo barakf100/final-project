@@ -1,9 +1,10 @@
 import * as Mui from "@mui/material";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { removeUser } from "../../../service/request/adminReq";
+import { allToast } from "../../../service/toast/toast";
 const UserPaginate = ({ page, sortedUsers, ITEM_PER_PAGE, setReload, tableScreenSize }) => {
     const handleDelete = async (id) => {
-        await removeUser(id);
+        window.confirm("sure?") && (await removeUser(id));
         handleReload();
     };
     const handleReload = () => {
@@ -30,7 +31,8 @@ const UserPaginate = ({ page, sortedUsers, ITEM_PER_PAGE, setReload, tableScreen
             <Mui.TableCell align="center">
                 <Mui.Button
                     onClick={() => {
-                        handleDelete(user._id);
+                        if (user.isMarrying || user.isCaller) handleDelete(user._id);
+                        else allToast.toastError("You can't delete admin");
                     }}
                     color="mossGreen2">
                     <RemoveIcon />

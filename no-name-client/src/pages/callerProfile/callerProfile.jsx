@@ -49,18 +49,19 @@ const CallerProfilePage = () => {
         const err = validProfile(userInfo);
         delete err?.marryDate;
         if (err) {
+            console.log(Object.entries(err).length);
             if (Object.entries(err).length) {
                 Object.entries(err).forEach(([key, value]) => {
                     allToast.toastError(`${key} : ${value}`);
                 });
                 return;
+            } else {
+                updateUser(user._id, userInfo).then(() => {
+                    allToast.toastSuccess("Profile updated successfully");
+                    dispatch(getUser());
+                    setIsEditing(false);
+                });
             }
-        } else {
-            updateUser(user._id, userInfo).then(() => {
-                allToast.toastSuccess("Profile updated successfully");
-                dispatch(getUser());
-                setIsEditing(false);
-            });
         }
     };
     const handleInputChange = (key, subKey, value) => {

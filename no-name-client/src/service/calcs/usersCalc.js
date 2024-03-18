@@ -2,6 +2,7 @@ const UsersCalc = {
     UsersCount: (users) => {
         const callers = users.filter((user) => user.isCaller).length;
         const marry = users.filter((user) => user.isMarrying).length;
+        console.log(callers / callers);
         return { callers, marry };
     },
     InvitesCount: (users) => {

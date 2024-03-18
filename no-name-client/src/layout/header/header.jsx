@@ -7,6 +7,7 @@ import LeftDrawerComponent from "./ui/LeftDrawerComponent.jsx";
 import ROUTES from "../../routes/ROUTES.js";
 import { useNavigate } from "react-router-dom";
 import LogoutAndThemeButton from "./ui/buttons.jsx";
+import { handleColorPallet } from "../../service/colors/change.js";
 const Header = ({ isDarkTheme, onThemeChange }) => {
     const linksScreenSize = useMediaQuery("(min-width:750px)");
     const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +28,7 @@ const Header = ({ isDarkTheme, onThemeChange }) => {
     };
     return (
         <Box sx={{ flexGrow: 1, mb: 2, position: "fixed", zIndex: 999, width: "100%" }}>
-            <AppBar position="static">
+            <AppBar position="static" sx={{ backgroundColor: handleColorPallet("cornsilk") }}>
                 <Toolbar>
                     <IconButton
                         size="large"
