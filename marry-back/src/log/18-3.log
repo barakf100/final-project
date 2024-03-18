@@ -109,3 +109,9 @@ logged error with status code: undefined
 logged error with status code: 401
         at 13:32:36 
         error was: Invalid Email 
+logged error with status code: 401
+        at 14:37:5 
+        error was: Invalid Email 
+logged error with status code: 401
+        at 14:37:20 
+        error was: Invalid Email 

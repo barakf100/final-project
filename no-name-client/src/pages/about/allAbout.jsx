@@ -1,5 +1,4 @@
 import Accordion from "./ui/accordion";
-
 const AllAbout = () => {
     return (
         <>

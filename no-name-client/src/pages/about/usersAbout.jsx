@@ -19,8 +19,16 @@ const AboutComp = ({ image, text }) => {
             <Mui.Typography mb={1} variant="body1">
                 {texts[page]}
             </Mui.Typography>
-            <Mui.Box sx={{ height: "58vh", display: "flex", justifyContent: "center", border: `.8px solid`, borderColor: teaGreen }}>
-                <img src={images[page]} alt="marry messages" height="100%" />
+            <Mui.Box
+                sx={{
+                    height: "58vh",
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    border: `.8px solid`,
+                    borderColor: teaGreen,
+                }}>
+                <img src={images[page]} alt="marry messages" height="100%" width="100%" />
             </Mui.Box>
             <Mui.Button onClick={handleNext} sx={{ color: handleColorPallet("mossGreen3") }}>
                 next

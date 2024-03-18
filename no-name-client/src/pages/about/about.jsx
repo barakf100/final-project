@@ -2,7 +2,7 @@ import * as Mui from "@mui/material";
 import { handleColorPallet } from "../../service/colors/change";
 import { useState } from "react";
 import AllAbout from "./allAbout";
-import AboutComp from "./marryAbout";
+import AboutComp from "./usersAbout";
 import MarryHome from "../../assets/marryHomePage.png";
 import marryInvite from "../../assets/marryInvites.png";
 import MarryInvitation from "../../assets/marryInvitation.png";
@@ -26,7 +26,7 @@ const About = () => {
     const callerImages = [callerHome, callerInvites, callerCalendar];
     const callerText = [callerHomeText, callerInvitesText, callerWeddingCalendarText];
     return (
-        <Mui.Container sx={{ display: "flex", flexDirection: "column", height: "85.8vh" }}>
+        <Mui.Container sx={{ display: "flex", flexDirection: "column", height: "85.8vh", width: "100vw" }}>
             <Mui.Typography variant="h3" fontWeight="bold" color={handleColorPallet("teaGreen")} align="center">
                 About
             </Mui.Typography>
