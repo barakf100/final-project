@@ -26,6 +26,7 @@ import ROUTES from "../../routes/ROUTES";
 const Register = () => {
     const navigate = useNavigate();
     const screenBreak = useMediaQuery("(min-width: 850px)");
+    const screenBreakMobile = useMediaQuery("(min-width: 450px)");
     const [isCaller, setIsCaller] = useState(false);
     const [type, setType] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
@@ -101,7 +102,10 @@ const Register = () => {
                 <Typography color={handleColorPallet("teaGreen")} variant="h3">
                     Register
                 </Typography>
-                <FormControl component="form" variant="standard" sx={{ display: "flex", flexDirection: "row" }}>
+                <FormControl
+                    component="form"
+                    variant="standard"
+                    sx={{ display: "flex", flexDirection: screenBreakMobile ? "column" : "row" }}>
                     <Box
                         sx={{
                             flex: 1,
@@ -213,7 +217,7 @@ const Register = () => {
                         <Select
                             autoFocus={true}
                             value={select}
-                            sx={{ width: "198px", mt: 4, textAlign: "left" }}
+                            sx={{ width: "198px", mt: 3, textAlign: "left" }}
                             onChange={handleSelectChange}>
                             <MenuItem value={0}>Marry</MenuItem>
                             <MenuItem value={1}>Caller</MenuItem>
