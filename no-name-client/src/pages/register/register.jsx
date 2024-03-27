@@ -102,10 +102,7 @@ const Register = () => {
                 <Typography color={handleColorPallet("teaGreen")} variant="h3">
                     Register
                 </Typography>
-                <FormControl
-                    component="form"
-                    variant="standard"
-                    sx={{ display: "flex", flexDirection: screenBreakMobile ? "column" : "row" }}>
+                <FormControl component="form" variant="standard" sx={{ display: "flex", flexDirection: "row" }}>
                     <Box
                         sx={{
                             flex: 1,
